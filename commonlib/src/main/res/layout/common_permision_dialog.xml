@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="0dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/dp_4"
+    app:cardElevation="0dp"
+    tools:ignore="ResourceName">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_5"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/permission_allow"
+            android:textColor="@color/text_color3_999999"
+            android:textSize="@dimen/dp_16" />
+
+        <TextView
+            android:id="@+id/tv_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="@dimen/common_margin"
+            android:text="@string/permission_tip_deac"
+            android:textColor="@color/text_color5_333333"
+            android:textSize="@dimen/dp_18" />
+
+        <View
+            style="@style/HorizontalStyle"
+            android:layout_marginTop="@dimen/dp_7" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="@dimen/common_margin"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/tv_cacel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="@string/cancel"
+                android:textColor="@color/text_color3_999999" />
+
+            <View style="@style/VerticalStyle" />
+
+            <Button
+                android:id="@+id/tv_toSetting"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="@string/to_setting"
+                android:textColor="@color/main_color" />
+        </LinearLayout>
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

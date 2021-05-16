@@ -1,0 +1,79 @@
+apply plugin: 'com.android.library'
+
+android {
+
+    compileSdkVersion build_versions.compileSdkVersion
+    buildToolsVersion build_versions.build_tools
+
+    defaultConfig {
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode build_versions.versionCode
+        versionName build_versions.versionName
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    //    api deps.constraint_layout
+//    api deps.appcompat
+//    api deps.material
+
+    api deps.support.app_compat
+    api deps.support.v4
+    api deps.support.v13
+    api deps.support.design
+    api deps.support.cardview
+    api deps.support.percent
+    api deps.support.recyclerview
+    api deps.constraint_layout
+    api deps.support.multidex
+
+
+    // RxJava and retrofit
+    api deps.rx_android
+    api deps.rxjava2
+    api deps.retrofit.runtime
+    api deps.retrofit.gson
+    api deps.retrofit.converter_scalars
+    api deps.persistent_cookie
+    api deps.retrofit.adapter
+
+    api deps.event_bus
+    api deps.permission
+    api deps.navigation_fragment
+    api deps.navigation_ui
+    api deps.smart_refresh
+    api deps.smart_refresh_header
+    api deps.flow_layout
+    //router
+    api deps.arouter_api
+    //lifecycle livedata
+    api deps.lifecycle_compiler
+    annotationProcessor deps.lifecycle_annotationProcessor
+    api deps.photoview
+
+    api 'pub.devrel:easypermissions:2.0.1'
+
+
+    api 'com.github.danylovolokh:video-player-manager:0.2.0'
+    api 'com.github.danylovolokh:list-visibility-utils:0.2.0'
+//    api 'com.github.promeg:tinypinyin:2.0.3'
+//    api 'com.github.promeg:tinypinyin-lexicons-android-cncity:2.0.3' // 可选，适用于Android的中国地区词典
+    api(deps.glide) {
+        exclude group: "com.android.support"
+    }
+    api 'com.github.PhilJay:MPAndroidChart:v3.0.2'
+    api 'com.youth.banner:banner:1.4.10'
+    api fileTree(dir: 'libs', include: ['*.aar', '*.jar'], exclude: [])  //最新版本
+
+
+}

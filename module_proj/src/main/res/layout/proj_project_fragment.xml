@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.dc.commonlib.weiget.StatusBarHeightView
+        android:layout_width="match_parent"
+        android:id="@+id/statueBar"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:use_type="1">
+    <include layout="@layout/common_toolbar_layout" />
+  <View style="@style/HorizontalStyle"/>
+    </com.dc.commonlib.weiget.StatusBarHeightView>
+
+    <LinearLayout
+        android:id="@+id/ll_to_search"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_34"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:layout_marginTop="@dimen/dp_6"
+        android:layout_marginRight="@dimen/dp_15"
+        android:background="@drawable/bg_radius_corner_search"
+        android:backgroundTint="@color/white"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_32"
+            android:layout_gravity="center_vertical"
+            android:background="@color/bg_color11_f2f2f2"
+            android:drawableLeft="@drawable/search"
+            android:drawablePadding="@dimen/dp_4"
+            android:gravity="center_vertical|center"
+            android:paddingLeft="@dimen/dp_12"
+            android:text="@string/please_input_project"
+            android:textColor="@color/text_color3_999999" />
+    </LinearLayout>
+
+    <View
+        style="@style/HorizontalStyle"
+        android:layout_marginTop="@dimen/dp_6" />
+
+    <include layout="@layout/proj_comm_item" />
+
+
+</LinearLayout>

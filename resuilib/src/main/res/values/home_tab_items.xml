@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="area_labs">
+        <!--项目区域-->
+        <item>全部</item>
+        <item>银湖</item>
+        <item>新登</item>
+        <item>东洲</item>
+        <item>场口</item>
+        <item>金桥</item>
+        <item>鹿山</item>
+    </string-array>
+    <string-array name="area_labs_ids">
+        <!--项目区域IDS-->
+        <item>000</item>
+        <item>001</item>
+        <item>002</item>
+        <item>003</item>
+        <item>004</item>
+        <item>005</item>
+        <item>006</item>
+    </string-array>
+
+    <string-array name="area_labs_status">
+        <!--项目IDS-->
+        <item>全部</item>
+        <item>在建</item>
+        <item>未开工</item>
+    </string-array>
+    <string-array name="area_labs_status_ids">
+        <!-- IDS-->
+        <!--    server端口    003 在建  001 未开工-->
+        <item>000</item>
+        <item>003</item>
+        <item>001</item>
+    </string-array>
+</resources>

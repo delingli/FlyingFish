@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_163"
+    android:background="@color/text_color_3476f9"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="center"
+        android:src="@drawable/survey_back" />
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/home_guideline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/dp_25" />
+
+        <TextView
+            android:id="@+id/tv_proj_count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_11"
+            android:gravity="bottom|center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dp_40"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@+id/home_guideline"
+            app:layout_constraintStart_toStartOf="@+id/home_guideline"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="95" />
+
+        <TextView
+            android:id="@+id/tv_proj_count_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/proj_all_count"
+            android:textColor="@color/text_color_f0f5fe"
+            android:textSize="@dimen/dp_15"
+            app:layout_constraintStart_toStartOf="@+id/home_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/tv_proj_count" />
+
+
+        <TextView
+            android:id="@+id/tv_work_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="bottom|center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dp_25"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_proj_count"
+            app:layout_constraintLeft_toLeftOf="@+id/home_guideline2"
+            app:layout_constraintStart_toStartOf="@+id/home_guideline2"
+            tools:text="72" />
+
+        <TextView
+            android:id="@+id/tv_work_count_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="@string/work_count"
+            android:textColor="@color/text_color_f0f5fe"
+            android:textSize="@dimen/dp_15"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_proj_count_desc"
+            app:layout_constraintLeft_toLeftOf="@+id/home_guideline2"
+            app:layout_constraintStart_toStartOf="@+id/home_guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/tv_work_count"
+            app:layout_constraintVertical_bias="1.0" />
+
+
+        <TextView
+            android:id="@+id/tv_no_work"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="bottom|center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dp_25"
+
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_work_count"
+            app:layout_constraintLeft_toLeftOf="@+id/home_guideline3"
+            app:layout_constraintStart_toStartOf="@+id/home_guideline3"
+            tools:text="23" />
+
+        <TextView
+            android:id="@+id/tv_no_work_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="@string/no_work"
+            android:textColor="@color/text_color_f0f5fe"
+            android:textSize="@dimen/dp_15"
+
+            app:layout_constraintBottom_toBottomOf="@+id/tv_work_count_desc"
+            app:layout_constraintLeft_toLeftOf="@+id/home_guideline3"
+            app:layout_constraintStart_toStartOf="@+id/home_guideline3" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/home_guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/dp_282" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/home_guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/dp_189" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_57"
+            android:layout_gravity="bottom"
+            android:background="@drawable/bg_shape_top_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/dp_18"
+            android:textStyle="bold"
+            android:layout_marginLeft="@dimen/common_margin"
+            android:layout_gravity="center_vertical"
+            android:text="@string/proj_area"
+            android:textColor="@color/text_color5_333333"
+            android:layout_height="wrap_content"/>
+        </FrameLayout>
+    </android.support.constraint.ConstraintLayout>
+
+
+</FrameLayout>

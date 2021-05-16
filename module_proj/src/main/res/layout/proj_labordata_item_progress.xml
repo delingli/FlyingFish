@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:paddingBottom="@dimen/dp_5"
+    android:layout_height="wrap_content">
+    <View style="@style/HorizontalStyle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="@dimen/common_margin"/>
+
+    <TextView
+        android:id="@+id/tv_supervision_unit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/common_margin"
+        android:text="@string/supervision_unit"
+        android:textColor="@color/text_color_003333"
+        android:textSize="@dimen/dp_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.dc.commonlib.weiget.HorizontalProgressBar
+        android:id="@+id/proj_horizontalprogressbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_6"
+        android:layout_marginLeft="@dimen/common_margin"
+        android:layout_marginTop="@dimen/dp_12"
+        android:layout_marginRight="@dimen/common_margin"
+        app:BgColor="@color/bg_color_cfdef9"
+        app:MaxProgress="100"
+        app:Progress="30"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_supervision_unit"
+        app:ProgressColor="@color/bg_color_3a50f7"
+        app:RoundedCornersRadius="@dimen/dp_3" />
+
+
+    <TextView
+        android:id="@+id/tv_number_registered"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/common_margin"
+        android:textColor="@color/text_color_003333"
+        android:textSize="@dimen/dp_20"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_supervision_unit"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="11人" />
+
+</android.support.constraint.ConstraintLayout>

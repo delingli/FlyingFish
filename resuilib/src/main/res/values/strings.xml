@@ -1,0 +1,203 @@
+<resources>
+    <string name="res_name">resuilib</string>
+    <string name="app_name">项目综合管理服务平台</string>
+
+
+
+
+
+    <!--我的-->
+    <string name="name">姓名</string>
+    <string name="mobile_phone_desc">手机号</string>
+    <string name="login_outs">退出登录</string>
+    <string name="me_title">我的</string>
+    <!--项目-->
+    <string name="project">项目</string>
+    <string name="home_main_desc">开发区建设项目综合管理服务平台</string>
+    <string name="construction_area">建筑面积(平方米)</string>
+    <string name="land_area">用地面积(亩)</string>
+    <string name="construction_unit">建设单位</string>
+    <string name="tv_general_contractor_desc">总承包单位</string>
+    <string name="tv_supervision_unit_desc">监理单位</string>
+    <string name="design_units_desc">设计单位</string>
+    <string name="number_registered">在册人数</string>
+    <string name="supervision_unit">监理单位</string>
+    <string name="labor_data">劳务数据</string>
+    <string name="proj_list">项目列表</string>
+    <string name="no_work">未开工</string>
+    <string name="under_construction">在建</string>
+    <string name="planned_start_time">计划开工时间</string>
+    <string name="actual_start_time">实际开工时间</string>
+    <string name="planned_completion_time">计划竣工时间</string>
+    <string name="project_overview">项目概况</string>
+    <string name="video_monitoring">视频监控</string>
+    <string name="tower_crane_monitoring">塔吊监测</string>
+    <string name="proj_progress">工程进度</string>
+    <string name="gain_auth_code">获取验证码</string>
+    <string name="proj_all_count">项目总数</string>
+    <string name="work_count">在建(个)</string>
+    <string name="no_permissions_login">暂无权限进入主页</string>
+    <string name="no_works">未开工</string>
+    <string name="proj_state">项目状态</string>
+    <string name="alls">全部</string>
+    <string name="tip_input_key">请输入关键词</string>
+    <string name="project_show">项目展示</string>
+    <string name="project_no_works">项目未开工</string>
+
+    <!--登录-->
+    <!--s-->
+    <string name="login_hint_vercode">请输入图片验证码</string>
+    <string name="login_hint_phone">请输入手机号</string>
+    <string name="login_hint_nicknamme">请输入昵称</string>
+    <string name="hint_input_phone">请输入正确手机号</string>
+    <string name="tip_notin_app">您无权限进入主页</string>
+
+    <string name="login">立即登录</string>
+
+    <string name="login_welcome_language">欢迎来到XXX</string>
+    <string name="proj_desc">项目概况</string>
+    <string name="all_count">总数(个)</string>
+    <string name="investment_proportion">投资额比例</string>
+    <string name="already_investment">已投资额</string>
+    <string name="unalready_investment_proportion">未投资额</string>
+    <string name="image_progress">形象进度</string>
+    <!--首页-->
+    <string name="proj_area">项目区域</string>
+
+
+    <!--注册-->
+    <string name="regist_hint_email">请输入邮箱</string>
+    <string name="regist_hint_verification_code">请输入验证码</string>
+    <string name="regist_get_verification_code">获取验证码</string>
+    <string name="regist_hint_username">设置用户名/不可更改</string>
+    <string name="regist_hint_password">设置密码</string>
+    <string name="regist_tip_password">提示: 密码必须是6-18位数字和大小写字母的组合</string>
+    <string name="regist_entern_user_agreement">我已阅读并同意电巢的《用户协议》</string>
+    <!--提示-->
+    <string name="tip_email">邮箱不能为空</string>
+    <string name="tip_email_format">请输入正确邮箱格式</string>
+    <string name="tip_mobile_format">请输入正确手机号</string>
+    <string name="tip_capture_format">请输入图片验证码</string>
+
+
+    <!--错误提示-->
+    <string name="tip_verification_code_error">验证码错误</string>
+    <string name="tip_verification_code_failure">验证码失效</string>
+    <string name="tip_wechar_bind_failure">微信绑定失败</string>
+    <string name="tip_qq_bind_failure">QQ绑定失败</string>
+    <string name="email_already_regist">邮箱已经注册</string>
+    <string name="email_format_error">邮箱格式有误</string>
+    <string name="tip_username_already">用户名已经存在</string>
+
+    <!--忘记密码-->
+    <string name="reset_password">重置密码</string>
+    <string name="mobile_back">手机找回</string>
+    <string name="email_back">邮箱找回</string>
+
+    <string name="resect_sucess">重置成功</string>
+    <string name="input_mobile_phone">请输入手机号</string>
+    <string name="tip_mobile_phone">请输入正确手机号</string>
+    <string name="input_email">请输入邮箱</string>
+    <string name="input_new_password">请输入新密码</string>
+    <string name="sure">确定</string>
+    <string name="line">-</string>
+    <string name="share_to">分享到</string>
+    <string name="improve_person_info">完善个人信息</string>
+    <string name="nick_name">昵称</string>
+    <string name="introduce_person_desc">一句话介绍自己</string>
+    <string name="next">下一步</string>
+    <string name="jump">跳过</string>
+    <string name="over">完成</string>
+    <string name="send">发送</string>
+    <string name="no_data">暂无数据</string>
+    <string name="focus_on">已关注</string>
+    <string name="no_focus_on">关注</string>
+    <string name="fruitplate">子版块</string>
+    <string name="moderators">板主</string>
+    <string name="tiez">帖数</string>
+
+    <!--启动-->
+    <string name="to_setting">去设置</string>
+    <string name="permission_tip_deac">在【设置-应用-电巢】中开启存储空间权限,以正常使用诺言功能</string>
+    <string name="permission_allow">权限申请</string>
+    <!--首页-->
+    <string name="sign_in">签到</string>
+    <string name="please_input_project">请输入项目名称</string>
+    <string name="regist_sucess">恭喜你,注册成功</string>
+
+    <!-- 设置-->
+    <string name="setting">设置</string>
+    <string name="editext_info">编辑个人信息</string>
+    <string name="privacy_and_policy">隐私与政策</string>
+    <string name="feedback">意见反馈</string>
+    <string name="about_us">关于我们</string>
+    <string name="version_information">版本信息</string>
+    <string name="my_attachment">我的附件</string>
+    <string name="attached_download_address">附件下载地址</string>
+    <string name="exit">退出当前账号</string>
+    <string name="personinfo">个人信息</string>
+    <string name="username">用户名</string>
+    <string name="signature">签名</string>
+    <string name="change_signature">修改签名</string>
+    <string name="change_nickname">修改昵称</string>
+    <string name="email">邮箱</string>
+    <string name="bind_phone">绑定手机</string>
+    <string name="bind_email">绑定邮箱</string>
+    <string name="mobile_phone">手机</string>
+    <string name="uid">UID</string>
+    <string name="service_agreement">服务协议</string>
+    <string name="privacy_policy">隐私政策</string>
+    <string name="cancellation_agreement">注销协议</string>
+    <string name="membership_service">会员服务</string>
+    <string name="fans">粉丝</string>
+    <string name="reply_ta">回复Ta</string>
+    <string name="detail_more">详情介绍</string>
+    <string name="integral">积分</string>
+    <string name="cao_balance">当前巢币余额</string>
+    <string name="go_prepaid_phone">去充值</string>
+    <string name="the_theme">主题</string>
+    <string name="reply">回复</string>
+    <string name="video">视频</string>
+    <string name="collection">收藏</string>
+    <string name="change_sucess">修改成功</string>
+    <string name="bind_sucess">绑定成功</string>
+    <string name="search">搜索</string>
+    <string name="sign_add_sucess">+5威望</string>
+    <string name="write_comment">请输入评论内容...</string>
+    <string name="all_comment">全部评论</string>
+    <string name="tiao">条</string>
+    <string name="has_no_comment">还没有人评论哦~</string>
+    <string name="no_support">暂不支持</string>
+    <string name="read_comment">写评论</string>
+    <string name="tip_read_write">您需要授权用于读写外部存储设备,可供正常使用</string>
+    <string name="setting_tip">设置返回</string>
+    <string name="monitoring">视频监控</string>
+    <!--巢课-->
+    <string name="nest_course">巢课</string>
+    <string name="all_ecturer">所有讲师</string>
+    <string name="already_look">人已观看</string>
+    <string name="public_class">公开课</string>
+    <string name="continue_to">继续</string>
+    <string name="classsz">课时</string>
+    <string name="person_zil">个人资料</string>
+    <string name="already_over">已完结</string>
+    <string name="updateing">更新中</string>
+    <string name="not_serial_courses">非连载课程</string>
+    <string name="already_add">人已加入</string>
+    <string name="course_list">课程列表</string>
+    <string name="course_caobi">巢币</string>
+    <string name="study_no_monery">会员免费学</string>
+    <string name="study_tip">您还不是会员,点击购买会员</string>
+    <string name="new_students">最新学员</string>
+    <string name="my_record">我的记录</string>
+    <string name="zhiding">置顶</string>
+    <string name="comment_count">条评论</string>
+
+    <!--分享-->
+    <string name="wechar">微信</string>
+    <string name="friends">朋友圈</string>
+    <string name="qq">QQ</string>
+    <string name="qq_space">QQ空间</string>
+    <string name="give_like">点赞</string>
+    <string name="cancel">取消</string>
+</resources>

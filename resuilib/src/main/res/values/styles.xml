@@ -1,0 +1,186 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="Base.AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!--自定义AlertDialog-->
+        <item name="alertDialogTheme">@style/Theme.AppCompat.Light.Dialog.Alert.Self</item>
+
+    </style>
+
+    <style name="Theme.AppCompat.Light.Dialog.Alert.Self" parent="@style/Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/text_color20_1D2023</item>
+    </style>
+    <!--@android:style/Theme.Holo.Dialog.NoActionBar-->
+    <style name="LoadingDialog" parent="Theme.AppCompat.Light.NoActionBar">
+          
+        <item name="android:windowBackground">@android:color/transparent</item>
+          
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="TabLayoutTextSize">
+        <item name="android:textSize">@dimen/dp_18</item>
+    </style>
+
+    <style name="DefaultButtonStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dp_42</item>
+        <item name="android:background">@drawable/btn_common_bg</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">16sp</item>
+
+    </style>
+
+    <style name="My_TabLayoutTextSize">
+        <item name="android:textSize">@dimen/dp_14</item>
+    </style>
+
+    <style name="share_popup_menu_anim_style">
+        <item name="android:windowEnterAnimation">@anim/share_photo_in_dialog_anim</item>
+        <item name="android:windowExitAnimation">@anim/share_photo_out_dialog_anim</item>
+    </style>
+
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="searchIcon">@drawable/search</item>
+        <item name="searchHintIcon">@null</item>
+    </style>
+
+
+    <style name="gorget_password_tablayouttextstyle">
+        <item name="android:textSize">@dimen/dp_18</item>
+    </style>
+
+    <style name="bbs_tablayouttextstyle">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/dp_18</item>
+    </style>
+
+    <style name="home_tablayouttextstyle">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/dp_16</item>
+    </style>
+
+    <style name="AppTheme" parent="Base.AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="Active" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">@dimen/dp_12</item>
+    </style>
+
+    <style name="Inactive" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">@dimen/dp_12</item>
+    </style>
+    <!--无ActionBar的AppTheme-->
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.ActionBar" parent="Base.AppTheme">
+
+    </style>
+
+    <!--启动页样式及窗口背景-->
+    <!--<style name="SplashTheme" parent="TransparentStatusBarTheme">-->
+    <!--<item name="android:windowBackground">@drawable/bg_launch</item>-->
+    <!--<item name="android:windowFullscreen">false</item>-->
+    <!--</style>-->
+
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <!--全屏-->
+    <style name="FullscreenTheme" parent="AppTheme.ActionBar">
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+
+    <!-- 自定义loading dialog -->
+    <style name="ProgressDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowFrame">@null</item><!--边框-->
+        <item name="android:windowNoTitle">true</item><!--无标题-->
+        <item name="android:windowBackground">@android:color/transparent</item><!--背景透明-->
+        <item name="android:windowIsTranslucent">false</item><!--半透明-->
+        <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item><!--模糊-->
+    </style>
+
+
+    <style name="Dialog_Fullscreen">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 背景是否变灰 -->
+        <item name="android:windowAnimationStyle">@style/centerDialogStyle</item>
+        <!-- 背景动画-->
+        <item name="android:windowFrame">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:indeterminateOnly">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <style name="centerDialogStyle">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+
+    <style name="weixinTransparent" parent="@style/Theme.AppCompat.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+
+    <style name="Theme_AudioDialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="HorizontalStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dp_1</item>
+        <item name="android:background">@color/bg_color_f5f5f6</item>
+    </style>
+
+    <style name="VerticalStyle">
+        <item name="android:layout_width">@dimen/dp_1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/bg_color_f2f2f3</item>
+    </style>
+
+    <style name="TransparentBottomSheetStyle" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/SheetStyle</item>
+    </style>
+
+    <style name="SheetStyle" parent="android:Widget">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="behavior_peekHeight">auto</item>
+        <item name="behavior_hideable">true</item>
+        <item name="behavior_skipCollapsed">false</item>
+    </style>
+
+    <style name="speed_list_btn">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+</resources>

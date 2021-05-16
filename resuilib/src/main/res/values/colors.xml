@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--APP的主题色-->
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#ffffff</color>
+    <color name="colorAccent">#FF5252</color>
+    <!--app主题色调以供统一修改 设置toolBar或者按钮背景色-->
+    <color name="theme_blue">#1296db</color>
+    <color name="theme_yellow">#ff891d</color>
+    <color name="theme_yellow_alpha_50">#80ff891d</color>
+    <color name="theme_yellow_light">#faac3d</color>
+    <color name="theme_yellow_light_alpha_50">#80faac3d</color>
+
+
+    <!--APP公用的一些颜色-->
+    <color name="common_bg">#fff7f7f7</color>
+    <color name="common_text">@android:color/primary_text_light</color>
+    <color name="common_title_bg">#CA2C32</color>
+    <color name="transparent">@android:color/transparent</color>
+    <color name="transparent_30">#4d000000</color>
+    <color name="transparent_color">#00ffffff</color>
+    <color name="text_black_4d">#4d4d4d</color>
+    <color name="text_908f94">#908f94</color>
+    <color name="bg_999999">#999999</color>
+    <color name="bg_gray">#dedede</color>
+    <color name="text_color_404040">#404040</color>
+    <color name="text_color_212121">#212121</color>
+    <color name="text_color_999999">#999999</color>
+    <color name="text_color_4dffffff">#4dffffff</color>
+    <color name="text_color_010101">#010101</color>
+    <color name="color_map_grid_selected">#F9686D</color>
+    <color name="color_F6F6F6">#F6F6F6</color>
+    <color name="bg_color_ffd1c2">#ffd1c2</color>
+    <color name="bg_color_40ffffff">#40ffffff</color>
+
+
+    <color name="white">#ffffff</color>
+    <color name="white_alpha_50">#80FFFFFF</color>
+    <color name="black_alpha_70">#B3000000</color>
+    <color name="black">#000000</color>
+
+
+    <color name="color_e6e6e6">#e6e6e6</color>
+    <color name="color_F7F8F8">#F7F8F8</color>
+    <color name="color_999999">#999999</color>
+    <color name="color_ababbb">#ababbb</color>
+    <color name="title_color">#333333</color>
+    <color name="text_color_588ab7">#588ab7</color>
+    <color name="text_color_afe1f4">#afe1f4</color>
+    <color name="text_color_0d7aff">#0d7aff</color>
+    <color name="text_color_9CA3A9">#9CA3A9</color>
+    <color name="text_color_FF3F454B">#FF3F454B</color>
+    <color name="text_color_FFFF0225">#FFFF0225</color>
+    <color name="text_color_FFE60020">#FFE60020</color>
+    <color name="text_color_FF9CA3A9">#FF9CA3A9</color>
+    <color name="text_color_FF4A4A4A">#FF4A4A4A</color>
+    <color name="text_color_FF3BD0AE">#FF3BD0AE</color>
+    <color name="text_color_915E0B">#915E0B</color>
+    <color name="text_color_FF0225">#FF0225</color>
+    <color name="text_color_f0f5fe">#f0f5fe</color>
+    <color name="text_color_3476f9">#3476f9</color>
+    <color name="text_color_36b365">#36b365</color>
+    <color name="text_color_f54966">#f54966</color>
+
+
+    <!--主色，辅助色-->
+    <color name="main_color">#FF6634</color>
+    <color name="auxiliary1_color">#487AA3</color>
+    <color name="auxiliary2_color">#FF5555</color>
+    <color name="icon_color1_c2c2c2">#CCCCCC</color>
+    <color name="bg_color_1aff6636">#1AFF6634</color>
+    <!--APP统一颜色值整理-->
+    <!--文字用色start-->
+    <color name="text_color1_c2c2c2">#ffffff</color>
+    <color name="text_color2_c2c2c2">#c2c2c2</color>
+    <color name="text_color3_999999">#999999</color>
+    <color name="text_color4_666666">#666666</color>
+    <color name="text_color5_333333">#333333</color>
+    <color name="text_color6_FF5555">#FF5555</color>
+    <color name="text_color7_ff6634">#ff6634</color>
+    <color name="text_color_FF9B9B9B">#FF9B9B9B</color>
+    <color name="text_color_003333">#003333</color>
+    <color name="text_color_f6952c">#f6952c</color>
+
+
+    <color name="text_color7_487AA3">#487AA3</color>
+    <color name="text_color8_40ff891d">#40ff891d</color>
+    <color name="text_color8_a0a0a0">#a0a0a0</color>
+    <color name="text_color9_000000">#000000</color>
+    <color name="text_color10_ff891d">#ff891d</color>
+    <color name="text_color11_ff0000">#ff0000</color>
+    <color name="text_color12_06cd16">#06cd16</color>
+    <color name="text_color13_5d5e73">#5d5e73</color>
+    <color name="text_color14_33ff6634">#33ff6634</color>
+    <color name="text_color15_335c80">#335c80</color>
+    <color name="text_color16_799aff">#799aff</color>
+    <color name="text_color17_fca032">#fca032</color>
+    <color name="text_color18_030303">#030303</color>
+    <color name="text_color19_606972">#606972</color>
+    <color name="text_color20_1D2023">#1D2023</color>
+    <color name="text_color21_FFE50120">#FFE50120</color>
+    <color name="text_color_E50120">#E50120</color>
+    <color name="text_color_854309">#854309</color>
+    <color name="text_color22_FF606972">#FF606972</color>
+    <color name="text_color_FF1D2023">#FF1D2023</color>
+    <color name="text_color_171717">#171717</color>
+
+    <!--文字用色end-->
+
+    <!--  分割线 start-->
+    <color name="divider_color1_E6E6E6">#E6E6E6</color>
+    <color name="divider_color2_5C5C5C">#5C5C5C</color>
+    <!--  分割线 end-->
+    <!--  背景 start-->
+    <color name="bg_color1_E6E6E6">#E6E6E6</color>
+    <color name="bg_color2_F7F7F7">#F7F7F7</color>
+    <color name="bg_color3_F1F1F1">#F1F1F1</color>
+    <color name="bg_color4_FFFADC">#FFFADC</color>
+    <color name="bg_color5_fff5eb">#29ff7a00</color>
+    <color name="bg_color6_ff2728">#ff2728</color>
+    <color name="bg_color7_f3f3f3">#f3f3f3</color>
+    <color name="bg_color8_f0f0f0">#f0f0f0</color>
+    <color name="bg_color9_dddddd">#dddddd</color>
+    <color name="bg_color10_eaeaea">#eaeaea</color>
+    <color name="bg_color11_ede7ed">#ede7ed</color>
+    <color name="bg_color11_f2f2f2">#f2f2f2</color>
+    <color name="bg_color_E1E4E7">#E1E4E7</color>
+    <color name="bg_color_3F454B">#3F454B</color>
+    <color name="bg_color_F8F9FB">#F8F9FB</color>
+    <color name="bg_color_f5f5f6">#f5f5f6</color>
+    <color name="bg_color_f7f8f9">#f7f8f9</color>
+    <color name="bg_color_cfdef9">#cfdef9</color>
+    <color name="bg_color_3a50f7">#3a50f7</color>
+    <color name="bg_color_f2f2f3">#f2f2f3</color>
+    <color name="bg_color_cef7de">#cef7de</color>
+    <color name="bg_color_f1f1f6">#f1f1f6</color>
+
+    <!--  背景 end-->
+
+</resources>

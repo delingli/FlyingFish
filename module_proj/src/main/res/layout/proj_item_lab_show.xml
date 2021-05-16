@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_40"
+    android:gravity="left|center"
+    android:background="@color/white"
+    android:layout_marginTop="@dimen/dp_25"
+    android:paddingLeft="@dimen/common_margin"
+    android:text="@string/proj_progress"
+    android:textColor="@color/text_color5_333333"
+    android:textSize="@dimen/dp_18"
+    android:textStyle="bold">
+
+</TextView>

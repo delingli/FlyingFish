@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/titlebar_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_back_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:visibility="gone"
+            android:src="@drawable/back" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_play"
+        android:layout_width="@dimen/dp_45"
+        android:layout_height="@dimen/dp_45"
+        android:layout_centerInParent="true"
+        android:src="@drawable/pause" />
+
+    <LinearLayout
+        android:id="@+id/controlbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/infobar_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_mode_history"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:id="@+id/ll_player_click"
+                android:layout_width="40dp"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/iv_player_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/play_state_playing" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/tv_position"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="3dp"
+                android:gravity="center"
+                android:text="00:00"
+                android:textColor="#fefefe"
+                android:textSize="12sp" />
+
+            <SeekBar
+                android:id="@+id/progress_seekbar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_weight="1"
+                android:maxHeight="2dp"
+                android:minHeight="2dp"
+                android:paddingRight="2dp"
+                android:progressDrawable="@drawable/remote_seekbar_style"
+                android:thumb="@drawable/remote_seekbar_thumb" />
+
+            <TextView
+                android:id="@+id/tv_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center"
+                android:text="00:00"
+                android:textColor="#fefefe"
+                android:textSize="12sp" />
+
+            <FrameLayout
+                android:id="@+id/fl_speed_click"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+                <TextView
+                    android:id="@+id/tv_speed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="1.0"
+                    android:textColor="#fefefe"
+                    android:textSize="12sp" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_mode_live"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/white_line_bg"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:paddingTop="2dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="2dp"
+            android:text="云台控制"
+            android:textColor="#fefefe"
+            android:textSize="12sp" />
+
+        <View
+            android:id="@+id/space_view"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <FrameLayout
+            android:id="@+id/fl_screen_mode_full_click"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="15dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/screen_mode_full"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="退出全屏"
+                android:textColor="#fefefe" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_screen_mode_small_click"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right|center_vertical">
+
+            <ImageView
+                android:id="@+id/screen_mode_small"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:src="@drawable/screen_mode_small" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

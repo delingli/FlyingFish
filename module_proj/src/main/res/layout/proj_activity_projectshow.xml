@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.constraint.Guideline
+                android:id="@+id/proj_guideline1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/common_margin" />
+
+            <FrameLayout
+                android:id="@+id/fl_banner"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_195"
+                android:layout_marginLeft="@dimen/common_margin"
+                android:layout_marginRight="@dimen/common_margin"
+                android:background="@color/text_color5_333333"
+                app:layout_constraintEnd_toEndOf="@id/proj_guideline2"
+                app:layout_constraintLeft_toLeftOf="@+id/proj_guideline1"
+                app:layout_constraintStart_toStartOf="@+id/proj_guideline1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <android.support.constraint.Guideline
+                android:id="@+id/proj_guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/common_margin" />
+
+            <TextView
+                android:id="@+id/tv_proj_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="@dimen/common_margin"
+                android:textColor="@color/text_color5_333333"
+                android:textSize="@dimen/dp_16"
+                app:layout_constraintLeft_toLeftOf="@+id/proj_guideline1"
+                app:layout_constraintStart_toStartOf="@+id/proj_guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/fl_banner"
+                tools:text="杭州光谷国杭州光谷国际中心杭州光谷国际中心杭州光谷国际中心杭州光谷国际中心际中心" />
+
+            <TextView
+                android:id="@+id/tv_proj_adress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_12"
+                android:textColor="@color/text_color4_666666"
+                android:textSize="@dimen/dp_14"
+                app:layout_constraintLeft_toLeftOf="@+id/proj_guideline1"
+                app:layout_constraintStart_toStartOf="@+id/proj_guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/tv_proj_name"
+                tools:text="杭州光谷国际中心" />
+
+            <LinearLayout
+                android:id="@+id/ll_time_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_35"
+                android:paddingBottom="@dimen/dp_12"
+                app:layout_constraintStart_toStartOf="@id/proj_guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/tv_proj_adress">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_planned_start_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/text_color_3476f9"
+                        android:textSize="@dimen/dp_17"
+                        tools:text="2020-02-21" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:layout_weight="1"
+                        android:text="@string/planned_start_time"
+                        android:textColor="@color/text_color5_333333"
+                        android:textSize="@dimen/dp_14" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_actual_start_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/text_color_3476f9"
+                        android:textSize="@dimen/dp_17"
+                        tools:text="2020-02-21" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:layout_weight="1"
+                        android:text="@string/actual_start_time"
+                        android:textColor="@color/text_color5_333333"
+                        android:textSize="@dimen/dp_14" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_planned_completion_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/text_color_3476f9"
+                        android:textSize="@dimen/dp_17"
+                        tools:text="2020-02-21" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:layout_weight="1"
+                        android:text="@string/planned_completion_time"
+                        android:textColor="@color/text_color5_333333"
+                        android:textSize="@dimen/dp_14" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_lab_desc"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_60"
+                android:layout_marginRight="@dimen/common_margin"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="@+id/proj_guideline1"
+                app:layout_constraintStart_toStartOf="@+id/proj_guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/ll_time_desc">
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_50"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/survey">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top|left"
+                        android:layout_marginLeft="@dimen/dp_7"
+                        android:layout_marginTop="@dimen/dp_11"
+                        android:text="@string/project_overview"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dp_13" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_50"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/video">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top|left"
+                        android:layout_marginLeft="@dimen/dp_7"
+                        android:layout_marginTop="@dimen/dp_11"
+                        android:text="@string/video_monitoring"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dp_13" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_50"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/labor_data">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top|left"
+                        android:layout_marginLeft="@dimen/dp_7"
+                        android:layout_marginTop="@dimen/dp_11"
+                        android:text="@string/labor_data"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dp_13" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_50"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/tower_crane_monitoring">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top|left"
+                        android:layout_marginLeft="@dimen/dp_7"
+                        android:layout_marginTop="@dimen/dp_11"
+                        android:text="@string/tower_crane_monitoring"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dp_13" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_investment_proportion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_41"
+                android:text="@string/investment_proportion"
+                android:textColor="@color/text_color5_333333"
+                android:textSize="@dimen/dp_18"
+                app:layout_constraintLeft_toLeftOf="@+id/proj_guideline1"
+                app:layout_constraintStart_toStartOf="@+id/proj_guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/ll_lab_desc" />
+
+            <FrameLayout
+                android:id="@+id/fl_piechart"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_210"
+                android:layout_marginRight="@dimen/common_margin"
+                app:layout_constraintLeft_toLeftOf="@+id/proj_guideline1"
+                app:layout_constraintStart_toStartOf="@+id/proj_guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/tv_investment_proportion">
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/pieChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/tv_proj_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_18"
+                android:text="@string/proj_progress"
+                android:textColor="@color/text_color5_333333"
+                android:textSize="@dimen/dp_18"
+                app:layout_constraintLeft_toLeftOf="@+id/proj_guideline1"
+                app:layout_constraintStart_toStartOf="@+id/proj_guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/fl_piechart" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="@+id/proj_guideline1"
+
+                app:layout_constraintStart_toStartOf="@+id/proj_guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/tv_proj_progress"></FrameLayout>
+        </android.support.constraint.ConstraintLayout>
+
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

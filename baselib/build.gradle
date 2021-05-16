@@ -1,0 +1,40 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion build_versions.compileSdkVersion
+    buildToolsVersion build_versions.build_tools
+
+
+    defaultConfig {
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode build_versions.versionCode
+        versionName build_versions.versionName
+
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            buildConfigField "String", "CODEPUSH_KEY", '"wmfoW0FWBxIrokumOdUpcnEXHje0B1nAxpK1H"'
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField('String', 'HOST', "\"http://20792v71g9.imwork.net:8082/MZAPP/index.php/\"")
+            //測試
+//            buildConfigField('String', 'HOST', "\"http://app.eda365.com:8081/index.php/\"")//正式
+
+        }
+        debug {
+            buildConfigField "String", "CODEPUSH_KEY", '"JHm188CCiow5O6RZL-llGKY7-8ZiS16QdKDJr"'
+//            buildConfigField('String', 'HOST', "\"http://20792v71g9.imwork.net:8082/MZAPP/index.php/\"")//測試
+            buildConfigField('String', 'HOST', "\"http://app.eda365.com:8081/index.php/\"")//測試
+//            http://app.eda365.com:8081/index.php/
+        }
+    }
+
+}
+
+dependencies {
+    api project(path: ':resuilib')
+    api project(path: ':websocketlib')
+}

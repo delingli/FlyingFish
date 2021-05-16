@@ -1,0 +1,101 @@
+apply plugin: 'com.android.application'
+//apply from: "../../node_modules/react-native/react.gradle"
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion build_versions.compileSdkVersion
+    buildToolsVersion build_versions.build_tools
+
+    defaultConfig {
+        applicationId build_versions.applicationId
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode build_versions.versionCode
+        versionName build_versions.versionName
+
+
+        ndk {
+//            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'mips', 'mips64'
+            abiFilters 'armeabi', 'armeabi-v7a'
+//            abiFilters "armeabi-v7a", "x86", "armeabi"
+        }
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+    signingConfigs {
+        release {
+//            keyAlias 'loyalkeystore'
+//            keyPassword 'loyal888888'
+//            storeFile file('../loyal.keystore')
+//            storePassword 'loyal888888'
+            keyAlias 'elecnest-key'
+            keyPassword 'duskmeetstwilight'
+            storeFile file('../elecnest_release_key.keystore')
+            storePassword 'duskmeetstwilight'
+
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            manifestPlaceholders = [
+                    QQ_APPID     : "1107794299",
+                    XG_ACCESS_ID : "2100338753",
+                    XG_ACCESS_KEY: "A29KJ95XK7TE",
+                    PACKAGE_NAME : "com.jeepeng.push",
+                    HW_APPID     : ""
+            ]
+        }
+
+        debug {
+            jniDebuggable = true
+            signingConfig signingConfigs.release
+            manifestPlaceholders = [
+                    QQ_APPID     : "1107794299",
+                    XG_ACCESS_ID : "2100337920",
+                    XG_ACCESS_KEY: "AK1UR9G98J4I",
+                    PACKAGE_NAME : "com.jeepeng.push",
+                    HW_APPID     : ""
+            ]
+
+        }
+    }
+    sourceSets.main {
+        jniLibs.srcDirs = ['libs']
+    }
+    sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res/layout'] } }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    packagingOptions {
+        exclude 'META-INF/androidx.transition_transition.version'
+    }
+
+/*    splits {
+        abi {
+            enable true
+            reset()
+            include 'x86', 'armeabi-v7a','x86_64'
+            universalApk true
+        }
+    }*/
+}
+
+dependencies {
+    api project(path: ':commonlib')
+    if (!isModule.toBoolean()) {
+        implementation project(path: ':module_main')
+        implementation project(path: ':module_me')
+        implementation project(path: ':module_proj')
+        implementation project(path: ':module_home')
+    }
+
+}

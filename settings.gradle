@@ -1,0 +1,11 @@
+include ':module_app', ':commonlib',
+        ':module_home', ':module_proj',
+        ':module_me',
+        ':baselib',
+        ':resuilib',
+        ':module_main',
+        'YCVideoPlayerLib', ':websocketlib'
+
+rootProject.name = 'FlyingFish'
+
+

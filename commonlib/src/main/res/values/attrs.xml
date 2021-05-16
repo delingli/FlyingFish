@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <declare-styleable name="SideBar">
+        <attr name="letterColor" format="color" />
+        <attr name="selectColor" format="color" />
+        <attr name="letterSize" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="HorizontalProgressBar">
+        <attr name="RoundedCornersRadius" format="dimension" />
+        <attr name="Progress" format="integer" />
+        <attr name="MaxProgress" format="integer" />
+        <attr name="BgColor" format="color" />
+        <attr name="ProgressColor" format="color" />
+    </declare-styleable>
+    <style name="BottomSheetLoyalBar" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor" tools:targetApi="lollipop">@android:color/transparent
+        </item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+    <declare-styleable name="CollapsingAvatarToolbar">
+        <attr name="collapsedPadding" format="dimension" />
+        <attr name="expandedPadding" format="dimension" />
+        <attr name="collapsedImageSize" format="dimension" />
+        <attr name="expandedImageSize" format="dimension" />
+        <attr name="collapsedTextSize" format="dimension" />
+        <attr name="expandedTextSize" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="StatusBarHeightView">
+        <attr name="use_type" format="integer">
+            <enum name="use_height" value="0" />
+            <enum name="use_padding_top" value="1" />
+        </attr>
+    </declare-styleable>
+</resources>
