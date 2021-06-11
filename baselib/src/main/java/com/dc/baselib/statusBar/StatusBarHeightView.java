@@ -3,10 +3,11 @@ package com.dc.baselib.statusBar;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Build;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
+
+import androidx.annotation.Nullable;
 
 import com.dc.baselib.R;
 

@@ -8,19 +8,6 @@
         android:theme="@style/AppTheme"
         android:name="debug.MainApplication"
         tools:replace="android:label">
-        <activity
-            android:name=".Main2Activity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/Base.AppTheme">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>

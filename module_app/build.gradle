@@ -1,8 +1,9 @@
-apply plugin: 'com.android.application'
-//apply from: "../../node_modules/react-native/react.gradle"
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+}
 android {
     compileSdkVersion build_versions.compileSdkVersion
     buildToolsVersion build_versions.build_tools

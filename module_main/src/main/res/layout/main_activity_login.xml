@@ -46,7 +46,8 @@
         android:visibility="invisible"
         android:layout_marginRight="@dimen/dp_6"
         android:layout_gravity="center_vertical"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        tools:ignore="ContentDescription" />
 
 </LinearLayout>
 
@@ -165,7 +166,8 @@
             android:layout_height="@dimen/dp_40"
             android:layout_gravity="center_vertical"
             android:scaleType="fitXY"
-            tools:src="@drawable/default_hold" />
+            tools:src="@drawable/default_hold"
+            tools:ignore="ContentDescription" />
 
     </LinearLayout>
 

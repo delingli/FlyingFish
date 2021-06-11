@@ -7,7 +7,7 @@ ext.deps = [:]
 def versions = [:]
 versions.support = "28.0.0"
 versions.multidex = "1.0.2"
-versions.android_gradle_plugin = '3.6.3'
+versions.android_gradle_plugin = '4.0.1'
 versions.constraint_layout = "1.1.3"
 versions.glide = "3.8.0"
 versions.rxjava2 = "2.1.7"
@@ -22,8 +22,8 @@ versions.flow_layout = "1.0.3"
 //lifecycle livedata
 versions.lifecycle_compiler = "1.1.1"
 versions.lifecycle_annotationProcessor = "1.1.0"
-versions.navigation_ui="1.0.0"
-versions.navigation_fragment="1.0.0"
+versions.navigation_ui = "1.0.0"
+versions.navigation_fragment = "1.0.0"
 
 versions.material = "1.0.0"
 
@@ -88,10 +88,10 @@ ext.deps = deps
 /**App相关编译构建版本配置start**/
 def build_versions = [:]
 build_versions.min_sdk = 21
-build_versions.target_sdk = 29
-build_versions.compileSdkVersion = 29
+build_versions.target_sdk = 30
+build_versions.compileSdkVersion = 30
 
-build_versions.build_tools = "28.0.3"
+build_versions.build_tools = "30.0.3"
 build_versions.versionCode = 1
 build_versions.versionName = "1.0.0"
 build_versions.applicationId = "com.zld.monitor.proj"
@@ -99,13 +99,17 @@ ext.build_versions = build_versions
 /**App相关编译版本end**/
 def addRepos(handler) {
     //Add the JitPack repository
-    handler.maven { url "https://jitpack.io" }
-    handler.maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+    handler.maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+    handler.maven { url 'https://maven.aliyun.com/repository/jcenter' }
+    handler.maven { url 'https://maven.aliyun.com/repository/google' }
     handler.maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    handler.maven { url "https://jitpack.io" }
+    handler.maven{
+        allowInsecureProtocol=true
+    }
     handler.google()
     handler.jcenter()
     handler.mavenCentral()
-
 }
 
 ext.addRepos = this.&addRepos

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<com.dc.commonlib.commonentity.video.widget.VideoDisplayView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/videoPlayers"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/dp_194"
-    tools:ignore="MissingDefaultResource,ResourceName" />
