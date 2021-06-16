@@ -6,8 +6,6 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.widget.Toast;
 
-import com.dc.baselib.BaseApplication;
-
 /**
  * @Description Toast提醒
  */
