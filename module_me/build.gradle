@@ -1,13 +1,11 @@
 if (isModule.toBoolean()) {
     apply plugin: 'com.android.application'
 } else {
-    plugins {
-        id 'com.android.library'
-        id 'kotlin-android'
-        id 'kotlin-android-extensions'
-        id 'kotlin-kapt'
-    }
+    apply plugin: 'com.android.library'
 }
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion build_versions.compileSdkVersion
@@ -17,9 +15,9 @@ android {
         targetSdkVersion build_versions.target_sdk
         versionCode build_versions.versionCode
         versionName build_versions.versionName
-        javaCompileOptions {
-            annotationProcessorOptions {
-                          arguments = [moduleName: project.getName()]
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
             }
         }
 
@@ -44,6 +42,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
 }

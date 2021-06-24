@@ -1,10 +1,7 @@
-plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
-    id 'kotlin-android-extensions'
-    id 'kotlin-kapt'
-}
-
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion build_versions.compileSdkVersion
     buildToolsVersion build_versions.build_tools
@@ -14,6 +11,11 @@ android {
         versionCode build_versions.versionCode
         versionName build_versions.versionName
         consumerProguardFiles 'consumer-rules.pro'
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
     }
     buildTypes {
         release {
@@ -21,11 +23,26 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+
+
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
 }
 
 dependencies {
 // /*基础依赖，包含kotlin引用kotlin协成*/
-    api fileTree(dir: 'libs', include: ['*.aar', '*.jar'], exclude: [])  //最新版本
+    api fileTree(include: ['*.jar'], dir: 'libs')
+//    api fileTree(dir: 'libs', include: ['*.aar', '*.jar'], exclude: [])  //最新版本
     api deps.androidz.app_compat
     api deps.androidz.recyclerview
     api deps.androidz.constraintlayout
@@ -63,8 +80,17 @@ dependencies {
         exclude group: 'pub.devrel.easypermissions'
     }
     api deps.glide
-    api deps.flexbox
     testImplementation deps.junit
     androidTestImplementation deps.ext_junit
     androidTestImplementation deps.espresso_core
+    api 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    api(deps.rabbitmq) {
+        exclude group: 'androidx.documentfile'
+        exclude group: 'androidx.swiperefreshlayout'
+        exclude group: 'androidx.asynclayoutinflater'
+        exclude group: 'androidx.coordinatorlayout'
+        exclude group: 'androidx.slidingpanelayout'
+        exclude group: 'androidx.localbroadcastmanager'
+        exclude group: 'androidx.legacy'
+    }
 }

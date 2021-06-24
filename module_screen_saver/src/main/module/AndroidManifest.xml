@@ -1,0 +1,33 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.itc.screen_saver">
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+
+    <application
+        android:name="debug.BBSApplication"
+        android:label="@string/bbs_name"
+        android:theme="@style/AppTheme"
+        tools:replace="android:label">
+        <activity android:name="com.itc.screen_saver.TestActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ScreenSaverActivity"
+            android:launchMode="singleTask" />
+
+        <service
+            android:name=".rabbit.RabbitService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".service.ScreenSaverService"
+            android:enabled="true"
+            android:exported="true" />
+    </application>
+</manifest>

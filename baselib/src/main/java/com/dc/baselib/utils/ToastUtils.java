@@ -6,6 +6,8 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.widget.Toast;
 
+import com.dc.baselib.BaseApplication;
+
 /**
  * @Description Toast提醒
  */
@@ -63,7 +65,7 @@ public class ToastUtils {
             return;
         }
         if (toast == null) {
-            toast = Toast.makeText(BaseApplication.getsInstance(), s, Toast.LENGTH_SHORT);
+            toast = Toast.makeText(BaseApplication.Companion.getInstances(), s, Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
             oneTime = System.currentTimeMillis();

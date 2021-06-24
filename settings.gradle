@@ -1,5 +1,5 @@
 include ':module_app', ':commonlib',
-        ':module_home', ':module_proj',
+        ':module_home', ':module_screen_saver',
         ':module_me',
         ':baselib',
         ':resuilib',

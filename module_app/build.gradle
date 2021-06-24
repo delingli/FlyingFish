@@ -21,10 +21,9 @@ android {
             abiFilters 'armeabi', 'armeabi-v7a'
 //            abiFilters "armeabi-v7a", "x86", "armeabi"
         }
-
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [AROUTER_MODULE_NAME: project.getName()]
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
             }
         }
     }
