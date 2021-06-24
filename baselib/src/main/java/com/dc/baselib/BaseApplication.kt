@@ -5,7 +5,6 @@ import android.content.Context
 import com.alibaba.android.arouter.launcher.ARouter
 
 open class BaseApplication : Application() {
-    private lateinit var mInstance: Context;
     override fun onCreate() {
         super.onCreate()
         if (BuildConfig.DEBUG) {
@@ -13,7 +12,16 @@ open class BaseApplication : Application() {
             ARouter.openDebug()
             ARouter.openLog()
         }
-        mInstance=this.applicationContext
+        mInstance = this.applicationContext
         ARouter.init(this)
     }
+
+    companion object {
+        private lateinit var mInstance: Context;
+        fun getInstances(): Context? {
+            return mInstance
+        }
+
+    }
+
 }

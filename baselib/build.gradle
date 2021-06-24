@@ -15,7 +15,6 @@ android {
         targetSdkVersion build_versions.target_sdk
         versionCode build_versions.versionCode
         versionName build_versions.versionName
-
         consumerProguardFiles 'consumer-rules.pro'
     }
 

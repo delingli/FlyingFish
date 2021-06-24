@@ -6,10 +6,8 @@ plugins {
 }
 
 android {
-
     compileSdkVersion build_versions.compileSdkVersion
     buildToolsVersion build_versions.build_tools
-
     defaultConfig {
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
@@ -17,14 +15,12 @@ android {
         versionName build_versions.versionName
         consumerProguardFiles 'consumer-rules.pro'
     }
-
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
@@ -35,9 +31,12 @@ dependencies {
     api deps.androidz.constraintlayout
     api deps.androidz.multidex
     api deps.androidz.material
+
     api deps.androidz.kotlin_stdlib
     api deps.androidz.kotlinx_coroutines_android
     api deps.androidz.kotlinx_coroutines_core
+    api deps.androidz.livedata_ktx
+    api deps.androidz.viewmodel_ktx
 
     api(deps.androidz.core_ktx) {
         exclude module: 'support-annotations'
@@ -68,6 +67,4 @@ dependencies {
     testImplementation deps.junit
     androidTestImplementation deps.ext_junit
     androidTestImplementation deps.espresso_core
-
-
 }
