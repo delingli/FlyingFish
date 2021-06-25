@@ -15,17 +15,18 @@ import android.os.Message;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.dc.baselib.BaseApplication;
+import com.dc.baselib.constant.Constants;
 import com.dc.baselib.utils.SPUtils;
-import com.itc.screen_saver.ScreenSaverActivity;
-import com.itc.screen_saver.rabbit.RabbitService;
-
-import java.util.Date;
+import com.dc.baselib.utils.TimeUtils;
+import com.itc.screen_saver.screensaver.ScreenSaverActivity;
 
 public class ScreenSaverService extends Service {
 
     private MyHandler myHandler;
     private HandlerThread mHandlerThread;
+    private static final String TAG = "ScreenSaverService";
 
     public static void startScreenSaverService(Context context) {
         Intent intent = new Intent(context.getApplicationContext(), ScreenSaverService.class);
@@ -46,13 +47,6 @@ public class ScreenSaverService extends Service {
                 KeyguardManager mKeyguardManager = (KeyguardManager) BaseApplication.Companion.getInstances().getSystemService(Context.KEYGUARD_SERVICE);
                 KeyguardManager.KeyguardLock mKeyguardLock = mKeyguardManager.newKeyguardLock("ScreenSaverService");
                 mKeyguardLock.disableKeyguard();
-//                Intent i = new Intent();
-//                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//
-//                i.setClass(context, ScreenSaverActivity.
-//                        class
-//                );
-//                context.startActivity(i);
             } catch
             (Exception e) {
                 e.printStackTrace();
@@ -60,8 +54,6 @@ public class ScreenSaverService extends Service {
         }
     };
     private int WART = 11;
-    public static final String CURRENT_TIME = "current_time";
-    public static final String SCREEN_DATE = "screen_time";
 
     @Override
     public void onCreate() {
@@ -80,7 +72,7 @@ public class ScreenSaverService extends Service {
         msg.sendToTarget();//直接开启
     }
 
-    private int DELARYTIME = 5000 * 2;
+    private int DELARYTIME = 5000 * 1;
 
     class MyHandler extends Handler {
         public MyHandler() {
@@ -102,29 +94,36 @@ public class ScreenSaverService extends Service {
     }
 
     private void detectionBusiness() {
+        LogUtils.dTag(TAG, "探测下");
         //探测下
         long current = System.currentTimeMillis();//当前时间
-        long lastTouchTime = SPUtils.getLongData(getApplicationContext(), CURRENT_TIME);//最后触摸时间
-        if (lastTouchTime != -1) {
-            //有数据
-            Date curDate = new Date(current);
-            Date endDate = new Date(lastTouchTime);
-            long diff = endDate.getTime() - curDate.getTime();//ms毫秒
-            if (diff > 0) {
-                Long diffMiniutes = ((diff / (60 * 1000)));//以分钟为单位取整
-                long screenDate = SPUtils.getLongData(getApplicationContext(), SCREEN_DATE);//屏保配置时间
-                if (screenDate != -1) {//有 做个对比
-                    if (diffMiniutes >= screenDate) {
-                        //todo 开页面，调用屏保页面,关闭服务
-                        Intent intent = new Intent(getApplicationContext(), ScreenSaverActivity.class);
-                        startActivity(intent);
-                        stopSelf();
-                    }
+        long lastTouchTime = SPUtils.getLongData(getApplicationContext(), Constants.CURRENT_TIME);//最后触摸时间
+        if (lastTouchTime == 0) {
+            return;
+        }
+        LogUtils.dTag(TAG, "当前时间戳:" + current + "最后触摸时间戳：" + lastTouchTime);
+        String lastDate = TimeUtils.getDateToString(lastTouchTime);
+        String currentDate = TimeUtils.getDateToString(current);
+        LogUtils.dTag(TAG, "当前时间:" + currentDate + "最后触摸时间：" + lastDate);
+        long diff = TimeUtils.getGapMinutes(lastDate, currentDate);//分钟
+        if (diff > 0) {
+            long screenDate = SPUtils.getLongData(getApplicationContext(), Constants.SCREEN_DATE);//屏保配置时间
+            LogUtils.dTag(TAG, "屏保配置时间: " + screenDate + "分钟 时间差：" + diff + " 分钟");
+            if (screenDate != 0) {//有 做个对比
+                if (diff >= screenDate) {
+                    //todo 开页面，调用屏保页面,关闭服务
+                    LogUtils.dTag(TAG, "符合时机了开页面:停止服务");
+                    Intent intent = new Intent(getApplicationContext(), ScreenSaverActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    stopSelf();
                 }
-
             }
+
+
         }
     }
+
 
     @Override
     public void onDestroy() {

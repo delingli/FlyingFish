@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ScreenSaverActivity"
+            android:name=".screensaver.ScreenSaverActivity"
             android:launchMode="singleTask" />
 
         <service

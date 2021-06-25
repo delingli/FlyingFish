@@ -90,11 +90,11 @@ android {
 }
 
 dependencies {
-    api project(path: ':commonlib')
+    implementation project(path: ':commonlib')
     if (!isModule.toBoolean()) {
         implementation project(path: ':module_main')
         implementation project(path: ':module_me')
-        implementation project(path: ':module_proj')
+        implementation project(path: ':module_screen_saver')
         implementation project(path: ':module_home')
     }
 

@@ -15,8 +15,6 @@ import io.reactivex.subscribers.DisposableSubscriber;
 //统一处理返回数据
 public abstract class AbsHttpSubscriber<T> extends DisposableSubscriber<HttpResponse<T>> implements AbsSubscriberListener<T> {
 
-    public AbsHttpSubscriber(Context context) {
-    }
 
     public AbsHttpSubscriber() {
     }
@@ -42,12 +40,12 @@ public abstract class AbsHttpSubscriber<T> extends DisposableSubscriber<HttpResp
             ToastUtils.showToast("tHttpResponse为null");
             return;
         }
-        if (tHttpResponse.getStatus().equals(StatusCode.SUCESSCODE)) {
+        if (tHttpResponse.getCode()==0){
             Log.d("AbsHttpSubscriber", "#原生数据#" + tHttpResponse.getData().toString());
             onSuccess(tHttpResponse.getData());
         } else {
-            ApiException e = CustomException.handlerCustomException(new ApiException(tHttpResponse.getStatus(), tHttpResponse.getMessage()));
-            Log.e("AbsHttpSubscriber", "code:" + tHttpResponse.getStatus() + "message:" + tHttpResponse.getMessage());
+            ApiException e = CustomException.handlerCustomException(new ApiException(tHttpResponse.getCode(), tHttpResponse.getMessage()));
+            Log.e("AbsHttpSubscriber", "code:" + tHttpResponse.getCode() + "message:" + tHttpResponse.getMessage());
             onFailure(e.getMes(), e.getCode());
             // 多重显示错误的问题，应该在这里判断一下
         }

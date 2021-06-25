@@ -95,6 +95,10 @@ deps.ext_junit = "androidx.test.ext:junit:$versions.ext_junit"
 deps.espresso_core = "androidx.test.espresso:espresso-core:$versions.espresso_core"
 
 //view end
+
+
+
+
 ext.deps = deps
 /**App相关编译构建版本配置start**/
 def build_versions = [:]

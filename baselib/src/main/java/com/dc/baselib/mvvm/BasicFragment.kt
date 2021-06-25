@@ -1,4 +1,4 @@
-package com.dc.baselib.mvvmz
+package com.dc.baselib.mvvm
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -63,15 +63,7 @@ public abstract class AbsLifecycleActivity<T extends AbsViewModel> extends BaseA
             }
         }
     }
-    @Override
-    public Resources getResources() {
-        boolean isHorizontalScreen = getApplicationContext().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
-        if (isHorizontalScreen)
-            return AdaptScreenUtils.adaptWidth(super.getResources(), 1920);
-        else
-            return AdaptScreenUtils.adaptWidth(super.getResources(), 1080);
 
-    }
     protected <T> MutableLiveData<T> registerSubscriber(Object eventKey, Class<T> tClass) {
 
         return registerSubscriber(eventKey, null, tClass);

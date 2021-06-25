@@ -4,6 +4,8 @@ package com.dc.baselib.mvvm;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -11,23 +13,27 @@ import android.view.View;
 import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.blankj.utilcode.util.AdaptScreenUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.SpanUtils;
 import com.dc.baselib.CurrentContentManager;
 import com.dc.baselib.R;
 import com.dc.baselib.callback.WinCallback;
+import com.dc.baselib.constant.Constants;
 import com.dc.baselib.statusBar.StarusBarUtils;
 import com.dc.baselib.utils.SPUtils;
+import com.dc.baselib.utils.TimeUtils;
 
 
 public abstract class BaseActivity extends AppCompatActivity {
-    public static final String CURRENT_TIME = "current_time";
+
 
     private FrameLayout mFlcontiner;
     private Toolbar mToolBarlhead;
@@ -44,7 +50,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mInflater = LayoutInflater.from(this);
         setContentView(R.layout.activity_base_layout);
 //        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//竖屏
@@ -52,7 +57,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         tvLeftCacel = findViewById(R.id.tv_left_cacel);
         mFlcontiner = findViewById(R.id.fl_continer);
         view_line = findViewById(R.id.view_line);
-        mToolBarlhead = findViewById(R.id.rl_head);
+        mToolBarlhead = findViewById(R.id.tool_bars);
         mIvLeftBack = findViewById(R.id.iv_left_back);
         tTvTitle = findViewById(R.id.tv_title);
         mIvRightButton = findViewById(R.id.iv_right_button);
@@ -74,12 +79,15 @@ public abstract class BaseActivity extends AppCompatActivity {
 
                     case MotionEvent.ACTION_DOWN:
                     case MotionEvent.ACTION_MOVE:
-                        LogUtils.e("BaseActivity", "dispatchTouchEvent:activity窗口被触摸");
-                        SPUtils.putLongData(getApplicationContext(), CURRENT_TIME, System.currentTimeMillis());//最后触摸时间
+//                        long l = System.currentTimeMillis();
+//                        SPUtils.putLongData(getApplicationContext(), CURRENT_TIME, l);//最后触摸时间
+//                        LogUtils.e("BaseActivity", "dispatchTouchEvent:activity窗口被触摸" + l);
+
                         break;
                     case MotionEvent.ACTION_UP:
-                        LogUtils.e("BaseActivity", "dispatchTouchEvent:手指离开activity窗口");
-                        SPUtils.putLongData(getApplicationContext(), CURRENT_TIME, System.currentTimeMillis());//最后触摸时间
+                        long l = System.currentTimeMillis();
+                        SPUtils.putLongData(getApplicationContext(), Constants.CURRENT_TIME, l);//最后触摸时间
+                        LogUtils.d("BaseActivity", "dispatchTouchEvent最后触摸屏保时间" + TimeUtils.getDateToString(l));
                         break;
 
                 }
@@ -109,7 +117,15 @@ public abstract class BaseActivity extends AppCompatActivity {
             mIvLeftBack.setVisibility(View.GONE);
         }
     }
+    @Override
+    public Resources getResources() {
+        boolean isHorizontalScreen = getApplicationContext().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+        if (isHorizontalScreen)
+            return AdaptScreenUtils.adaptWidth(super.getResources(), 1920);
+        else
+            return AdaptScreenUtils.adaptWidth(super.getResources(), 1080);
 
+    }
     public void showLeftCacel() {
         tvLeftCacel.setVisibility(View.VISIBLE);
         mIvLeftBack.setVisibility(View.GONE);
@@ -135,7 +151,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         mToolBarlhead.setPadding(0, StarusBarUtils.getStatusBarHeight(this), 0, 0);
     }
 
-    public void setmToolBarlheadHide(boolean hide) {
+    public void setToolBarlheadHide(boolean hide) {
         if (hide) {
             mToolBarlhead.setVisibility(View.GONE);
             view_line.setVisibility(View.GONE);

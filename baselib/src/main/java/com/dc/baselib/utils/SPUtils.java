@@ -122,7 +122,7 @@ public class SPUtils {
 
     public static long getLongData(Context context, String key) {
         SharedPreferences preferences = context.getApplicationContext().getSharedPreferences(CACHE_FILE_NAME, Context.MODE_PRIVATE);
-        return preferences.getLong(key, -1);
+        return preferences.getLong(key, 0);
 
     }
 

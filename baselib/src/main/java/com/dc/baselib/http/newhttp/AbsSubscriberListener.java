@@ -7,5 +7,5 @@ public interface AbsSubscriberListener<T> {
 
     void onSuccess(T t);
 
-    void onFailure(String msg, String code);
+    void onFailure(String msg, int code);
 }

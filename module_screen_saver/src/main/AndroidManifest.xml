@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.itc.screen_saver">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
 
     <application android:theme="@style/AppTheme">
-
         <activity
-            android:name=".ScreenSaverActivity"
-            android:launchMode="singleTask" />
+            android:name=".screensaver.ScreenSaverActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/FullscreenTheme" />
 
         <service
             android:name=".rabbit.RabbitService"

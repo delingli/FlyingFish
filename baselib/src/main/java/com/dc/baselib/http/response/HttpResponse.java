@@ -3,25 +3,16 @@ package com.dc.baselib.http.response;
 import com.dc.baselib.http.newhttp.StatusCode;
 
 public class HttpResponse<T> {
-    private String status;
+    private int code;
     private String message;
-    private String timestamp;
     private T data;
 
-    public String getTimestamp() {
-        return timestamp;
+    public int getCode() {
+        return code;
     }
 
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+    public void setCode(int code) {
+        this.code = code;
     }
 
     public String getMessage() {
@@ -40,7 +31,4 @@ public class HttpResponse<T> {
         this.data = data;
     }
 
-    public boolean isSuccess() {
-        return StatusCode.SUCESSCODE.equals(status);
-    }
 }

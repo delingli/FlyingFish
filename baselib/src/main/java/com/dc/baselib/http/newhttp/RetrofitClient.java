@@ -1,10 +1,14 @@
 package com.dc.baselib.http.newhttp;
+
 import com.dc.baselib.BaseApplication;
 import com.dc.baselib.BuildConfig;
+import com.dc.baselib.constant.Constants;
 import com.dc.baselib.http.interceptor.CommonParamsInterceptor;
 import com.dc.baselib.http.interceptor.HeaderInterceptor;
+
 import java.io.File;
 import java.util.concurrent.TimeUnit;
+
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -32,7 +36,7 @@ public class RetrofitClient {
                 .retryOnConnectionFailure(true);
 
         retrofit = new Retrofit.Builder()
-                .baseUrl(BuildConfig.HOST)
+                .baseUrl(Constants.WEB_URL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addConverterFactory(ScalarsConverterFactory.create())//支持字符串

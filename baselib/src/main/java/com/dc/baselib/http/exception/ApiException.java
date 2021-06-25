@@ -2,25 +2,29 @@ package com.dc.baselib.http.exception;
 
 
 public class ApiException extends Exception {
-    private String code;
+    private int code;
     private String mes;
-    public ApiException(Throwable throwable, String code) {
+
+    public ApiException(Throwable throwable, int code) {
         super(throwable);
         this.code = code;
     }
-    public ApiException(String code, String mes) {
-        this.code=code;
-        this.mes=mes;
+
+    public ApiException(int code, String mes) {
+        super(mes);
+        this.code = code;
+        this.mes = mes;
     }
+
     public ApiException(String message) {
         super(message);
     }
 
-    public String getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code = code;
     }
 
@@ -32,10 +36,5 @@ public class ApiException extends Exception {
         this.mes = mes;
     }
 
-    public ApiException(String code, String message, String mes) {
-        super(message);
-        this.code = code;
-        this.mes=mes;
-    }
 
 }

@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ScreenUtils;
 import com.dc.baselib.BaseApplication;
+import com.dc.baselib.constant.Constants;
 import com.itc.screen_saver.utils.DeviceIdUtil;
 import com.itc.screen_saver.utils.NetUtils;
 import com.itc.screen_saver.utils.RootCheck;
@@ -49,7 +50,6 @@ public class RabbitDispatcher {
     private RabbitEventListener eventListener;
     private String consumerTag;
     private boolean underDestroy = false;
-    private String ips = "";
 
     public interface RabbitEventListener {
         void onMessageReceived(String message);
@@ -66,25 +66,20 @@ public class RabbitDispatcher {
     }
 
     private void prepareRabbit() {
-        initRabbitDispatcher("server_addr");
+        initRabbitDispatcher();
         LogUtils.dTag(tag, "程序开始注册了1");
     }
 
 
-    public void initRabbitDispatcher(String ips) {
+    public void initRabbitDispatcher() {
         map = new HashMap<>();
-        this.ips = ips;
-
         map.put("device_sn", DeviceIdUtil.getDeviceId(BaseApplication.Companion.getInstances()));
         LogUtils.dTag(tag, DeviceIdUtil.getDeviceId(BaseApplication.Companion.getInstances()));
-//        String uid = SharePreUtil.INSTANCE.getString("uid", "");
-//        map.put("uid", uid);
         map.put("device_ip", Objects.requireNonNull(NetUtils.getLocalIpAddress()));
         map.put("device_model", SystemUtil.getSystemModel());//设备型号
         map.put("device_version", SystemUtil.getSystemVersion());//设备系统版本号
         map.put("app_version", "1.0");//app版本号
-        map.put("root", RootCheck.isRoot() ? 1 : 0);//app版本号
-        map.put("type", 7);//Ipad场景指定字段
+        map.put("root", RootCheck.isRoot() ? 1 : 0);//
         map.put("memory", (int) (SystemUtil.getTotalMemory() / 1024));//运行总内存
         map.put("storage", deviceStroge);//存储总内存
         map.put("resolution", ScreenUtils.getScreenWidth() + "*" + ScreenUtils.getScreenHeight());//存储总内存
@@ -93,10 +88,10 @@ public class RabbitDispatcher {
 
     private void initConnectFactor() {
         factory = new ConnectionFactory();
-        factory.setHost(ips);
-        factory.setUsername("");
-        factory.setPassword("");
-        factory.setPort(000);
+        factory.setHost(Constants.SERVER_HOST);
+        factory.setUsername(Constants.RABBIT_NAME);
+        factory.setPassword(Constants.RABBIT_PASSWORD);
+        factory.setPort(Constants.RABBIT_PORT);
         factory.setClientProperties(map);
         LogUtils.dTag(tag, "uid=" + map.get("uid"));
         factory.setConnectionTimeout(10000);
@@ -131,14 +126,13 @@ public class RabbitDispatcher {
             LogUtils.dTag(tag, "message:" + message + " dtag: " + deliveryTag);
             if (lastMsgId != deliveryTag) {
                 lastMsgId = deliveryTag;
-//                JavaApi.OnMessageReceive(message);
                 try {
                     JSONObject jsonObject = new JSONObject(message);
                     int message_type = jsonObject.optInt("message_type", -1);
                     if (message_type == 882) {
                         LogUtils.dTag(tag, "设备注册回调...");
-                    } else if (message_type == 613) {//PAD(IOS/Andriod)端界面刷新数据
-                        LogUtils.dTag(tag, "通知刷新pad主页");
+                    } else if (message_type == 997) {//刷新屏保数据
+                        LogUtils.dTag(tag, "通知刷新屏保数据");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
