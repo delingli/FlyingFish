@@ -1,10 +1,9 @@
 include ':module_app', ':commonlib',
         ':module_home', ':module_screen_saver',
-        ':module_me',
+        ':module_guangzhou_station',
         ':baselib',
         ':resuilib',
         ':module_main'
-
 rootProject.name = 'FlyingFish'
 
 
