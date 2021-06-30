@@ -72,7 +72,8 @@ public class ScreenSaverService extends Service {
         msg.sendToTarget();//直接开启
     }
 
-    private int DELARYTIME = 5000 * 1;
+    private int DELARYTIME = 5000 * 2;
+    private boolean toFetch = true;
 
     class MyHandler extends Handler {
         public MyHandler() {
@@ -88,8 +89,10 @@ public class ScreenSaverService extends Service {
             if (msg.what == WART) {
                 detectionBusiness();
             }
+            if (toFetch) {
+                myHandler.sendEmptyMessageDelayed(WART, DELARYTIME);
+            }
 
-            myHandler.sendEmptyMessageDelayed(WART, DELARYTIME);
         }
     }
 
@@ -97,7 +100,7 @@ public class ScreenSaverService extends Service {
         LogUtils.dTag(TAG, "探测下");
         //探测下
         long current = System.currentTimeMillis();//当前时间
-        long lastTouchTime = SPUtils.getLongData(getApplicationContext(), Constants.CURRENT_TIME);//最后触摸时间
+        long lastTouchTime = SPUtils.getLongData(Constants.CURRENT_TIME);//最后触摸时间
         if (lastTouchTime == 0) {
             return;
         }
@@ -107,7 +110,7 @@ public class ScreenSaverService extends Service {
         LogUtils.dTag(TAG, "当前时间:" + currentDate + "最后触摸时间：" + lastDate);
         long diff = TimeUtils.getGapMinutes(lastDate, currentDate);//分钟
         if (diff > 0) {
-            long screenDate = SPUtils.getLongData(getApplicationContext(), Constants.SCREEN_DATE);//屏保配置时间
+            long screenDate = SPUtils.getLongData(Constants.SCREEN_DATE);//屏保配置时间
             LogUtils.dTag(TAG, "屏保配置时间: " + screenDate + "分钟 时间差：" + diff + " 分钟");
             if (screenDate != 0) {//有 做个对比
                 if (diff >= screenDate) {
@@ -116,6 +119,7 @@ public class ScreenSaverService extends Service {
                     Intent intent = new Intent(getApplicationContext(), ScreenSaverActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
+                    toFetch = false;
                     stopSelf();
                 }
             }

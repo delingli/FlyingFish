@@ -1,7 +1,7 @@
 package com.dc.baselib.http.newhttp;
 
 public class StatusCode {
-    public static final String SUCESSCODE = "C100000";//success
+    public static final int SUCESSCODE = 0;//success
     public static final String USERNAME_NOTEFOUND = "C100004";//用户不存在
     public static final String PASSWORD_ERRORCODE = "C100005";//密码错误
     public static final String SERVER_FAIL = "C100001";//fail

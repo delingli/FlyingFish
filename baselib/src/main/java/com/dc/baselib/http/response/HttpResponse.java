@@ -1,7 +1,4 @@
 package com.dc.baselib.http.response;
-
-import com.dc.baselib.http.newhttp.StatusCode;
-
 public class HttpResponse<T> {
     private int code;
     private String message;

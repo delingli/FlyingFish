@@ -10,10 +10,10 @@ import com.dc.baselib.http.response.HttpResponse;
 public abstract class AbsObserverListener<T> implements ObserverListener<T> {
     @Override
     public void onChanged(@Nullable HttpResponse<T> tHttpResponse) {
-        if (tHttpResponse.getStatus().equals(StatusCode.SUCESSCODE)) {
-            onSucess(tHttpResponse.getData());
-        } else {
-            onFial(new ApiException(tHttpResponse.getStatus(), tHttpResponse.getStatus()));
-        }
+//        if (tHttpResponse.getCode()==StatusCode.SUCESSCODE) {
+//            onSucess(tHttpResponse.getData());
+//        } else {
+//            onFial(new ApiException(tHttpResponse.getStatus(), tHttpResponse.getStatus()));
+//        }
     }
 }

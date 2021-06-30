@@ -86,7 +86,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                         break;
                     case MotionEvent.ACTION_UP:
                         long l = System.currentTimeMillis();
-                        SPUtils.putLongData(getApplicationContext(), Constants.CURRENT_TIME, l);//最后触摸时间
+                        SPUtils.putLongData(Constants.CURRENT_TIME, l);//最后触摸时间
                         LogUtils.d("BaseActivity", "dispatchTouchEvent最后触摸屏保时间" + TimeUtils.getDateToString(l));
                         break;
 
@@ -117,6 +117,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             mIvLeftBack.setVisibility(View.GONE);
         }
     }
+
     @Override
     public Resources getResources() {
         boolean isHorizontalScreen = getApplicationContext().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
@@ -126,6 +127,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             return AdaptScreenUtils.adaptWidth(super.getResources(), 1080);
 
     }
+
     public void showLeftCacel() {
         tvLeftCacel.setVisibility(View.VISIBLE);
         mIvLeftBack.setVisibility(View.GONE);

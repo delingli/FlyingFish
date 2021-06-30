@@ -6,6 +6,7 @@ import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ScreenUtils;
 import com.dc.baselib.BaseApplication;
 import com.dc.baselib.constant.Constants;
+import com.dc.baselib.utils.SPUtils;
 import com.itc.screen_saver.utils.DeviceIdUtil;
 import com.itc.screen_saver.utils.NetUtils;
 import com.itc.screen_saver.utils.RootCheck;
@@ -132,7 +133,9 @@ public class RabbitDispatcher {
                     if (message_type == 882) {
                         LogUtils.dTag(tag, "设备注册回调...");
                     } else if (message_type == 997) {//刷新屏保数据
-                        LogUtils.dTag(tag, "通知刷新屏保数据");
+                        int launch_time = jsonObject.optInt("launch_time", 0);
+                        LogUtils.dTag(tag, "通知刷新屏保数据" + launch_time);
+                        SPUtils.putLongData(Constants.SCREEN_DATE, launch_time);//更新屏保日期
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

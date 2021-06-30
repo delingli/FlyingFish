@@ -13,7 +13,13 @@ public abstract class AbsViewModel<T extends BaseRespository> extends AndroidVie
         super(application);
         mRepository = getRepository();
     }
+    protected void postData(Object eventKey, String tag, Object t) {
+        LiveBus.getDefault().postEvent(eventKey, tag, t);
+    }
 
+    protected void postData(Object eventKey, Object t) {
+        postData(eventKey, null, t);
+    }
     protected abstract T getRepository();
 
     @Override
@@ -23,4 +29,7 @@ public abstract class AbsViewModel<T extends BaseRespository> extends AndroidVie
             mRepository.unDisposable();
         }
     }
+
+
+
 }

@@ -8,7 +8,7 @@ public class Constants {
     public static final String RABBIT_PASSWORD = "itc.pass";
     public static final int RABBIT_PORT = 5577;
     public static final int SERVER_PORT = 9997;
-    public static final String WEB_URL = "http://" + SERVER_HOST + SERVER_PORT;
+    public static final String WEB_URL = "http://" + SERVER_HOST +":"+ SERVER_PORT;
 //    http://10.10.20.240:9997/api/diffusion/Screen/screenDetail
 //    http://10.10.20.240:9997/api/diffusion/Screen/screenDetail
 

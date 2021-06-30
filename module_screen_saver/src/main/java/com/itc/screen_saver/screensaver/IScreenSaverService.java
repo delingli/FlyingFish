@@ -3,6 +3,7 @@ package com.itc.screen_saver.screensaver;
 import com.dc.baselib.http.response.HttpResponse;
 
 import io.reactivex.Flowable;
+import okhttp3.ResponseBody;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 

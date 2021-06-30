@@ -4,7 +4,6 @@ import java.util.UUID;
 
 public class EventUtils {
     public static String getEventKey() {
-        String uuid = UUID.randomUUID().toString();
-        return uuid;
+        return UUID.randomUUID().toString();
     }
 }

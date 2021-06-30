@@ -64,7 +64,7 @@ dependencies {
     api deps.retrofit.adapter
     api deps.retrofit.gson
     api deps.retrofit.converter_scalars
-
+    api  deps.retriftlogging
     api deps.rxjava2
     api deps.rx_android
 
@@ -72,7 +72,7 @@ dependencies {
     api deps.conscrypt_android
     api deps.easypermissions /*权限*/
     api deps.arouter_compiler
-
+    api deps.gson
     api(deps.arouter_api) {  /*路由*/
         exclude group: 'androidx.legacy'
     }

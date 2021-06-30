@@ -36,11 +36,7 @@ public abstract class AbsHttpSubscriber<T> extends DisposableSubscriber<HttpResp
 
     @Override
     public void onNext(HttpResponse<T> tHttpResponse) {
-        if (null == tHttpResponse) {
-            ToastUtils.showToast("tHttpResponse为null");
-            return;
-        }
-        if (tHttpResponse.getCode()==0){
+        if (tHttpResponse.getCode() == 0) {
             Log.d("AbsHttpSubscriber", "#原生数据#" + tHttpResponse.getData().toString());
             onSuccess(tHttpResponse.getData());
         } else {
@@ -63,7 +59,6 @@ public abstract class AbsHttpSubscriber<T> extends DisposableSubscriber<HttpResp
     public void onComplete() {
         hideLoading();
     }
-
 
 
     @Override

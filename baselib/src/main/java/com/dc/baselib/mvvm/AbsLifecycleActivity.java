@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 
 import androidx.annotation.Nullable;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
@@ -17,15 +18,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbsLifecycleActivity<T extends AbsViewModel> extends BaseActivity {
-    protected ViewModel mViewModel;
+    protected T mViewModel;
     private List<Object> eventKeys = new ArrayList<>();
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        mViewModel = new ViewModelProvider(this).get(getViewModel());
+        ViewModelProvider viewModelProvider = new ViewModelProvider(this);
+        mViewModel = viewModelProvider.get((Class<T>) getViewModel());
     }
 
-    protected abstract Class<ViewModel> getViewModel();
+
+    protected abstract Class<T> getViewModel();
 
     //默认实现用于监听网络请求响应的状态，提供给下层调用处理
     protected Observer observer = new Observer<String>() {

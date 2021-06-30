@@ -53,9 +53,9 @@ public class ResponseTransformer {
 
         @Override
         public ObservableSource<T> apply(HttpResponse<T> tHttpResponse) throws Exception {
-            String code = tHttpResponse.getStatus();
+            int code = tHttpResponse.getCode();
             String message = tHttpResponse.getMessage();
-            if (code .equals(StatusCode.SUCESSCODE)) {
+            if (code ==StatusCode.SUCESSCODE) {
                 //正常数据源
                 return Observable.just(tHttpResponse.getData());
             } else {
@@ -85,9 +85,9 @@ public class ResponseTransformer {
     private static class FlowableResponseFunction<T> implements Function<HttpResponse<T>, Publisher<T>> {
         @Override
         public Publisher<T> apply(HttpResponse<T> tHttpResponse) throws Exception {
-            String code = tHttpResponse.getStatus();
+            int code = tHttpResponse.getCode();
             String message = tHttpResponse.getMessage();
-            if (code .equals(StatusCode.SUCESSCODE)) {
+            if (code ==StatusCode.SUCESSCODE) {
                 //正常数据源
                 return Flowable.just(tHttpResponse.getData());
             } else {

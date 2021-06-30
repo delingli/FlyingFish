@@ -39,10 +39,10 @@ public class BaseHttpSubscriber<T> extends DisposableSubscriber<HttpResponse<T>>
 
     @Override
     public void onNext(HttpResponse<T> tHttpResponse) {
-        if (tHttpResponse.getStatus() .equals(StatusCode.SUCESSCODE)) {
+        if (tHttpResponse.getCode() ==(StatusCode.SUCESSCODE)) {
             onFinish(tHttpResponse);
         } else {
-            getErrorDto(CustomException.handlerCustomException(new ApiException(tHttpResponse.getStatus(), tHttpResponse.getMessage())));
+            getErrorDto(CustomException.handlerCustomException(new ApiException(tHttpResponse.getCode(), tHttpResponse.getMessage())));
         }
     }
 
@@ -63,7 +63,7 @@ public class BaseHttpSubscriber<T> extends DisposableSubscriber<HttpResponse<T>>
     //通知
     private void getErrorDto(ApiException ex) {
         HttpResponse httpResponse = new HttpResponse();
-        httpResponse.setStatus(ex.getCode());
+        httpResponse.setCode(ex.getCode());
         httpResponse.setMessage(ex.getMes());
         onFinish(httpResponse);
     }

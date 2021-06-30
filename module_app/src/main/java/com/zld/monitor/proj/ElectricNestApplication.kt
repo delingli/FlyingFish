@@ -11,7 +11,6 @@ class ElectricNestApplication : BaseApplication() {
         super.onCreate()
         ScreenSaverService.startScreenSaverService(this)
         RabbitService.startRabbitService(this)
-        SPUtils.putLongData(this, Constants.SCREEN_DATE, 2);
-
+        SPUtils.initSpUtils(this)
     }
 }
