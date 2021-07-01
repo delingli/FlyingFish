@@ -11,12 +11,13 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/YCVideoPlayerLib" />
             <option value="$PROJECT_DIR$/baselib" />
             <option value="$PROJECT_DIR$/commonlib" />
             <option value="$PROJECT_DIR$/module_app" />
+            <option value="$PROJECT_DIR$/module_guangzhou_station" />
             <option value="$PROJECT_DIR$/module_home" />
             <option value="$PROJECT_DIR$/module_main" />
-            <option value="$PROJECT_DIR$/module_me" />
             <option value="$PROJECT_DIR$/module_screen_saver" />
             <option value="$PROJECT_DIR$/resuilib" />
           </set>

@@ -26,7 +26,6 @@ public class ScreenResponstory extends BaseRespository {
 
     public void toFetchScreenSaverData(String serial_no, ScreenCallBack callBack) {
         refreshScreenData(serial_no, callBack);//刷新数据
-
     }
 
     private void refreshScreenData(String serial_no, ScreenCallBack callBack) {

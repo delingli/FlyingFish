@@ -3,6 +3,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:ignore="ResourceName">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <Button
+        android:id="@+id/btn_get"
+        android:layout_width="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="wrap_content"
+        android:text="获取数据"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="48dp"
+        tools:layout_editor_absoluteY="129dp" />
+
+    <Button
+        android:id="@+id/btn_jump"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="跳转"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="267dp"
+        tools:layout_editor_absoluteY="118dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,20 +1,25 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.dc.module_me">
+    package="com.guangzhou.station">
 
     <application
+        android:name="debug.MeApplication"
         android:label="@string/me_name"
         android:theme="@style/AppTheme"
-        android:name="debug.MeApplication"
         tools:replace="android:label">
-        <activity android:name="module_guangzhou_station.TestActivity">
+        <activity
+            android:name=".playinfo.PlayInfoActivity"
+            android:configChanges="layoutDirection|fontScale|locale"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".stationmain.StationMainActivity"
+            android:hardwareAccelerated="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
 
     </application>
 </manifest>

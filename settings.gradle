@@ -7,3 +7,4 @@ include ':module_app', ':commonlib',
 rootProject.name = 'FlyingFish'
 
 
+include ':YCVideoPlayerLib'

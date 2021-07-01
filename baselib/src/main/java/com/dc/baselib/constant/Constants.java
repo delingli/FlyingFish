@@ -12,4 +12,5 @@ public class Constants {
 //    http://10.10.20.240:9997/api/diffusion/Screen/screenDetail
 //    http://10.10.20.240:9997/api/diffusion/Screen/screenDetail
 
+///api/diffusion/Directory/directoryDetail
 }
