@@ -63,6 +63,12 @@ public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
         }
         //去掉最上面时间、电量等
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        findViewById(R.id.iv_goBack).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         mBanner = findViewById(R.id.banner);
         if (getIntent() != null) {
             mPlayInfoList = getIntent().getParcelableArrayListExtra(PLAYINFO_TAG);
@@ -82,9 +88,20 @@ public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
 //                if(mImgVideoAdapter.getRealCount()>)
                 if (mAutuPlay && mImgVideoAdapter.getRealData(position) != null) {
                     AbsPlayInfo data = mImgVideoAdapter.getRealData(position);
-                        mBanner.setLoopTime(data.timer * 1000);
+                    mBanner.setLoopTime(data.timer * 1000);
+                    mBanner.isInfiniteLoop();
+                    mBanner.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (null != mImgVideoAdapter) {
+                                notifyItem(position);
+                            }
+
+                        }
+                    });
 
                 }
+
 
             }
 
@@ -94,15 +111,24 @@ public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
             }
         });
         mBanner.isAutoLoop(mAutuPlay);
-        if (mAutuPlay&&mImgVideoAdapter.getRealCount()>1) {
-            if(mImgVideoAdapter.getRealData(0)!=null){
+        if (mAutuPlay && mImgVideoAdapter.getRealCount() > 1) {
+            if (mImgVideoAdapter.getRealData(0) != null) {
                 AbsPlayInfo realData = mImgVideoAdapter.getRealData(0);
                 mBanner.setLoopTime(realData.timer * 1000);
             }
 
         }
+
     }
 
+    public void notifyItem(int pos) {
+        LogUtils.d("BACK", "notifyItem:" + pos);
+        View view = mBanner.findViewWithTag(pos);
+        if (view instanceof VideoPlayer) {
+            VideoPlayer videoPlayer = (VideoPlayer) view;
+            videoPlayer.start();
+        }
+    }
 
     @Override
     protected void onStart() {

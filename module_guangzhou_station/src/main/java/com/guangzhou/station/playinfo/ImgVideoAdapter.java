@@ -59,11 +59,12 @@ public class ImgVideoAdapter extends BannerAdapter<AbsPlayInfo, ImgVideoAdapter.
             Glide.with(context).load(Constants.WEB_URL + File.separator + data.path).into(imgBannerViewHolder.imageViews);
         } else {
             VideoViewHolder videoViewHolder = (VideoViewHolder) holder;
-            videoViewHolder.videoPlayer.setTag(position);
             videoViewHolder.videoPlayer.setUp(Constants.WEB_URL + File.separator + data.path, null);
-            if (!videoViewHolder.videoPlayer.isPlaying()) {
+            videoViewHolder.videoPlayer.setTag(position);
+            if(position==0){
                 videoViewHolder.videoPlayer.start();
             }
+
         }
 
     }

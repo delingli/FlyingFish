@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.youth.banner.Banner xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/banner"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
 
-</com.youth.banner.Banner>
+    <com.youth.banner.Banner
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:id="@+id/iv_goBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|top"
+        android:layout_marginLeft="24pt"
+        android:layout_marginTop="24pt"
+        android:padding="5pt"
+        android:src="@drawable/goback" />
+</FrameLayout>
