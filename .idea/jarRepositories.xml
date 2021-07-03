@@ -56,5 +56,10 @@
       <option name="name" value="maven4" />
       <option name="url" value="http://10.10.20.198:8081/nexus/content/groups/IDC/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven4" />
+      <option name="name" value="maven4" />
+      <option name="url" value="https://s01.oss.sonatype.org/content/groups/public" />
+    </remote-repository>
   </component>
 </project>

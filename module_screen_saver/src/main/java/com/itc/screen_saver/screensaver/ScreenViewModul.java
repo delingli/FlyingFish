@@ -4,16 +4,11 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 
-import com.dc.baselib.constant.Constants;
 import com.dc.baselib.mvvm.AbsViewModel;
 import com.dc.baselib.mvvm.EventUtils;
-import com.dc.baselib.mvvm.LiveBus;
-import com.dc.baselib.utils.SPUtils;
-import com.itc.screen_saver.utils.DeviceIdUtil;
+import com.dc.commonlib.util.DeviceIdUtil;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.io.File;
 
 public class ScreenViewModul extends AbsViewModel<ScreenResponstory> {
     public static String EVENT_KEY_SCREEN_SAVER;

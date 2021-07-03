@@ -32,12 +32,16 @@ public class CustomPagerAdapter extends PagerAdapter {
         this.context = context;
     }
 
+    public List<AbsPlayInfo> getmList() {
+        return mList;
+    }
+
     @NonNull
     @NotNull
     @Override
     public Object instantiateItem(@NonNull @NotNull ViewGroup container, int position) {
         LogUtils.d("CustomPagerAdapter", position);
-        AbsPlayInfo absPlayInfo = mList.get(position);
+        AbsPlayInfo absPlayInfo = mList.get((position % mList.size()));
         if (absPlayInfo != null) {
             if (absPlayInfo.type == 1) {
                 View view = View.inflate(context, R.layout.station_item_img_play, null);
@@ -63,7 +67,7 @@ public class CustomPagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return mList == null ? 0 : mList.size();
+        return mList == null ? 0 : Integer.MAX_VALUE;
     }
 
     @Override
@@ -75,7 +79,6 @@ public class CustomPagerAdapter extends PagerAdapter {
     public boolean isViewFromObject(@NonNull @NotNull View view, @NonNull @NotNull Object object) {
         return view == object;
     }
-
 
 
 }

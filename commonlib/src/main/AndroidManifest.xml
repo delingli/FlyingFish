@@ -4,5 +4,11 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
-    <application></application>
+    <application>
+
+        <service
+            android:name="com.dc.commonlib.rabbit.RabbitService"
+            android:enabled="true"
+            android:exported="true" />
+    </application>
 </manifest>

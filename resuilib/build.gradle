@@ -25,9 +25,6 @@ android {
     }
 
 
-
-
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -64,7 +61,7 @@ dependencies {
     api deps.retrofit.adapter
     api deps.retrofit.gson
     api deps.retrofit.converter_scalars
-    api  deps.retriftlogging
+    api deps.retriftlogging
     api deps.rxjava2
     api deps.rx_android
 
@@ -80,6 +77,7 @@ dependencies {
         exclude group: 'pub.devrel.easypermissions'
     }
     api 'com.idc.idcsdk:libvlc-all:3.1.12@aar'
+    api 'io.github.youth5201314:banner:2.2.2'
     api deps.glide
     testImplementation deps.junit
     androidTestImplementation deps.ext_junit

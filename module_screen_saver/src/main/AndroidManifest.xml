@@ -12,10 +12,7 @@
             android:launchMode="singleTask"
             android:theme="@style/FullscreenTheme" />
 
-        <service
-            android:name=".rabbit.RabbitService"
-            android:enabled="true"
-            android:exported="true" />
+
         <service
             android:name=".service.ScreenSaverService"
             android:enabled="true"

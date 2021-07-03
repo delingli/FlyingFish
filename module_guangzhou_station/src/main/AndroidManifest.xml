@@ -3,10 +3,17 @@
     package="com.guangzhou.station">
 
     <application android:theme="@style/AppTheme">
-        <activity android:name=".playinfo.PlayInfoActivity" />
+        <activity
+            android:name=".playinfo.PlayInfoActivity"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".playinfo.PlayInfosActivity"
+            android:theme="@style/FullscreenTheme" />
+
+
         <activity
             android:name=".stationmain.StationMainActivity"
-            android:hardwareAccelerated="true">
+            android:theme="@style/FullscreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

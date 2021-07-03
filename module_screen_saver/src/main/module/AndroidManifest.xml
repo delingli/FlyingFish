@@ -22,7 +22,7 @@
             android:launchMode="singleTask" />
 
         <service
-            android:name=".rabbit.RabbitService"
+            android:name="com.dc.commonlib.rabbit.RabbitService"
             android:enabled="true"
             android:exported="true" />
         <service

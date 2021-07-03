@@ -1,12 +1,8 @@
 package com.guangzhou.station.stationmain;
 
-import com.blankj.utilcode.util.GsonUtils;
 import com.blankj.utilcode.util.LogUtils;
-import com.dc.baselib.constant.Constants;
 import com.dc.baselib.http.newhttp.AbsHttpSubscriber;
 import com.dc.baselib.mvvm.BaseRespository;
-import com.dc.baselib.utils.SPUtils;
-import com.guangzhou.station.playinfo.ProjectListBean;
 
 import java.util.List;
 
@@ -25,13 +21,13 @@ public class StationMainRepository extends BaseRespository {
                 .fetchStationList(serial_no)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new AbsHttpSubscriber<List<ProjectListBean>>() {
+                .subscribeWith(new AbsHttpSubscriber<ProjectListBean>() {
                     @Override
-                    public void onSuccess(List<ProjectListBean> projectListBeans) {
+                    public void onSuccess(ProjectListBean projectListBeans) {
                         if (null != projectListBeans) {
 
                             if (null != callBack) {
-                                callBack.onSucess(projectListBeans);
+                                callBack.onSucess(projectListBeans.directoryList);
                             }
                         }
                     }

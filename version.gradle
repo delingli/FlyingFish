@@ -116,6 +116,7 @@ def addRepos(handler) {
     handler.maven { url 'https://maven.aliyun.com/repository/public' }
     handler.maven { url 'https://dl.bintray.com/rtlei/rt-library' }
     handler.maven { url "https://jitpack.io" }
+    handler.maven { url "https://s01.oss.sonatype.org/content/groups/public" }
     handler.maven {
         url 'http://10.10.20.198:8081/nexus/content/groups/IDC/'
     }
