@@ -54,13 +54,11 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
         mRecycleContext = findViewById(R.id.recycle_context);
         mRecycleView.setLayoutManager(new LinearLayoutManager(this));
         mRecycleView.setAdapter(mMainListAdapter = new MainListAdapter(this, null, -1));
-
-
         mRecycleContext.setLayoutManager(new LinearLayoutManager(this));
         mRecycleContext.setAdapter(mThreeListAdapter = new ThreeListAdapter(this, null, -1));
         mMainListAdapter.addOnItemClickListener(new MainListAdapter.OnItemClickListener() {
             @Override
-            public void onItemsClick(ProjectListBean.DirectoryListBean absStationData) {
+            public void onItemsClick(ProjectListBean.DirectoryListBean absStationData,int position) {
                 if (null != absStationData) {
                     List<AbsStationData> threeDescList = (List<AbsStationData>) ((Object) absStationData.showList);
                     if (null != mThreeListAdapter && null != threeDescList) {
@@ -72,6 +70,7 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
         });
 
         mViewModel.toFetchListSaverData();
+        mMainListAdapter.setDefSelect(0);
         mThreeListAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClickListener(View v, int position) {

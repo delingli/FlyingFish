@@ -32,6 +32,9 @@ public class CustomPagerAdapter extends PagerAdapter {
         this.context = context;
     }
 
+
+
+
     public List<AbsPlayInfo> getmList() {
         return mList;
     }
