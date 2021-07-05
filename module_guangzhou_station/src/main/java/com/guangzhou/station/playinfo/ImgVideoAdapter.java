@@ -27,11 +27,12 @@ public class ImgVideoAdapter extends BannerAdapter<AbsPlayInfo, ImgVideoAdapter.
 
     private LayoutInflater mInflater;
     private Context context;
+    private boolean mAutoPlay;
 
-    public ImgVideoAdapter(Context context, List<AbsPlayInfo> datas) {
+    public ImgVideoAdapter(boolean mAutoPlay, Context context, List<AbsPlayInfo> datas) {
         super(datas);
         this.context = context;
-
+        this.mAutoPlay = mAutoPlay;
         mInflater = LayoutInflater.from(context);
     }
 
@@ -61,8 +62,16 @@ public class ImgVideoAdapter extends BannerAdapter<AbsPlayInfo, ImgVideoAdapter.
             VideoViewHolder videoViewHolder = (VideoViewHolder) holder;
             videoViewHolder.videoPlayer.setUp(Constants.WEB_URL + File.separator + data.path, null);
             videoViewHolder.videoPlayer.setTag(position);
-            if(position==0){
+            if (position == 0) {
                 videoViewHolder.videoPlayer.start();
+                videoViewHolder.videoPlayer.addOnCpmpleteListener(new VideoPlayer.OnCpmpleteListener() {
+                    @Override
+                    public void onComplate() {
+                        if (!mAutoPlay) {
+                            videoViewHolder.videoPlayer.restart();
+                        }
+                    }
+                });
             }
 
         }
@@ -89,6 +98,7 @@ public class ImgVideoAdapter extends BannerAdapter<AbsPlayInfo, ImgVideoAdapter.
             mController.setCenterPlayer(true, 0);
             mController.setLoadingType(ConstantKeys.Loading.LOADING_RING);
             videoPlayer.setPlayerType(ConstantKeys.IjkPlayerType.TYPE_IJK);
+//            ConstantKeys.IjkPlayerType.TYPE_NATIVE
             videoPlayer.setController(mController);
         }
     }

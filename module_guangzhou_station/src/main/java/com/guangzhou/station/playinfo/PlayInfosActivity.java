@@ -3,14 +3,9 @@ package com.guangzhou.station.playinfo;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.os.Parcelable;
 import android.view.View;
 import android.view.WindowManager;
-
-import androidx.annotation.NonNull;
-import androidx.viewpager.widget.ViewPager;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.dc.baselib.mvvm.AbsLifecycleActivity;
@@ -21,7 +16,6 @@ import com.youth.banner.listener.OnPageChangeListener;
 import org.yczbj.ycvideoplayerlib.manager.VideoPlayerManager;
 import org.yczbj.ycvideoplayerlib.player.VideoPlayer;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +26,7 @@ public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
 
     private List<AbsPlayInfo> mPlayInfoList;
     private CustomPagerAdapter mCustomPagerAdapter;
-    public boolean mAutuPlay = false;//默认手动播放
+    public boolean mAutoPlay = false;//默认手动播放
     private Banner mBanner;
 
     public static void startActivity(Context context, List<AbsPlayInfo> list, boolean mAutuPlay) {
@@ -72,11 +66,11 @@ public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
         mBanner = findViewById(R.id.banner);
         if (getIntent() != null) {
             mPlayInfoList = getIntent().getParcelableArrayListExtra(PLAYINFO_TAG);
-            mAutuPlay = getIntent().getBooleanExtra(PLAY_AUTO, false);
+            mAutoPlay = getIntent().getBooleanExtra(PLAY_AUTO, false);
         }
 
 
-        mBanner.setAdapter(mImgVideoAdapter = new ImgVideoAdapter(this, mPlayInfoList)).addBannerLifecycleObserver(this).addOnPageChangeListener(new OnPageChangeListener() {
+        mBanner.setAdapter(mImgVideoAdapter = new ImgVideoAdapter(mAutoPlay, this, mPlayInfoList)).addBannerLifecycleObserver(this).addOnPageChangeListener(new OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -86,20 +80,27 @@ public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
             public void onPageSelected(int position) {
                 LogUtils.d("xiaoman", position);
 //                if(mImgVideoAdapter.getRealCount()>)
-                if (mAutuPlay && mImgVideoAdapter.getRealData(position) != null) {
+                if (mAutoPlay && mImgVideoAdapter.getRealData(position) != null) {
                     AbsPlayInfo data = mImgVideoAdapter.getRealData(position);
                     mBanner.setLoopTime(data.timer * 1000);
-                    mBanner.isInfiniteLoop();
                     mBanner.post(new Runnable() {
                         @Override
                         public void run() {
                             if (null != mImgVideoAdapter) {
                                 notifyItem(position);
                             }
-
                         }
                     });
 
+                } else if (!mAutoPlay) {
+                    mBanner.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (null != mImgVideoAdapter) {
+                                notifyItem(position);
+                            }
+                        }
+                    });
                 }
 
 
@@ -110,8 +111,8 @@ public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
 
             }
         });
-        mBanner.isAutoLoop(mAutuPlay);
-        if (mAutuPlay && mImgVideoAdapter.getRealCount() > 1) {
+        mBanner.isAutoLoop(mAutoPlay);
+        if (mAutoPlay && mImgVideoAdapter.getRealCount() > 1) {
             if (mImgVideoAdapter.getRealData(0) != null) {
                 AbsPlayInfo realData = mImgVideoAdapter.getRealData(0);
                 mBanner.setLoopTime(realData.timer * 1000);
@@ -126,6 +127,15 @@ public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
         View view = mBanner.findViewWithTag(pos);
         if (view instanceof VideoPlayer) {
             VideoPlayer videoPlayer = (VideoPlayer) view;
+            videoPlayer.addOnCpmpleteListener(new VideoPlayer.OnCpmpleteListener() {
+                @Override
+                public void onComplate() {
+                    if (!mAutoPlay) {
+                        videoPlayer.restart();
+                    }
+                }
+            });
+
             videoPlayer.start();
         }
     }
@@ -135,7 +145,7 @@ public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
         super.onStart();
         VideoPlayerManager.instance().resumeVideoPlayer();
         //播
-        if (mAutuPlay) {
+        if (mAutoPlay) {
             mBanner.start();
         }
     }
@@ -144,7 +154,7 @@ public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
     protected void onStop() {
         super.onStop();
         VideoPlayerManager.instance().pauseVideoPlayer();
-        if (mAutuPlay) {
+        if (mAutoPlay) {
             mBanner.stop();
         }
     }

@@ -142,6 +142,10 @@ public class PlayInfoActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
         if (view instanceof VideoPlayer) {
             VideoPlayer videoPlayer = (VideoPlayer) view;
             videoPlayer.start();
+            if (!mAutuPlay) {
+                videoPlayer.setlooping(true);
+            }
+
         }
     }
 

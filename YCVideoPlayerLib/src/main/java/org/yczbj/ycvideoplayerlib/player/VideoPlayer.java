@@ -238,6 +238,12 @@ public class VideoPlayer extends FrameLayout implements InterVideoPlayer {
         return super.onKeyDown(keyCode, event);
     }
 
+    public void setlooping(boolean loop) {
+        if (null != mMediaPlayer) {
+            mMediaPlayer.setLooping(loop);
+        }
+    }
+
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -743,7 +749,7 @@ public class VideoPlayer extends FrameLayout implements InterVideoPlayer {
 
         //设置ijkPlayer播放器的硬件解码相关参数
         //设置播放前的最大探测时间
-        ((IjkMediaPlayer) mMediaPlayer).setOption(format, "analyzemaxduration", 100L);
+        ((IjkMediaPlayer) mMediaPlayer).setOption(format, "analyzemaxduration", 1L);
         //设置播放前的探测时间 1,达到首屏秒开效果
         ((IjkMediaPlayer) mMediaPlayer).setOption(format, "analyzeduration", 1L);
         //播放前的探测Size，默认是1M, 改小一点会出画面更快
@@ -908,10 +914,23 @@ public class VideoPlayer extends FrameLayout implements InterVideoPlayer {
                     mCurrentState = ConstantKeys.CurrentState.STATE_COMPLETED;
                     mController.onPlayStateChanged(mCurrentState);
                     VideoLogUtil.d("onCompletion ——> STATE_COMPLETED");
+                    if (null != onCpmpleteListener) {
+                        onCpmpleteListener.onComplate();
+                    }
                     // 清除屏幕常亮
                     mContainer.setKeepScreenOn(false);
                 }
             };
+
+    public interface OnCpmpleteListener {
+        void onComplate();
+    }
+
+    private OnCpmpleteListener onCpmpleteListener;
+
+    public void addOnCpmpleteListener(OnCpmpleteListener onCpmpleteListener) {
+        this.onCpmpleteListener = onCpmpleteListener;
+    }
 
     /**
      * 设置视频缓冲更新监听事件
