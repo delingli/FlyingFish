@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/fl_container"
+    android:padding="12dp"
+    tools:ignore="ResourceName">
+
+    <com.dc.module_home.marqueen.SimpleMarqueeView
+        android:id="@+id/marqueeView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:flipInterval="1500"
+        android:inAnimation="@anim/in_right"
+        android:outAnimation="@anim/out_left"
+        app:marqueeAnimDuration="600"
+        app:smvTextColor="@color/text_color_FFFF0225"
+        app:smvTextGravity="center_vertical"
+        app:smvTextSize="15sp"></com.dc.module_home.marqueen.SimpleMarqueeView>
+
+</FrameLayout>

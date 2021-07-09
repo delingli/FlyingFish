@@ -15,4 +15,88 @@
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="179dp"
         tools:layout_editor_absoluteY="347dp" />
+
+    <TextClock
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/color_map_grid_selected"
+        android:format24Hour="MM月:dd日:yyyy年"
+        android:textColor="@color/text_color_0d7aff"
+        android:textSize="70dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.dc.module_home.marqueen.SimpleMarqueeView
+        android:id="@+id/marqueeView6"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="15dp"
+        android:flipInterval="2500"
+        android:inAnimation="@anim/in_right"
+        android:outAnimation="@anim/out_left"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:marqueeAnimDuration="1000"
+        app:smvTextColor="@color/text_color_FFFF0225"
+        app:smvTextGravity="center_vertical"
+        app:smvTextSize="15sp"></com.dc.module_home.marqueen.SimpleMarqueeView>
+
+    <com.dc.module_home.marqueen.MarqueeFramelayout
+        android:id="@+id/marqueeframelayout"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:marqueeBackgroundColor="#6633cc" />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:text="你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好测试"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.dc.module_home.othermarqueen.MarqueeView
+        android:id="@+id/mMarqueeView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        app:direction="left"
+        app:isRepeat="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:speed="20"
+        app:startPoint="end"
+        app:textSize="16sp"
+        app:textcolor="@color/colorAccent" />
+
+    <com.dc.module_home.othermarqueen.MarqueeFrameLayouts
+        android:id="@+id/marqueeframelayoutz"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/text_color_FF3BD0AE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+    <com.dc.module_home.musicweiget.MusicWeiget
+        android:layout_width="300dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="24dp"
+        android:layout_height="wrap_content"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
