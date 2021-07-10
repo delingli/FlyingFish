@@ -1,0 +1,59 @@
+-- Merging decision tree log ---
+manifest
+ADDED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml:1:1-18:12
+INJECTED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml:1:1-18:12
+INJECTED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml:1:1-18:12
+INJECTED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml:1:1-18:12
+INJECTED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml:1:1-18:12
+INJECTED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml:1:1-18:12
+INJECTED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml:1:1-18:12
+	package
+		ADDED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml:3:5-41
+		INJECTED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml
+		INJECTED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml
+		ADDED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml:1:1-18:12
+		INJECTED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml
+	xmlns:tools
+		ADDED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml:2:5-51
+	android:versionCode
+		INJECTED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml
+		ADDED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml:1:1-18:12
+		INJECTED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml:1:11-69
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml:7:5-79
+	android:name
+		ADDED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml:7:22-76
+application
+ADDED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml:9:5-16:19
+receiver#org.yczbj.ycvideoplayerlib.receiver.BatterReceiver
+ADDED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml:10:9-60
+	android:name
+		ADDED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml:10:19-58
+receiver#org.yczbj.ycvideoplayerlib.receiver.NetChangedReceiver
+ADDED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml:11:9-15:20
+	android:name
+		ADDED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml:11:19-62
+intent-filter#action:name:android.net.conn.CONNECTIVITY_CHANGE
+ADDED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml:12:13-14:29
+action#android.net.conn.CONNECTIVITY_CHANGE
+ADDED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml:13:17-78
+	android:name
+		ADDED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml:13:25-76
+uses-sdk
+INJECTED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml
+INJECTED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml
+INJECTED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml
+INJECTED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml
+		ADDED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml
+		INJECTED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml
+		ADDED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml
+		INJECTED from E:\MonitorApps\YCVideoPlayerLib\src\main\AndroidManifest.xml
