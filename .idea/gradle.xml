@@ -7,10 +7,10 @@
         <option name="testRunner" value="PLATFORM" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleHome" value="C:/Program Files/gradle/gradle-5.3" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/YCVideoPlayerLib" />
             <option value="$PROJECT_DIR$/baselib" />
             <option value="$PROJECT_DIR$/commonlib" />
             <option value="$PROJECT_DIR$/module_app" />
@@ -19,6 +19,7 @@
             <option value="$PROJECT_DIR$/module_me" />
             <option value="$PROJECT_DIR$/module_proj" />
             <option value="$PROJECT_DIR$/resuilib" />
+            <option value="$PROJECT_DIR$/websocketlib" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
