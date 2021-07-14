@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
 import com.dc.baselib.constant.Constants;
 import com.guangzhou.station.R;
 import com.youth.banner.adapter.BannerAdapter;
@@ -28,11 +29,13 @@ public class ImgVideoAdapter extends BannerAdapter<AbsPlayInfo, ImgVideoAdapter.
     private LayoutInflater mInflater;
     private Context context;
     private boolean mAutoPlay;
+    private RequestManager requestManager;
 
-    public ImgVideoAdapter(boolean mAutoPlay, Context context, List<AbsPlayInfo> datas) {
+    public ImgVideoAdapter(boolean mAutoPlay, RequestManager requestManager, Context context, List<AbsPlayInfo> datas) {
         super(datas);
         this.context = context;
         this.mAutoPlay = mAutoPlay;
+        this.requestManager = requestManager;
         mInflater = LayoutInflater.from(context);
     }
 
@@ -57,7 +60,7 @@ public class ImgVideoAdapter extends BannerAdapter<AbsPlayInfo, ImgVideoAdapter.
     public void onBindView(BasicBannerViewHolder holder, AbsPlayInfo data, int position, int size) {
         if (holder instanceof ImgBannerViewHolder) {
             ImgBannerViewHolder imgBannerViewHolder = (ImgBannerViewHolder) holder;
-            Glide.with(context).load(Constants.WEB_URL + File.separator + data.path).into(imgBannerViewHolder.imageViews);
+            requestManager.load(Constants.WEB_URL + File.separator + data.path).into(imgBannerViewHolder.imageViews);
         } else {
             VideoViewHolder videoViewHolder = (VideoViewHolder) holder;
             videoViewHolder.videoPlayer.setUp(Constants.WEB_URL + File.separator + data.path, null);

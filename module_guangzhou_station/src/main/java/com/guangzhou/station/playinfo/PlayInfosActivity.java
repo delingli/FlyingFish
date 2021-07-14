@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.blankj.utilcode.util.LogUtils;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
 import com.dc.baselib.mvvm.AbsLifecycleActivity;
 import com.guangzhou.station.R;
 import com.youth.banner.Banner;
@@ -68,9 +70,9 @@ public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
             mPlayInfoList = getIntent().getParcelableArrayListExtra(PLAYINFO_TAG);
             mAutoPlay = getIntent().getBooleanExtra(PLAY_AUTO, false);
         }
+        RequestManager requestManager = Glide.with(this);
 
-
-        mBanner.setAdapter(mImgVideoAdapter = new ImgVideoAdapter(mAutoPlay, this, mPlayInfoList)).addBannerLifecycleObserver(this).addOnPageChangeListener(new OnPageChangeListener() {
+        mBanner.setAdapter(mImgVideoAdapter = new ImgVideoAdapter(mAutoPlay, requestManager,this, mPlayInfoList)).addBannerLifecycleObserver(this).addOnPageChangeListener(new OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
