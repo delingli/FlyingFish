@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_bg">
+
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="60pt"
+        android:layout_gravity="center"
+        android:layout_marginStart="239pt"
+        android:layout_marginTop="16pt"
+        android:layout_marginEnd="375pt"
+        android:background="@drawable/bg_search_radius"
+        android:inputType="text"
+        android:padding="6pt"
+        app:defaultQueryHint="请搜索"
+        app:iconifiedByDefault="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:queryBackground="@null"
+        app:queryHint="请搜索"
+        app:submitBackground="@null" />
+
+    <FrameLayout
+        android:id="@+id/fl_searchlist"
+        android:layout_width="match_parent"
+        android:layout_height="500pt"
+        android:layout_marginStart="239pt"
+        android:layout_marginEnd="375pt"
+        android:background="#484848"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleViewList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150pt"
+            android:layout_marginStart="79pt"
+            android:layout_marginTop="26pt"
+            android:layout_marginEnd="79pt"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/iv_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:padding="24pt"
+                android:src="@drawable/left_jump" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycleView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="58pt"
+                android:layout_marginEnd="58pt"
+                android:layout_weight="1"
+                android:orientation="horizontal" />
+
+            <ImageButton
+                android:id="@+id/iv_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:padding="24pt"
+                android:src="@drawable/right_jump" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_content"
+            android:layout_width="1347pt"
+            android:layout_height="805pt"
+            android:layout_marginStart="288pt"
+            android:background="@drawable/station_bgs"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycle_context"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="160pt"
+                android:layout_marginBottom="144pt" />
+
+
+        </RelativeLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

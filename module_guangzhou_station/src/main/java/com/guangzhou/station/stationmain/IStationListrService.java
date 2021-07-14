@@ -14,4 +14,7 @@ public interface IStationListrService {
     @GET(StationListService.stationlistdetsil)
     Flowable<HttpResponse<ProjectListBean>> fetchStationList(@Query("serial_no") String serial_no);
 
+    @GET(StationListService.keyWordList)
+    Flowable<HttpResponse<ProjectListBean>> fetchStationList(@Query("serial_no") String serial_no,@Query("search") String search);
+
 }

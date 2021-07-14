@@ -34,7 +34,7 @@ public class ThreeListAdapter extends BaseRecyclerAdapter<AbsStationData> {
         }
     }
 
-    public void addListBeanList(List<AbsStationData> itemlist) {
+    public void addListBeanList(List<ProjectListBean.DirectoryListBean.ShowListBean> itemlist) {
         if (dataList != null) {
             dataList.clear();
         } else {

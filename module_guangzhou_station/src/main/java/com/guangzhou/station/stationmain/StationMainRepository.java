@@ -42,6 +42,9 @@ public class StationMainRepository extends BaseRespository {
                 }));
     }
 
+
+
+
     interface ScreenCallBack<T> {
         void onSucess(T t);
 

@@ -50,7 +50,7 @@ public class MainListAdapter extends BaseRecyclerAdapter<AbsStationData> {
     }
 
     public interface OnItemClickListener {
-        void onItemsClick(ProjectListBean.DirectoryListBean directoryListBean, int position);
+        void onItemsClick(List<ProjectListBean.DirectoryListBean.ShowListBean> showListBeans, int position);
     }
 
     private OnItemClickListener onItemClickListener;
@@ -81,7 +81,7 @@ public class MainListAdapter extends BaseRecyclerAdapter<AbsStationData> {
                 public void onClick(View v) {
                     setDefSelect(position);
                     if (null != onItemClickListener) {
-                        onItemClickListener.onItemsClick(mainListData, position);
+                        onItemClickListener.onItemsClick(mainListData.showList, position);
                     }
 
                 }

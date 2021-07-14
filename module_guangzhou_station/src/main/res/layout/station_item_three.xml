@@ -9,9 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginStart="138pt"
-        android:layout_marginEnd="135pt"
+        android:layout_marginStart="169pt"
+        android:layout_marginEnd="174pt"
         android:gravity="center"
         android:textColor="@color/white"
-        android:textSize="15sp" />
+        android:textSize="20sp" />
 </LinearLayout>
