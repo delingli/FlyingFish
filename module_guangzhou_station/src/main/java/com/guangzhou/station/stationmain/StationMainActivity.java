@@ -211,6 +211,9 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
         if (null != mMainListAdapter && null != listBeans && !listBeans.isEmpty()) {
             List<AbsStationData> ll = (List<AbsStationData>) (Object) listBeans;
             mMainListAdapter.setList(ll);
+            if (mMainListAdapter.getList().size() < 4) {
+                ivRight.setVisibility(View.INVISIBLE);
+            }
             ProjectListBean.DirectoryListBean directoryListBean = mMainListAdapter.notifySelect(0);
             if (null != directoryListBean && null != mThreeListAdapter && null != directoryListBean.showList) {
                 mThreeListAdapter.addListBeanList(directoryListBean.showList);

@@ -33,6 +33,7 @@
         android:layout_marginStart="239pt"
         android:layout_marginEnd="375pt"
         android:background="#484848"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchView">
@@ -69,6 +70,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
                 android:padding="24pt"
+                android:visibility="invisible"
                 android:src="@drawable/left_jump" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -89,25 +91,26 @@
                 android:src="@drawable/right_jump" />
         </LinearLayout>
 
-        <RelativeLayout
-            android:id="@+id/rl_content"
-            android:layout_width="1347pt"
-            android:layout_height="805pt"
-            android:layout_marginStart="288pt"
-            android:background="@drawable/station_bgs"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycle_context"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="160pt"
-                android:layout_marginBottom="144pt" />
-
-
-        </RelativeLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:id="@+id/rl_content"
+        android:layout_width="1347pt"
+        android:layout_height="805pt"
+        android:layout_marginStart="288pt"
+        android:background="@drawable/station_bgs"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycle_context"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="160pt"
+            android:layout_marginBottom="144pt" />
+
+
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
