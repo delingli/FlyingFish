@@ -32,7 +32,7 @@ public class MainListAdapter extends BaseRecyclerAdapter<AbsStationData> {
      */
     public MainListAdapter(Context context, @Nullable @org.jetbrains.annotations.Nullable List<AbsStationData> list, int itemLayoutId) {
         super(context, list, R.layout.station_item_main);
-        typeFace = Typeface.createFromAsset(getContext().getAssets(), "fonts/MSYH.TTC");
+        typeFace = Typeface.createFromAsset(getContext().getAssets(), "fonts/MSYH.ttc");
     }
 
     public ProjectListBean.DirectoryListBean notifySelect(int position) {
@@ -65,7 +65,6 @@ public class MainListAdapter extends BaseRecyclerAdapter<AbsStationData> {
             ProjectListBean.DirectoryListBean mainListData = (ProjectListBean.DirectoryListBean) absStationData;
             TextView tv_txt = holder.getView(R.id.tv_txt);
             LinearLayout ll_item = holder.getView(R.id.ll_item);
-
             if (defItem == position) {
                 ll_item.setBackgroundResource(R.drawable.station_main_selector_selector);
 

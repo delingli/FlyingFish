@@ -1,6 +1,7 @@
 package com.guangzhou.station.stationmain;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -19,13 +20,17 @@ public class StationMainViewModel extends AbsViewModel<StationMainRepository> {
     public static String EVENT_KEY_GETLIST;
     public static String EVENT_ERROR_DATA;
     public static String EVENT_CONVERSATION;
+    public static String EVEVT_KEYWORD_GETLIST;
+    public static String EVENT_SEARCH_DETAILS;
+
 
     public StationMainViewModel(@NonNull @NotNull Application application) {
         super(application);
         EVENT_KEY_GETLIST = EventUtils.getEventKey();
         EVENT_ERROR_DATA = EventUtils.getEventKey();
         EVENT_CONVERSATION = EventUtils.getEventKey();
-
+        EVEVT_KEYWORD_GETLIST = EventUtils.getEventKey();
+        EVENT_SEARCH_DETAILS = EventUtils.getEventKey();
     }
 
     public void toFetchListSaverData() {
@@ -34,6 +39,38 @@ public class StationMainViewModel extends AbsViewModel<StationMainRepository> {
             @Override
             public void onSucess(List<ProjectListBean.DirectoryListBean> projectListBeans) {
                 postData(EVENT_KEY_GETLIST, projectListBeans);
+            }
+
+            @Override
+            public void onError(String msg) {
+                postData(EVENT_ERROR_DATA, msg);
+            }
+        });
+    }
+
+    public void getKeywordListData(String search){
+        mRepository.getKeywordListData(DeviceIdUtil.getDeviceId(getApplication()), search, new StationMainRepository.ScreenCallBack<KeywordListBean>() {
+
+            @Override
+            public void onSucess(KeywordListBean listBeans) {
+
+                postData(EVEVT_KEYWORD_GETLIST, listBeans.list);
+            }
+
+            @Override
+            public void onError(String msg) {
+                postData(EVENT_ERROR_DATA, msg);
+            }
+        });
+    }
+
+    public void getSearchDetailsData(int id, String search) {
+        mRepository.getSearchDetailsData(DeviceIdUtil.getDeviceId(getApplication()), id, search, new StationMainRepository.ScreenCallBack<List<ProjectListBean.DirectoryListBean>>() {
+
+            @Override
+            public void onSucess(List<ProjectListBean.DirectoryListBean> projectListBeans) {
+
+                postData(EVENT_SEARCH_DETAILS, projectListBeans);
             }
 
             @Override

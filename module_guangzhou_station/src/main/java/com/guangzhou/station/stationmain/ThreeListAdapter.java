@@ -28,7 +28,7 @@ public class ThreeListAdapter extends BaseRecyclerAdapter<AbsStationData> {
         if (absStationData instanceof ProjectListBean.DirectoryListBean.ShowListBean) {
             ProjectListBean.DirectoryListBean.ShowListBean threelistdata = (ProjectListBean.DirectoryListBean.ShowListBean) absStationData;
             TextView tv_txt = holder.getView(R.id.tv_txt);
-            Typeface typeFace = Typeface.createFromAsset(getContext().getAssets(), "fonts/MSYH.TTC");
+            Typeface typeFace = Typeface.createFromAsset(getContext().getAssets(), "fonts/MSYH.ttc");
             tv_txt.setTypeface(typeFace);
             tv_txt.setText(threelistdata.name);
         }
