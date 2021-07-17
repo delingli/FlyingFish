@@ -344,7 +344,7 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
 //        checkAdapterItems();
     }
 
-    private void fillKeywordData(List<ProjectListBean.DirectoryListBean> list){
+    private void fillKeywordData(List<KeywordListBean.ListBean> list){
         LogUtils.dTag("StationMainActivity", list.toString());
         if (null != mSearchListAdapter && null != list && !list.isEmpty()) {
             List<KeywordListBean.ListBean> ll = (List<KeywordListBean.ListBean>) (Object) list;

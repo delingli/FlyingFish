@@ -18,6 +18,7 @@ import java.util.List;
 public class MainListAdapter extends BaseRecyclerAdapter<AbsStationData> {
 
     private final Typeface typeFace;
+    private final Typeface typefaceSelected;
     private int defItem = -1;
 
     public void setDefSelect(int position) {
@@ -33,6 +34,7 @@ public class MainListAdapter extends BaseRecyclerAdapter<AbsStationData> {
     public MainListAdapter(Context context, @Nullable @org.jetbrains.annotations.Nullable List<AbsStationData> list, int itemLayoutId) {
         super(context, list, R.layout.station_item_main);
         typeFace = Typeface.createFromAsset(getContext().getAssets(), "fonts/MSYH.ttc");
+        typefaceSelected = Typeface.createFromAsset(getContext().getAssets(), "fonts/MSYHBD.TTC");
     }
 
     public ProjectListBean.DirectoryListBean notifySelect(int position) {
@@ -65,15 +67,17 @@ public class MainListAdapter extends BaseRecyclerAdapter<AbsStationData> {
             ProjectListBean.DirectoryListBean mainListData = (ProjectListBean.DirectoryListBean) absStationData;
             TextView tv_txt = holder.getView(R.id.tv_txt);
             LinearLayout ll_item = holder.getView(R.id.ll_item);
+            tv_txt.setTypeface(typeFace);
             if (defItem == position) {
                 ll_item.setBackgroundResource(R.drawable.station_main_selector_selector);
-
+                tv_txt.setTypeface(typefaceSelected);
             } else {
                 ll_item.setBackgroundResource(R.drawable.station_main_selector_default);
+                tv_txt.setTypeface(typeFace);
 
             }
 
-            tv_txt.setTypeface(typeFace);
+
             tv_txt.setText(mainListData.name);
             ll_item.setOnClickListener(new View.OnClickListener() {
                 @Override
