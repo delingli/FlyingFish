@@ -83,33 +83,62 @@ public class StationMainRepository extends BaseRespository {
     }
 
     private void refreshSearchDetailsData(String serial_no, int id, String search, ScreenCallBack callBack) {
+        if(id==0){
+            addDisposable(mRetrofit.create(IStationListrService.class)
+                    .fetchSearchDetailsListSearch(serial_no, search)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeWith(new AbsHttpSubscriber<ProjectListBean>() {
 
-        addDisposable(mRetrofit.create(IStationListrService.class)
-                .fetchSearchDetailsList(serial_no, id, search)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new AbsHttpSubscriber<ProjectListBean>() {
+                        @Override
+                        public void onSuccess(ProjectListBean projectListBeans) {
+                            if (null != projectListBeans) {
 
+                                if (null != callBack) {
 
-                    @Override
-                    public void onSuccess(ProjectListBean projectListBeans) {
-                        if (null != projectListBeans) {
-
-                            if (null != callBack) {
-
-                                callBack.onSucess(projectListBeans.directoryList);
+                                    callBack.onSucess(projectListBeans.directoryList);
+                                }
                             }
                         }
-                    }
 
-                    @Override
-                    public void onFailure(String msg, int code) {
-                        LogUtils.e(TAG, msg + code);
-                        if (null != callBack) {
-                            callBack.onError(msg);
+                        @Override
+                        public void onFailure(String msg, int code) {
+                            LogUtils.e(TAG, msg + code);
+                            if (null != callBack) {
+                                callBack.onError(msg);
+                            }
                         }
-                    }
-                }));
+                    }));
+        }else {
+            addDisposable(mRetrofit.create(IStationListrService.class)
+                    .fetchSearchDetailsList(serial_no, id, search)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeWith(new AbsHttpSubscriber<ProjectListBean>() {
+
+
+                        @Override
+                        public void onSuccess(ProjectListBean projectListBeans) {
+                            if (null != projectListBeans) {
+
+                                if (null != callBack) {
+
+                                    callBack.onSucess(projectListBeans.directoryList);
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(String msg, int code) {
+                            LogUtils.e(TAG, msg + code);
+                            if (null != callBack) {
+                                callBack.onError(msg);
+                            }
+                        }
+                    }));
+        }
+
+
     }
 
 

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.dc.baselib.constant.Constants;
@@ -25,7 +26,7 @@ import java.util.List;
 
 
 public class ImgVideoAdapter extends BannerAdapter<AbsPlayInfo, ImgVideoAdapter.BasicBannerViewHolder> {
-
+    private String TAG = "ImgVideoAdapter";
     private LayoutInflater mInflater;
     private Context context;
     private boolean mAutoPlay;
@@ -70,9 +71,11 @@ public class ImgVideoAdapter extends BannerAdapter<AbsPlayInfo, ImgVideoAdapter.
                 videoViewHolder.videoPlayer.addOnCpmpleteListener(new VideoPlayer.OnCpmpleteListener() {
                     @Override
                     public void onComplate() {
-                        if (!mAutoPlay) {
-                            videoViewHolder.videoPlayer.restart();
-                        }
+                        LogUtils.d(TAG, "第0个播放完毕重新播放");
+                        videoViewHolder.videoPlayer.restart();
+//                        if (!mAutoPlay) {
+//                            videoViewHolder.videoPlayer.restart();
+//                        }
                     }
                 });
             }
@@ -103,6 +106,16 @@ public class ImgVideoAdapter extends BannerAdapter<AbsPlayInfo, ImgVideoAdapter.
             videoPlayer.setPlayerType(ConstantKeys.IjkPlayerType.TYPE_IJK);
 //            ConstantKeys.IjkPlayerType.TYPE_NATIVE
             videoPlayer.setController(mController);
+            videoPlayer.addOnCpmpleteListener(new VideoPlayer.OnCpmpleteListener() {
+                @Override
+                public void onComplate() {
+                    LogUtils.d(TAG, "播放完毕重新播放");
+                    videoPlayer.restart();
+//                    if (mAutoPlay) {
+//
+//                    }
+                }
+            });
         }
     }
 

@@ -1,5 +1,6 @@
 package com.guangzhou.station.stationmain;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -87,7 +89,7 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
         iv_bottom = findViewById(R.id.iv_bottom);
         fl_search = findViewById(R.id.fl_search);
         mSearchView = findViewById(R.id.searchView);
-        mSearchView.setIconifiedByDefault(false);
+//        mSearchView.setIconifiedByDefault(false);
 //        mSearchView.onActionViewExpanded();
         mTextView = (SearchView.SearchAutoComplete) mSearchView.findViewById(R.id.search_src_text);
 //        textView.setTextSize(getResources().getDimension(R.dimen.text_small));
@@ -233,7 +235,7 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
         });
 
         initSearch();
-
+        hideSoftKeyboard(this);
     }
 
     private void initSearch() {
@@ -250,13 +252,10 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
                 // 文本框发生变化，调用关键字查询
                 if (!isClickKeyword) {
                     if (newText.isEmpty()) {
-                        if (recycleViewList.getChildCount() > 0) {
-//                            recycleViewList.removeAllViews();
-                            mSearchListAdapter.getList().clear();
-                            mSearchListAdapter.notifyDataSetChanged();
-                            fl_searchlist.setVisibility(View.GONE);
-
-                        }
+                        mSearchListAdapter.clearData();
+                        fl_searchlist.setVisibility(View.GONE);
+                        mViewModel.toFetchListSaverData();
+                        mMainListAdapter.setDefSelect(0);
                     } else {
                         mViewModel.getKeywordListData(newText);
                     }
@@ -275,12 +274,7 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
             }
         });
 
-        fl_search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mTextView.requestFocus();
-            }
-        });
+
         mSearchView.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
@@ -394,6 +388,8 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
                 // 判断是否滚动到底部，并且是向右滚动
                 if (lastVisibleItem - firstVisibleItem > 6) {
                     iv_bottom.setVisibility(View.VISIBLE);
+                } else {
+                    iv_bottom.setVisibility(View.INVISIBLE);
                 }
             }
         }
@@ -406,6 +402,27 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
             List<KeywordListBean.ListBean> ll = (List<KeywordListBean.ListBean>) (Object) list;
             mSearchListAdapter.setList(ll);
             fl_searchlist.setVisibility(View.VISIBLE);
+        }
+    }
+
+    /**
+     * 隐藏软键盘(可用于Activity，Fragment)
+     */
+    public static void hideSoftKeyboard(Context context, List<View> viewList) {
+        if (viewList == null) return;
+
+        InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+
+        for (View v : viewList) {
+            inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+    }
+
+    public static void hideSoftKeyboard(Activity activity) {
+        View view = activity.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
 

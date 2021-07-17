@@ -36,7 +36,9 @@ public abstract class AbsHttpSubscriber<T> extends DisposableSubscriber<HttpResp
 
     @Override
     public void onNext(HttpResponse<T> tHttpResponse) {
-        if (tHttpResponse.getCode() == 0) {
+        if (tHttpResponse.getData() == null) {
+            onFailure(tHttpResponse.getMessage(), tHttpResponse.getCode());
+        } else if (tHttpResponse.getCode() == 0) {
             Log.d("AbsHttpSubscriber", "#原生数据#" + tHttpResponse.getData().toString());
             onSuccess(tHttpResponse.getData());
         } else {

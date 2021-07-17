@@ -52,4 +52,11 @@ public class SearchListAdapter extends BaseRecyclerAdapter<KeywordListBean.ListB
 
     }
 
+    public void clearData() {
+        if (getList() != null) {
+            getList().clear();
+        }
+        notifyDataSetChanged();
+    }
+
 }

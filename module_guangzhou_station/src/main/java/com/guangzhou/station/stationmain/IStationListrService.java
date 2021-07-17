@@ -16,9 +16,12 @@ public interface IStationListrService {
 
 
     @GET(StationListService.keyWordList)
-    Flowable<HttpResponse<KeywordListBean>> fetchKeywordList(@Query("serial_no") String serial_no,@Query("search") String search);
+    Flowable<HttpResponse<KeywordListBean>> fetchKeywordList(@Query("serial_no") String serial_no, @Query("search") String search);
 
     @GET(StationListService.searchDetails)
-    Flowable<HttpResponse<ProjectListBean>> fetchSearchDetailsList(@Query("serial_no") String serial_no,@Query("id") int id,@Query("search") String search);
+    Flowable<HttpResponse<ProjectListBean>> fetchSearchDetailsList(@Query("serial_no") String serial_no, @Query("id") int id, @Query("search") String search);
+
+    @GET(StationListService.searchDetails)
+    Flowable<HttpResponse<ProjectListBean>> fetchSearchDetailsListSearch(@Query("serial_no") String serial_no, @Query("search") String search);
 
 }

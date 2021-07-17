@@ -25,7 +25,7 @@ import java.util.List;
 public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
     public static String PLAYINFO_TAG = "playInfo_tag";
     public static String PLAY_AUTO = "playInfo_auto";
-
+    public static String TAG = "PlayInfosActivity";
     private List<AbsPlayInfo> mPlayInfoList;
     private CustomPagerAdapter mCustomPagerAdapter;
     public boolean mAutoPlay = false;//默认手动播放
@@ -70,9 +70,10 @@ public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
             mPlayInfoList = getIntent().getParcelableArrayListExtra(PLAYINFO_TAG);
             mAutoPlay = getIntent().getBooleanExtra(PLAY_AUTO, false);
         }
+        LogUtils.d(TAG, "是否自动播放:?" + mAutoPlay);
         RequestManager requestManager = Glide.with(this);
 
-        mBanner.setAdapter(mImgVideoAdapter = new ImgVideoAdapter(mAutoPlay, requestManager,this, mPlayInfoList)).addBannerLifecycleObserver(this).addOnPageChangeListener(new OnPageChangeListener() {
+        mBanner.setAdapter(mImgVideoAdapter = new ImgVideoAdapter(mAutoPlay, requestManager, this, mPlayInfoList)).addBannerLifecycleObserver(this).addOnPageChangeListener(new OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 

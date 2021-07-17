@@ -13,6 +13,7 @@
         android:layout_marginTop="16pt"
         android:layout_marginEnd="375pt"
         android:background="@drawable/bg_search_radius"
+        android:focusable="false"
         android:padding="4pt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,12 +32,14 @@
             app:layout_constraintTop_toTopOf="parent"
             app:queryBackground="@null"
             app:queryHint="请搜索"
+            android:focusable="false"
             app:submitBackground="@null" />
     </FrameLayout>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:id="@+id/conlTop"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -88,11 +91,13 @@
     <LinearLayout
         android:id="@+id/rl_content"
         android:layout_width="1347pt"
-        android:layout_height="805pt"
+        android:layout_height="800pt"
         android:layout_marginStart="288pt"
+        android:layout_marginTop="6pt"
         android:background="@drawable/station_bgs"
         android:gravity="center"
         android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/conlTop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -121,6 +126,7 @@
             android:layout_marginBottom="144pt"
             android:background="@color/transparent"
             android:padding="24pt"
+            android:visibility="invisible"
             android:src="@drawable/station_botton" />
     </LinearLayout>
 
@@ -131,10 +137,10 @@
         android:layout_marginStart="239pt"
         android:layout_marginEnd="375pt"
         android:background="#BF484848"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView">
+        app:layout_constraintTop_toBottomOf="@+id/fl_search">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleViewList"
