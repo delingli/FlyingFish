@@ -231,36 +231,32 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
         });
 
 
-//        int id = mSearchView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+        int id = mSearchView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
 //        TextView textView = mSearchView.findViewById(id);
 //        textView.setTextColor(getResources().getColor(R.color.white));
-
-//        textView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View view, boolean b) {
-//                Log.d("StationMainActivity", "b:" + b);
-//            }
-//        });
-
-        mSearchView.setOnClickListener(new View.OnClickListener() {
+//        mSearchView.isFocusable();
+        mSearchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onClick(View view) {
-
-
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    fl_back.setVisibility(View.VISIBLE);
+                } else {
+                    fl_back.setVisibility(View.GONE);
+                }
             }
         });
 
-//        mSearchView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+//        mSearchView.setOnClickListener(new View.OnClickListener() {
 //            @Override
-//            public void onFocusChange(View view, boolean b) {
-//                Log.d("StationMainActivity", "b:" + b);
-//                if (b){
-//                    fl_back.setVisibility(View.VISIBLE);
-//                } else {
-//                    fl_back.setVisibility(View.GONE);
-//                }
+//            public void onClick(View view) {
+//
+//
 //            }
 //        });
+
+
+
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
