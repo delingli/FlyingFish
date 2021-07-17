@@ -10,6 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +37,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-
+//    1,整体点击搜索
+//            2.搜索框的字体颜色白色
+//            3.视频播放
+//            4.上下箭头
 public class StationMainActivity extends AbsLifecycleActivity<StationMainViewModel> implements View.OnClickListener {
 
     private RecyclerView mRecycleView, mRecycleContext;
@@ -47,11 +51,15 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
     private LinearLayoutManager mLinearLayoutManager;
     private static String tag = "StationMainActivity";
     private SearchView mSearchView;
-    private FrameLayout fl_searchlist, fl_back;
+    private FrameLayout fl_searchlist;
     private RecyclerView recycleViewList;
     private SearchListAdapter mSearchListAdapter;//搜索列表框适配器
     private boolean isClickKeyword = false;
     private boolean hasSearched = false;
+    private ImageButton iv_top;
+    private ImageButton iv_bottom;
+    private SearchView.SearchAutoComplete mTextView;
+    private FrameLayout fl_search;
 
     @Override
     protected Class<StationMainViewModel> getViewModel() {
@@ -75,10 +83,18 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         //hideBottomUIMenu();
         mRecycleView = findViewById(R.id.recycleView);
+        iv_top = findViewById(R.id.iv_top);
+        iv_bottom = findViewById(R.id.iv_bottom);
+        fl_search = findViewById(R.id.fl_search);
         mSearchView = findViewById(R.id.searchView);
+        mSearchView.setIconifiedByDefault(false);
+//        mSearchView.onActionViewExpanded();
+        mTextView = (SearchView.SearchAutoComplete) mSearchView.findViewById(R.id.search_src_text);
+//        textView.setTextSize(getResources().getDimension(R.dimen.text_small));
+        mTextView.setTextColor(getResources().getColor(R.color.white));
+        mTextView.setHintTextColor(getResources().getColor(R.color.white));
 //        mSearchView.setIconifiedByDefault(false);
         fl_searchlist = findViewById(R.id.fl_searchlist);
-        fl_back = findViewById(R.id.fl_back);
         recycleViewList = findViewById(R.id.recycleViewList);
         recycleViewList.setLayoutManager(new LinearLayoutManager(this));
         ivLeft = findViewById(R.id.iv_left);
@@ -92,8 +108,6 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
         mRecycleContext.setLayoutManager(new LinearLayoutManager(this));
         mRecycleContext.setAdapter(mThreeListAdapter = new ThreeListAdapter(this, null, -1));
         recycleViewList.setAdapter(mSearchListAdapter = new SearchListAdapter(this, null, -1));
-        //Typeface typeface = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/MSYH.TTC");
-        //Typeface typefaceSelected = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/MSYH.TTC");
         mMainListAdapter.addOnItemClickListener(new MainListAdapter.OnItemClickListener() {
             @Override
             public void onItemsClick(List<ProjectListBean.DirectoryListBean.ShowListBean> showListBeans, int position) {
@@ -113,11 +127,10 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
                     isClickKeyword = true;
                     mSearchView.setQuery(search, false);
                     // 清空rv，隐藏
-                    if (recycleViewList.getChildCount() > 0 ) {
+                    if (recycleViewList.getChildCount() > 0) {
                         recycleViewList.removeAllViews();
                         mSearchListAdapter.notifyDataSetChanged();
                         fl_searchlist.setVisibility(View.GONE);
-                        fl_back.setVisibility(View.GONE);
                     }
                     // 搜索详情
                     mViewModel.getSearchDetailsData(listBeans.id, search);
@@ -178,6 +191,47 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
                 }
             }
         });
+        mRecycleContext.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            boolean isSlidingToLast = false;
+
+            @Override
+            public void onScrollStateChanged(@NonNull @NotNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    //获取最后一个完全显示的ItemPosition
+                    LinearLayoutManager manager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                    int lastVisibleItem = manager.findLastCompletelyVisibleItemPosition();
+                    int firstItem = manager.findFirstCompletelyVisibleItemPosition();
+                    int totalItemCount = manager.getItemCount();
+
+                    // 判断是否滚动到底部，并且是向右滚动
+                    if (lastVisibleItem == (totalItemCount - 1) && isSlidingToLast) {
+                        //加载更多功能的代码
+                        iv_top.setVisibility(View.VISIBLE);
+                        iv_bottom.setVisibility(View.INVISIBLE);
+                    } else if (firstItem == 0) {
+                        iv_bottom.setVisibility(View.VISIBLE);
+                        iv_top.setVisibility(View.INVISIBLE);
+                    } else if (firstItem > 0 && lastVisibleItem < (totalItemCount - 1)) {
+                        iv_top.setVisibility(View.VISIBLE);
+                        iv_bottom.setVisibility(View.VISIBLE);
+                    }
+                }
+            }
+
+            @Override
+            public void onScrolled(@NonNull @NotNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy > 0) {
+
+                    isSlidingToLast = true;
+                } else {
+                    //小于等于0表示停止或向左滚动
+                    isSlidingToLast = false;
+                }
+            }
+        });
+
         initSearch();
 
     }
@@ -187,6 +241,7 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
             @Override
             public boolean onQueryTextSubmit(String query) {
                 Log.d("StationMainActivity", query);
+                mViewModel.getSearchDetailsData(0, query);
                 return false;
             }
 
@@ -194,15 +249,16 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
             public boolean onQueryTextChange(String newText) {
                 // 文本框发生变化，调用关键字查询
                 if (!isClickKeyword) {
-                    if(newText.isEmpty()) {
-                        if (recycleViewList.getChildCount() > 0 ) {
-                            recycleViewList.removeAllViews();
+                    if (newText.isEmpty()) {
+                        if (recycleViewList.getChildCount() > 0) {
+//                            recycleViewList.removeAllViews();
+                            mSearchListAdapter.getList().clear();
                             mSearchListAdapter.notifyDataSetChanged();
                             fl_searchlist.setVisibility(View.GONE);
 
                         }
                     } else {
-                            mViewModel.getKeywordListData(newText);
+                        mViewModel.getKeywordListData(newText);
                     }
                 }
                 isClickKeyword = false;
@@ -215,7 +271,14 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
             @Override
             public void onClick(View v) {
                 Log.d("StationMainActivity", "search");
-                fl_back.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+        fl_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mTextView.requestFocus();
             }
         });
         mSearchView.setOnCloseListener(new SearchView.OnCloseListener() {
@@ -225,24 +288,14 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
                 // 清除搜索框，恢复初始数据
                 mViewModel.toFetchListSaverData();
                 mMainListAdapter.setDefSelect(0);
-                fl_back.setVisibility(View.GONE);
                 return false;
             }
         });
 
-
-        int id = mSearchView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
-//        TextView textView = mSearchView.findViewById(id);
-//        textView.setTextColor(getResources().getColor(R.color.white));
-//        mSearchView.isFocusable();
         mSearchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    fl_back.setVisibility(View.VISIBLE);
-                } else {
-                    fl_back.setVisibility(View.GONE);
-                }
+
             }
         });
 
@@ -254,7 +307,6 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
 //
 //            }
 //        });
-
 
 
     }
@@ -334,19 +386,26 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
             }
             ProjectListBean.DirectoryListBean directoryListBean = mMainListAdapter.notifySelect(0);
             if (null != directoryListBean && null != mThreeListAdapter && null != directoryListBean.showList) {
+                //todo
                 mThreeListAdapter.addListBeanList(directoryListBean.showList);
+                LinearLayoutManager manager = (LinearLayoutManager) mRecycleContext.getLayoutManager();
+                int lastVisibleItem = manager.findLastCompletelyVisibleItemPosition();
+                int firstVisibleItem = manager.findFirstCompletelyVisibleItemPosition();
+                // 判断是否滚动到底部，并且是向右滚动
+                if (lastVisibleItem - firstVisibleItem > 6) {
+                    iv_bottom.setVisibility(View.VISIBLE);
+                }
             }
         }
 //        checkAdapterItems();
     }
 
-    private void fillKeywordData(List<KeywordListBean.ListBean> list){
+    private void fillKeywordData(List<KeywordListBean.ListBean> list) {
         LogUtils.dTag("StationMainActivity", list.toString());
         if (null != mSearchListAdapter && null != list && !list.isEmpty()) {
             List<KeywordListBean.ListBean> ll = (List<KeywordListBean.ListBean>) (Object) list;
             mSearchListAdapter.setList(ll);
             fl_searchlist.setVisibility(View.VISIBLE);
-//            fl_back.setVisibility(View.VISIBLE);
         }
     }
 

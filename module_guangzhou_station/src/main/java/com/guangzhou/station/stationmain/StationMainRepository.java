@@ -85,7 +85,7 @@ public class StationMainRepository extends BaseRespository {
     private void refreshSearchDetailsData(String serial_no, int id, String search, ScreenCallBack callBack) {
 
         addDisposable(mRetrofit.create(IStationListrService.class)
-                .fetchSearchDetailsList("D0844C0783796FC6E35E7C979BF78DD90541ECB3", id, search)
+                .fetchSearchDetailsList(serial_no, id, search)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new AbsHttpSubscriber<ProjectListBean>() {

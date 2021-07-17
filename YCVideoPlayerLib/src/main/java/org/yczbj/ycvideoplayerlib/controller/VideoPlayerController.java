@@ -737,7 +737,7 @@ public class VideoPlayerController extends AbsVideoPlayerController implements V
             //普通模式
             case ConstantKeys.PlayMode.MODE_NORMAL:
                 mFlLock.setVisibility(View.GONE);
-                mBack.setVisibility(View.VISIBLE);
+                mBack.setVisibility(View.GONE);
                 mFullScreen.setImageResource(R.drawable.ic_player_open);
                 mFullScreen.setVisibility(View.VISIBLE);
                 mClarity.setVisibility(View.GONE);
@@ -752,7 +752,7 @@ public class VideoPlayerController extends AbsVideoPlayerController implements V
             //全屏模式
             case ConstantKeys.PlayMode.MODE_FULL_SCREEN:
                 mFlLock.setVisibility(View.VISIBLE);
-                mBack.setVisibility(View.VISIBLE);
+                mBack.setVisibility(View.GONE);
                 mFullScreen.setVisibility(View.VISIBLE);
                 mFullScreen.setImageResource(R.drawable.ic_player_close);
                 if (clarities != null && clarities.size() > 1) {
@@ -774,7 +774,7 @@ public class VideoPlayerController extends AbsVideoPlayerController implements V
             //小窗口模式
             case ConstantKeys.PlayMode.MODE_TINY_WINDOW:
                 mFlLock.setVisibility(View.GONE);
-                mBack.setVisibility(View.VISIBLE);
+                mBack.setVisibility(View.GONE);
                 mClarity.setVisibility(View.GONE);
                 mIsLock = false;
                 if (mOnPlayerTypeListener!=null){
@@ -805,7 +805,7 @@ public class VideoPlayerController extends AbsVideoPlayerController implements V
         mBottom.setVisibility(View.GONE);
         mFullScreen.setImageResource(R.drawable.ic_player_open);
         mTop.setVisibility(View.VISIBLE);
-        mBack.setVisibility(View.VISIBLE);
+        mBack.setVisibility(View.GONE);
 
         mLoading.setVisibility(View.GONE);
         mError.setVisibility(View.GONE);

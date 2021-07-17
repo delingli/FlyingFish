@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ThreeListAdapter extends BaseRecyclerAdapter<AbsStationData> {
+
+    private final Typeface typeFace;
+
     /**
      * @param context
      * @param list
@@ -21,6 +24,7 @@ public class ThreeListAdapter extends BaseRecyclerAdapter<AbsStationData> {
      */
     public ThreeListAdapter(Context context, @Nullable @org.jetbrains.annotations.Nullable List<AbsStationData> list, int itemLayoutId) {
         super(context, list, R.layout.station_item_three);
+        typeFace = Typeface.createFromAsset(getContext().getAssets(), "fonts/MSYH.TTC");
     }
 
     @Override
@@ -28,7 +32,6 @@ public class ThreeListAdapter extends BaseRecyclerAdapter<AbsStationData> {
         if (absStationData instanceof ProjectListBean.DirectoryListBean.ShowListBean) {
             ProjectListBean.DirectoryListBean.ShowListBean threelistdata = (ProjectListBean.DirectoryListBean.ShowListBean) absStationData;
             TextView tv_txt = holder.getView(R.id.tv_txt);
-            Typeface typeFace = Typeface.createFromAsset(getContext().getAssets(), "fonts/MSYH.ttc");
             tv_txt.setTypeface(typeFace);
             tv_txt.setText(threelistdata.name);
         }

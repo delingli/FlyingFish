@@ -5,28 +5,34 @@
     android:layout_height="match_parent"
     android:background="@drawable/main_bg">
 
-
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchView"
+    <FrameLayout
+        android:id="@+id/fl_search"
         android:layout_width="match_parent"
-        android:layout_height="60pt"
-        android:layout_gravity="center"
+        android:layout_height="wrap_content"
         android:layout_marginStart="239pt"
         android:layout_marginTop="16pt"
         android:layout_marginEnd="375pt"
         android:background="@drawable/bg_search_radius"
-        android:inputType="text"
-        android:padding="6pt"
-        app:defaultQueryHint="请搜索"
-        app:iconifiedByDefault="true"
+        android:padding="4pt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:queryBackground="@null"
-        app:queryHint="请搜索"
-        app:submitBackground="@null"
-        />
+        app:layout_constraintTop_toTopOf="parent">
 
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="65pt"
+            android:layout_gravity="center"
+            android:inputType="text"
+            app:defaultQueryHint="请搜索"
+            app:iconifiedByDefault="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:queryBackground="@null"
+            app:queryHint="请搜索"
+            app:submitBackground="@null" />
+    </FrameLayout>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,7 +40,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView">
+        app:layout_constraintTop_toBottomOf="@+id/fl_search">
 
 
         <LinearLayout
@@ -55,8 +61,8 @@
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
                 android:padding="24pt"
-                android:visibility="invisible"
-                android:src="@drawable/left_jump" />
+                android:src="@drawable/left_jump"
+                android:visibility="invisible" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycleView"
@@ -77,34 +83,46 @@
         </LinearLayout>
 
 
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <RelativeLayout
+
+    <LinearLayout
         android:id="@+id/rl_content"
         android:layout_width="1347pt"
         android:layout_height="805pt"
         android:layout_marginStart="288pt"
         android:background="@drawable/station_bgs"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/iv_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="160pt"
+            android:background="@color/transparent"
+            android:padding="24pt"
+            android:src="@drawable/station_top"
+            android:visibility="invisible" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycle_context"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="160pt"
-            android:layout_marginBottom="144pt" />
+            android:layout_height="0dp"
 
 
-    </RelativeLayout>
+            android:layout_weight="1" />
 
-    <FrameLayout
-        android:id="@+id/fl_back"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#9A484848"
-        android:visibility="gone"/>
+        <ImageButton
+            android:id="@+id/iv_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="144pt"
+            android:background="@color/transparent"
+            android:padding="24pt"
+            android:src="@drawable/station_botton" />
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/fl_searchlist"
@@ -116,8 +134,7 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/searchView">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleViewList"

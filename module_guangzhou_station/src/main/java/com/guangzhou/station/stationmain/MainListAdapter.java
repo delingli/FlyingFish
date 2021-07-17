@@ -33,8 +33,8 @@ public class MainListAdapter extends BaseRecyclerAdapter<AbsStationData> {
      */
     public MainListAdapter(Context context, @Nullable @org.jetbrains.annotations.Nullable List<AbsStationData> list, int itemLayoutId) {
         super(context, list, R.layout.station_item_main);
-        typeFace = Typeface.createFromAsset(getContext().getAssets(), "fonts/MSYH.ttc");
-        typefaceSelected = Typeface.createFromAsset(getContext().getAssets(), "fonts/MSYHBD.ttc");
+        typeFace = Typeface.createFromAsset(getContext().getAssets(), "fonts/MSYH.TTC");
+        typefaceSelected = Typeface.createFromAsset(getContext().getAssets(), "fonts/MSYHBD.TTC");
     }
 
     public ProjectListBean.DirectoryListBean notifySelect(int position) {

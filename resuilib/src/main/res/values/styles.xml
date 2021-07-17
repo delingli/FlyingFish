@@ -69,6 +69,9 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
+
+
+
     <style name="Active" parent="@style/TextAppearance.AppCompat.Caption">
         <item name="android:textSize">@dimen/dp_12</item>
     </style>
