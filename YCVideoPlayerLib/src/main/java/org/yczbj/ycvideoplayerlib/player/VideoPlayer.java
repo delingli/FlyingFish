@@ -186,7 +186,7 @@ public class VideoPlayer extends FrameLayout implements InterVideoPlayer {
     private String mUrl;
     private Map<String, String> mHeaders;
     private int mBufferPercentage;
-    private boolean continueFromLastPosition = true;
+    private boolean continueFromLastPosition = false;
     private long skipToPosition;
 
     public VideoPlayer(Context context) {

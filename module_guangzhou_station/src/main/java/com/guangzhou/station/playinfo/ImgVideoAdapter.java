@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.dc.baselib.constant.Constants;
 import com.guangzhou.station.R;
+import com.youth.banner.Banner;
 import com.youth.banner.adapter.BannerAdapter;
 
 import org.jetbrains.annotations.NotNull;
@@ -31,11 +32,13 @@ public class ImgVideoAdapter extends BannerAdapter<AbsPlayInfo, ImgVideoAdapter.
     private Context context;
     private boolean mAutoPlay;
     private RequestManager requestManager;
+    private Banner banner;
 
-    public ImgVideoAdapter(boolean mAutoPlay, RequestManager requestManager, Context context, List<AbsPlayInfo> datas) {
+    public ImgVideoAdapter(boolean mAutoPlay, Banner banner, RequestManager requestManager, Context context, List<AbsPlayInfo> datas) {
         super(datas);
         this.context = context;
         this.mAutoPlay = mAutoPlay;
+        this.banner = banner;
         this.requestManager = requestManager;
         mInflater = LayoutInflater.from(context);
     }
@@ -61,6 +64,7 @@ public class ImgVideoAdapter extends BannerAdapter<AbsPlayInfo, ImgVideoAdapter.
     public void onBindView(BasicBannerViewHolder holder, AbsPlayInfo data, int position, int size) {
         if (holder instanceof ImgBannerViewHolder) {
             ImgBannerViewHolder imgBannerViewHolder = (ImgBannerViewHolder) holder;
+            imgBannerViewHolder.imageViews.setTag(position);
             requestManager.load(Constants.WEB_URL + File.separator + data.path).into(imgBannerViewHolder.imageViews);
         } else {
             VideoViewHolder videoViewHolder = (VideoViewHolder) holder;
@@ -68,16 +72,6 @@ public class ImgVideoAdapter extends BannerAdapter<AbsPlayInfo, ImgVideoAdapter.
             videoViewHolder.videoPlayer.setTag(position);
             if (position == 0) {
                 videoViewHolder.videoPlayer.start();
-                videoViewHolder.videoPlayer.addOnCpmpleteListener(new VideoPlayer.OnCpmpleteListener() {
-                    @Override
-                    public void onComplate() {
-                        LogUtils.d(TAG, "第0个播放完毕重新播放");
-                        videoViewHolder.videoPlayer.restart();
-//                        if (!mAutoPlay) {
-//                            videoViewHolder.videoPlayer.restart();
-//                        }
-                    }
-                });
             }
 
         }
@@ -110,10 +104,24 @@ public class ImgVideoAdapter extends BannerAdapter<AbsPlayInfo, ImgVideoAdapter.
                 @Override
                 public void onComplate() {
                     LogUtils.d(TAG, "播放完毕重新播放");
-                    videoPlayer.restart();
-//                    if (mAutoPlay) {
-//
-//                    }
+                    if (mAutoPlay) {
+                        if (banner.getItemCount() == 1) {
+                            //就1个直接重播
+                            banner.stop();
+                            banner.isAutoLoop(false);
+                            videoPlayer.restart();
+                        } else {
+                            banner.stop();
+                            banner.isAutoLoop(true);
+                            banner.setLoopTime(2000);
+                            banner.start();
+                        }
+                    } else {
+                        videoPlayer.restart();
+                        banner.stop();
+                        banner.isAutoLoop(false);
+
+                    }
                 }
             });
         }

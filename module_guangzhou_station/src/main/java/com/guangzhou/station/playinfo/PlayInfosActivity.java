@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.bumptech.glide.Glide;
@@ -49,6 +50,7 @@ public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
     }
 
     private ImgVideoAdapter mImgVideoAdapter;
+    public int CURRENTPOSITION = 0;
 
     @Override
     protected void initView(Bundle savedInstanceState) {
@@ -72,38 +74,26 @@ public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
         }
         LogUtils.d(TAG, "是否自动播放:?" + mAutoPlay);
         RequestManager requestManager = Glide.with(this);
-
-        mBanner.setAdapter(mImgVideoAdapter = new ImgVideoAdapter(mAutoPlay, requestManager, this, mPlayInfoList)).addBannerLifecycleObserver(this).addOnPageChangeListener(new OnPageChangeListener() {
+        mBanner.isAutoLoop(false);
+        mBanner.setAdapter(mImgVideoAdapter = new ImgVideoAdapter(mAutoPlay, mBanner, requestManager, this, mPlayInfoList)).addBannerLifecycleObserver(this).addOnPageChangeListener(new OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
 
             @Override
             public void onPageSelected(int position) {
-                LogUtils.d("xiaoman", position);
-//                if(mImgVideoAdapter.getRealCount()>)
-                if (mAutoPlay && mImgVideoAdapter.getRealData(position) != null) {
+                LogUtils.d(TAG, "CURRENTPOSITION:" + CURRENTPOSITION);
+                if (mAutoPlay && mImgVideoAdapter.getRealData(position) != null) {//自动播放
                     AbsPlayInfo data = mImgVideoAdapter.getRealData(position);
-                    mBanner.setLoopTime(data.timer * 1000);
-                    mBanner.post(new Runnable() {
+                    mBanner.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             if (null != mImgVideoAdapter) {
-                                notifyItem(position);
+                                notifyItem(position, data);
                             }
                         }
-                    });
+                    }, 500);
 
-                } else if (!mAutoPlay) {
-                    mBanner.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (null != mImgVideoAdapter) {
-                                notifyItem(position);
-                            }
-                        }
-                    });
                 }
 
 
@@ -115,41 +105,54 @@ public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
             }
         });
         mBanner.isAutoLoop(mAutoPlay);
-        if (mAutoPlay && mImgVideoAdapter.getRealCount() > 1) {
+       if (mAutoPlay && mImgVideoAdapter.getRealCount() > 1) {
             if (mImgVideoAdapter.getRealData(0) != null) {
                 AbsPlayInfo realData = mImgVideoAdapter.getRealData(0);
-                mBanner.setLoopTime(realData.timer * 1000);
+                if (realData.type == 1) {
+                    mBanner.setLoopTime(realData.timer * 1000);
+//                    mBanner.start();
+                }
             }
 
         }
 
     }
-
-    public void notifyItem(int pos) {
+    public void notifyItem(int pos, AbsPlayInfo data) {
         LogUtils.d("BACK", "notifyItem:" + pos);
         View view = mBanner.findViewWithTag(pos);
         if (view instanceof VideoPlayer) {
+            LogUtils.d(TAG, "notifyItem:" + pos + "视频");
             VideoPlayer videoPlayer = (VideoPlayer) view;
-            videoPlayer.addOnCpmpleteListener(new VideoPlayer.OnCpmpleteListener() {
-                @Override
-                public void onComplate() {
-                    if (!mAutoPlay) {
-                        videoPlayer.restart();
-                    }
-                }
-            });
-
             videoPlayer.start();
+            mBanner.stop();
+            mBanner.isAutoLoop(false);
+        } else if (view instanceof ImageView) {
+            mBanner.stop();
+            LogUtils.d(TAG, "notifyItem:" + pos + "图片");
+            mBanner.setLoopTime(data.timer * 1000);//图片
+            mBanner.isAutoLoop(true);
+            mBanner.start();
         }
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        VideoPlayerManager.instance().resumeVideoPlayer();
+        VideoPlayerManager.instance().resumeVideoPlayer();//播放走监听
         //播
-        if (mAutoPlay) {
+        if (mAutoPlay /*&& mImgVideoAdapter.getRealData(CURRENTPOSITION) != null*/) {
             mBanner.start();
+/*            AbsPlayInfo realData = mImgVideoAdapter.getRealData(CURRENTPOSITION);
+            if (realData.type == 1) {//图片
+                mBanner.stop();
+//                mBanner.setLoopTime(realData.timer * 1000);
+//                mBanner.isAutoLoop(true);
+//                mBanner.start();
+            } else {
+                mBanner.stop();
+                mBanner.isAutoLoop(false);//暂停
+            }*/
+
         }
     }
 
