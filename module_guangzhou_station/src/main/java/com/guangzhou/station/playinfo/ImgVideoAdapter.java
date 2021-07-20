@@ -67,6 +67,12 @@ public class ImgVideoAdapter extends BannerAdapter<AbsPlayInfo, ImgVideoAdapter.
             ImgBannerViewHolder imgBannerViewHolder = (ImgBannerViewHolder) holder;
             imgBannerViewHolder.imageViews.setTag(position);
             requestManager.load(Constants.WEB_URL + File.separator + data.path).into(imgBannerViewHolder.imageViews);
+            if (position == 0 && mAutoPlay) {
+                banner.stop();
+                banner.isAutoLoop(true);
+                banner.setLoopTime(data.timer*1000);
+                banner.start();
+            }
         } else {
             VideoViewHolder videoViewHolder = (VideoViewHolder) holder;
             videoViewHolder.videoPlayer.setUp(Constants.WEB_URL + File.separator + data.path, null);
@@ -74,7 +80,6 @@ public class ImgVideoAdapter extends BannerAdapter<AbsPlayInfo, ImgVideoAdapter.
             if (position == 0) {
                 videoViewHolder.videoPlayer.start();
             }
-
         }
 
     }
