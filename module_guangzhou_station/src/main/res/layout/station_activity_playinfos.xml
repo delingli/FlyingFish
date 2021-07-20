@@ -7,7 +7,7 @@
 
 
 
-    <com.youth.banner.Banner
+    <com.guangzhou.station.playinfo.CustomBanner
         android:id="@+id/banner"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

@@ -361,6 +361,7 @@ public class VideoPlayer extends FrameLayout implements InterVideoPlayer {
     public void start() {
         if (mCurrentState == ConstantKeys.CurrentState.STATE_IDLE) {
             VideoPlayerManager.instance().setCurrentVideoPlayer(this);
+            VideoLogUtil.d("VideoPlayer......start方法.");
             initAudioManager();
             initMediaPlayer();
             initTextureView();
@@ -794,7 +795,7 @@ public class VideoPlayer extends FrameLayout implements InterVideoPlayer {
      */
     @RequiresApi(api = Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     private void initTextureView() {
-        if (mTextureView == null) {
+//        if (mTextureView == null) {
             mTextureView = new VideoTextureView(mContext);
             mTextureView.setOnSurfaceListener(new OnSurfaceListener() {
                 @Override
@@ -802,9 +803,12 @@ public class VideoPlayer extends FrameLayout implements InterVideoPlayer {
                     if (mSurfaceTexture == null) {
                         mSurfaceTexture = surface;
                         openMediaPlayer();
+                        VideoLogUtil.d("openMediaPlayer");
                     } else {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                             mTextureView.setSurfaceTexture(mSurfaceTexture);
+                            VideoLogUtil.d("setSurfaceTexture");
+
                         }
                     }
                 }
@@ -824,7 +828,7 @@ public class VideoPlayer extends FrameLayout implements InterVideoPlayer {
 
                 }
             });
-        }
+
         mTextureView.addTextureView(mContainer, mTextureView);
     }
 

@@ -75,7 +75,10 @@ public final class VideoPlayerManager {
             mVideoPlayer = videoPlayer;
         }
     }
-
+    public void setCurrentVideoPlayers(VideoPlayer videoPlayer) {
+        releaseVideoPlayer();
+        mVideoPlayer = videoPlayer;
+    }
 
     /**
      * 当视频正在播放或者正在缓冲时，调用该方法暂停视频

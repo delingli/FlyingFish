@@ -74,10 +74,9 @@ public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
             mPlayInfoList = getIntent().getParcelableArrayListExtra(PLAYINFO_TAG);
             mAutoPlay = getIntent().getBooleanExtra(PLAY_AUTO, false);
         }
-        mBanner.getViewPager2().setOffscreenPageLimit(1);
+//        mBanner.getViewPager2().setOffscreenPageLimit(1);
         LogUtils.d(TAG, "是否自动播放:?" + mAutoPlay);
         RequestManager requestManager = Glide.with(this);
-        mBanner.isAutoLoop(false);//禁止
         mBanner.setAdapter(mImgVideoAdapter = new ImgVideoAdapter(mAutoPlay, mBanner, requestManager, this, mPlayInfoList)).addBannerLifecycleObserver(this).addOnPageChangeListener(new OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -85,17 +84,18 @@ public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
 
             @Override
             public void onPageSelected(int position) {
-                LogUtils.d(TAG, "CURRENTPOSITION:" + position);
+                LogUtils.d(TAG, "CURRENTPOSITION:" + position + " mBanner.getCurrentItem():" + mBanner.getCurrentItem());
                 if (mAutoPlay && mImgVideoAdapter.getData(position) != null) {//自动播放
-                    AbsPlayInfo data = mImgVideoAdapter.getData(position);
+
                     mBanner.postDelayed(new Runnable() {
                         @Override
                         public void run() {
+                            AbsPlayInfo data = mImgVideoAdapter.getData(position);
                             if (null != mImgVideoAdapter) {
                                 notifyItem(position, data);
                             }
                         }
-                    }, 300);
+                    }, 600);
 
                 }
 
@@ -108,21 +108,21 @@ public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
             }
         });
         mBanner.stop();
-//        mBanner.isAutoLoop(false);
+        mBanner.isAutoLoop(mAutoPlay);
         if (mAutoPlay && mImgVideoAdapter.getRealCount() > 1) {
             if (mImgVideoAdapter.getData(0) != null) {
                 AbsPlayInfo realData = mImgVideoAdapter.getData(0);
                 if (realData.type == 1) {
                     mBanner.isAutoLoop(mAutoPlay);
                     mBanner.setLoopTime(realData.timer * 1000);
+                    mBanner.start();
                 } else {
+                    mBanner.stop();
                     mBanner.isAutoLoop(false);
                 }
             }
 
         }
-//        mBanner.isAutoLoop(mAutoPlay);
-
     }
 
     public void notifyItem(int pos, AbsPlayInfo data) {
@@ -130,38 +130,47 @@ public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
         View view = mBanner.findViewWithTag(pos);
         if (view instanceof VideoPlayer) {
             mBanner.stop();
-//            mBanner.isAutoLoop(false);
+            mBanner.isAutoLoop(false);
             LogUtils.d(TAG, "notifyItem:" + pos + "视频");
             VideoPlayer videoPlayer = (VideoPlayer) view;
-            videoPlayer.start();
+            videoPlayer.pause();
+            videoPlayer.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    videoPlayer.start(0);
+                    LogUtils.d(TAG, "notifyItem:" + pos + "视频");
+                }
+            },500);
         } else if (view instanceof ImageView) {
             LogUtils.d(TAG, "notifyItem:" + pos + "图片");
             mBanner.stop();
             mBanner.isAutoLoop(mAutoPlay);
             mBanner.setLoopTime(data.timer * 1000);//图片
             mBanner.start();
+
         }
     }
+
 
     @Override
     protected void onStart() {
         super.onStart();
         VideoPlayerManager.instance().resumeVideoPlayer();//播放走监听
         //播
-        if (mAutoPlay /*&& mImgVideoAdapter.getRealData(CURRENTPOSITION) != null*/) {
+//        if (mAutoPlay /*&& mImgVideoAdapter.getRealData(CURRENTPOSITION) != null*/) {
 //            mBanner.start();
-/*            AbsPlayInfo realData = mImgVideoAdapter.getRealData(CURRENTPOSITION);
-            if (realData.type == 1) {//图片
-                mBanner.stop();
-//                mBanner.setLoopTime(realData.timer * 1000);
-//                mBanner.isAutoLoop(true);
-//                mBanner.start();
-            } else {
-                mBanner.stop();
-                mBanner.isAutoLoop(false);//暂停
-            }*/
-
-        }
+///*            AbsPlayInfo realData = mImgVideoAdapter.getRealData(CURRENTPOSITION);
+//            if (realData.type == 1) {//图片
+//                mBanner.stop();
+////                mBanner.setLoopTime(realData.timer * 1000);
+////                mBanner.isAutoLoop(true);
+////                mBanner.start();
+//            } else {
+//                mBanner.stop();
+//                mBanner.isAutoLoop(false);//暂停
+//            }*/
+//
+//        }
     }
 
     @Override
