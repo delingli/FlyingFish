@@ -105,6 +105,9 @@ public class ImgVideoAdapter extends BannerAdapter<AbsPlayInfo, ImgVideoAdapter.
                 @Override
                 public void onComplate() {
                     LogUtils.d(TAG, "播放完毕重新播放");
+                    if(null!=videoPlayer){
+                        videoPlayer.release();
+                    }
                     if (mAutoPlay) {
                         if (banner.getItemCount() == 1) {
                             //就1个直接重播

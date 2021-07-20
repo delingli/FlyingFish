@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
@@ -74,7 +75,7 @@ public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
             mPlayInfoList = getIntent().getParcelableArrayListExtra(PLAYINFO_TAG);
             mAutoPlay = getIntent().getBooleanExtra(PLAY_AUTO, false);
         }
-//        mBanner.getViewPager2().setOffscreenPageLimit(1);
+        mBanner.getViewPager2().setOffscreenPageLimit(1);
         LogUtils.d(TAG, "是否自动播放:?" + mAutoPlay);
         RequestManager requestManager = Glide.with(this);
         mBanner.setAdapter(mImgVideoAdapter = new ImgVideoAdapter(mAutoPlay, mBanner, requestManager, this, mPlayInfoList)).addBannerLifecycleObserver(this).addOnPageChangeListener(new OnPageChangeListener() {
@@ -86,7 +87,6 @@ public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
             public void onPageSelected(int position) {
                 LogUtils.d(TAG, "CURRENTPOSITION:" + position + " mBanner.getCurrentItem():" + mBanner.getCurrentItem());
                 if (mAutoPlay && mImgVideoAdapter.getData(position) != null) {//自动播放
-
                     mBanner.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -131,16 +131,16 @@ public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
         if (view instanceof VideoPlayer) {
             mBanner.stop();
             mBanner.isAutoLoop(false);
-            LogUtils.d(TAG, "notifyItem:" + pos + "视频");
             VideoPlayer videoPlayer = (VideoPlayer) view;
+            LogUtils.d(TAG, "notifyItem:" + pos + "视频" + videoPlayer.isError());
             videoPlayer.pause();
-            videoPlayer.postDelayed(new Runnable() {
+           videoPlayer.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     videoPlayer.start(0);
                     LogUtils.d(TAG, "notifyItem:" + pos + "视频");
                 }
-            },500);
+            }, 500);
         } else if (view instanceof ImageView) {
             LogUtils.d(TAG, "notifyItem:" + pos + "图片");
             mBanner.stop();

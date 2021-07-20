@@ -4,12 +4,10 @@
 
 
     <application android:theme="@style/AppTheme">
-        <activity
-            android:name=".playinfo.PlayInfoActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/FullscreenTheme" />
+
         <activity
             android:name=".playinfo.PlayInfosActivity"
+            android:hardwareAccelerated="true"
             android:theme="@style/FullscreenTheme" />
 
 

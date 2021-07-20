@@ -25,6 +25,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import org.yczbj.ycvideoplayerlib.inter.listener.OnSurfaceListener;
+import org.yczbj.ycvideoplayerlib.utils.VideoLogUtil;
 
 
 /**
@@ -36,7 +37,7 @@ import org.yczbj.ycvideoplayerlib.inter.listener.OnSurfaceListener;
  *     revise:
  * </pre>
  */
-@SuppressLint("NewApi")
+//@SuppressLint("NewApi")
 public class VideoTextureView extends TextureView implements TextureView.SurfaceTextureListener {
 
     private int videoHeight;
@@ -57,8 +58,10 @@ public class VideoTextureView extends TextureView implements TextureView.Surface
      */
     @Override
     public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
+        VideoLogUtil.d("SurfaceTextureonSurfaceTextureAvailable........");
         if (onSurfaceListener != null) {
             onSurfaceListener.onSurfaceAvailable(surface);
+            VideoLogUtil.d("onSurfaceTextureAvailable........surface");
         }
     }
 

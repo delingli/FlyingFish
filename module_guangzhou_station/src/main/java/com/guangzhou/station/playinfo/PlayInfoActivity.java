@@ -15,6 +15,7 @@ import androidx.viewpager.widget.ViewPager;
 
 
 import com.blankj.utilcode.util.LogUtils;
+import com.bumptech.glide.Glide;
 import com.dc.baselib.mvvm.AbsLifecycleActivity;
 import com.guangzhou.station.R;
 

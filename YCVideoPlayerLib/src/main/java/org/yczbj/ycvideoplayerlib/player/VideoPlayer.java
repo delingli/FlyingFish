@@ -793,10 +793,11 @@ public class VideoPlayer extends FrameLayout implements InterVideoPlayer {
      * 初始化TextureView
      * 这个主要是用作视频的
      */
-    @RequiresApi(api = Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+//    @RequiresApi(api = Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     private void initTextureView() {
 //        if (mTextureView == null) {
             mTextureView = new VideoTextureView(mContext);
+
             mTextureView.setOnSurfaceListener(new OnSurfaceListener() {
                 @Override
                 public void onSurfaceAvailable(SurfaceTexture surface) {
@@ -828,10 +829,10 @@ public class VideoPlayer extends FrameLayout implements InterVideoPlayer {
 
                 }
             });
-
+//        }
         mTextureView.addTextureView(mContainer, mTextureView);
-    }
 
+    }
 
     /**
      * 打开MediaPlayer播放器
