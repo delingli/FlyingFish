@@ -14,6 +14,7 @@ import com.bumptech.glide.RequestManager;
 import com.dc.baselib.mvvm.AbsLifecycleActivity;
 import com.guangzhou.station.R;
 import com.youth.banner.Banner;
+import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.listener.OnPageChangeListener;
 
 import org.yczbj.ycvideoplayerlib.manager.VideoPlayerManager;
@@ -51,6 +52,7 @@ public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
 
     private ImgVideoAdapter mImgVideoAdapter;
     public int CURRENTPOSITION = 0;
+    boolean check = false;
 
     @Override
     protected void initView(Bundle savedInstanceState) {
@@ -72,9 +74,10 @@ public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
             mPlayInfoList = getIntent().getParcelableArrayListExtra(PLAYINFO_TAG);
             mAutoPlay = getIntent().getBooleanExtra(PLAY_AUTO, false);
         }
+        mBanner.getViewPager2().setOffscreenPageLimit(1);
         LogUtils.d(TAG, "是否自动播放:?" + mAutoPlay);
         RequestManager requestManager = Glide.with(this);
-        mBanner.isAutoLoop(false);
+        mBanner.isAutoLoop(false);//禁止
         mBanner.setAdapter(mImgVideoAdapter = new ImgVideoAdapter(mAutoPlay, mBanner, requestManager, this, mPlayInfoList)).addBannerLifecycleObserver(this).addOnPageChangeListener(new OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -82,9 +85,9 @@ public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
 
             @Override
             public void onPageSelected(int position) {
-                LogUtils.d(TAG, "CURRENTPOSITION:" + CURRENTPOSITION);
-                if (mAutoPlay && mImgVideoAdapter.getRealData(position) != null) {//自动播放
-                    AbsPlayInfo data = mImgVideoAdapter.getRealData(position);
+                LogUtils.d(TAG, "CURRENTPOSITION:" + position);
+                if (mAutoPlay && mImgVideoAdapter.getData(position) != null) {//自动播放
+                    AbsPlayInfo data = mImgVideoAdapter.getData(position);
                     mBanner.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -92,7 +95,7 @@ public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
                                 notifyItem(position, data);
                             }
                         }
-                    }, 500);
+                    }, 300);
 
                 }
 
@@ -104,33 +107,38 @@ public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
 
             }
         });
-        mBanner.isAutoLoop(mAutoPlay);
-       if (mAutoPlay && mImgVideoAdapter.getRealCount() > 1) {
-            if (mImgVideoAdapter.getRealData(0) != null) {
-                AbsPlayInfo realData = mImgVideoAdapter.getRealData(0);
+        mBanner.stop();
+//        mBanner.isAutoLoop(false);
+        if (mAutoPlay && mImgVideoAdapter.getRealCount() > 1) {
+            if (mImgVideoAdapter.getData(0) != null) {
+                AbsPlayInfo realData = mImgVideoAdapter.getData(0);
                 if (realData.type == 1) {
+                    mBanner.isAutoLoop(mAutoPlay);
                     mBanner.setLoopTime(realData.timer * 1000);
-//                    mBanner.start();
+                } else {
+                    mBanner.isAutoLoop(false);
                 }
             }
 
         }
+//        mBanner.isAutoLoop(mAutoPlay);
 
     }
+
     public void notifyItem(int pos, AbsPlayInfo data) {
         LogUtils.d("BACK", "notifyItem:" + pos);
         View view = mBanner.findViewWithTag(pos);
         if (view instanceof VideoPlayer) {
+            mBanner.stop();
+//            mBanner.isAutoLoop(false);
             LogUtils.d(TAG, "notifyItem:" + pos + "视频");
             VideoPlayer videoPlayer = (VideoPlayer) view;
             videoPlayer.start();
-            mBanner.stop();
-            mBanner.isAutoLoop(false);
         } else if (view instanceof ImageView) {
-            mBanner.stop();
             LogUtils.d(TAG, "notifyItem:" + pos + "图片");
+            mBanner.stop();
+            mBanner.isAutoLoop(mAutoPlay);
             mBanner.setLoopTime(data.timer * 1000);//图片
-            mBanner.isAutoLoop(true);
             mBanner.start();
         }
     }
@@ -141,7 +149,7 @@ public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
         VideoPlayerManager.instance().resumeVideoPlayer();//播放走监听
         //播
         if (mAutoPlay /*&& mImgVideoAdapter.getRealData(CURRENTPOSITION) != null*/) {
-            mBanner.start();
+//            mBanner.start();
 /*            AbsPlayInfo realData = mImgVideoAdapter.getRealData(CURRENTPOSITION);
             if (realData.type == 1) {//图片
                 mBanner.stop();
@@ -160,9 +168,9 @@ public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
     protected void onStop() {
         super.onStop();
         VideoPlayerManager.instance().pauseVideoPlayer();
-        if (mAutoPlay) {
-            mBanner.stop();
-        }
+//        if (mAutoPlay) {
+//            mBanner.stop();
+//        }
     }
 
     @Override
@@ -170,7 +178,7 @@ public class PlayInfosActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
         super.onDestroy();
         VideoPlayerManager.instance().releaseVideoPlayer();
         if (mBanner != null) {
-            mBanner.stop();
+            mBanner.destroy();
         }
 
     }

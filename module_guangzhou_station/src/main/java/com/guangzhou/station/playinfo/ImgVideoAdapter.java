@@ -51,6 +51,7 @@ public class ImgVideoAdapter extends BannerAdapter<AbsPlayInfo, ImgVideoAdapter.
 
     @Override
     public BasicBannerViewHolder onCreateHolder(ViewGroup parent, int viewType) {
+
         if (viewType == 1) {
             View inflate = mInflater.inflate(R.layout.station_item_img_play, parent, false);
             return new ImgBannerViewHolder(inflate);
@@ -111,7 +112,6 @@ public class ImgVideoAdapter extends BannerAdapter<AbsPlayInfo, ImgVideoAdapter.
                             banner.isAutoLoop(false);
                             videoPlayer.restart();
                         } else {
-                            banner.stop();
                             banner.isAutoLoop(true);
                             banner.setLoopTime(2000);
                             banner.start();
@@ -120,7 +120,6 @@ public class ImgVideoAdapter extends BannerAdapter<AbsPlayInfo, ImgVideoAdapter.
                         videoPlayer.restart();
                         banner.stop();
                         banner.isAutoLoop(false);
-
                     }
                 }
             });
