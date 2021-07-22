@@ -21,19 +21,22 @@ import org.yczbj.ycvideoplayerlib.player.VideoPlayer;
 
 import java.io.File;
 import java.util.List;
+import java.util.logging.Handler;
 
 
 public class CustomPagerAdapter extends PagerAdapter {
     private List<AbsPlayInfo> mList;
     private Context context;
+    private String TAG = "CustomPagerAdapter";
+    private PlayInfoActivity.CustomHandler mHandler;
+    private boolean autoplay;
 
-    public CustomPagerAdapter(Context context, List<AbsPlayInfo> mList) {
+    public CustomPagerAdapter(Context context, boolean autoplay, PlayInfoActivity.CustomHandler handler, List<AbsPlayInfo> mList) {
         this.mList = mList;
         this.context = context;
+        this.mHandler = handler;
+        this.autoplay = autoplay;
     }
-
-
-
 
     public List<AbsPlayInfo> getmList() {
         return mList;
@@ -61,7 +64,30 @@ public class CustomPagerAdapter extends PagerAdapter {
                 videoplayer.setPlayerType(ConstantKeys.IjkPlayerType.TYPE_IJK);
                 videoplayer.setController(mController);
                 videoplayer.setUp(Constants.WEB_URL + File.separator + absPlayInfo.path, null);
+                if (position == 0) {
+                    videoplayer.start();
+                }
+                videoplayer.addOnCpmpleteListener(new VideoPlayer.OnCpmpleteListener() {
+                    @Override
+                    public void onComplate() {
+                        LogUtils.d(TAG, "播放完毕重新播放");
+                        if (null != videoplayer) {
+                            videoplayer.pause();
+                        }
+                        if (autoplay) {
+                            if (getmList().size() == 1) {
+                                videoplayer.restart();
+                            } else {
+                                mHandler.sendEmptyMessage(PlayInfoActivity.BANNER_NEXT);//next
+                            }
+                        } else {
+                            mHandler.sendEmptyMessage(PlayInfoActivity.BANNER_PAUSE);//next
+                            videoplayer.restart();
+                        }
+                    }
+                });
                 container.addView(videoplayer);
+
                 return videoplayer;
             }
         }

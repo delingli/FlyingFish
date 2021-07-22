@@ -2,7 +2,7 @@ package com.guangzhou.station.stationmain;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Typeface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,14 +10,12 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,7 +28,6 @@ import com.dc.commonlib.common.RefreshMessage;
 import com.guangzhou.station.R;
 import com.guangzhou.station.playinfo.AbsPlayInfo;
 import com.guangzhou.station.playinfo.PlayInfoActivity;
-import com.guangzhou.station.playinfo.PlayInfosActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -305,6 +302,14 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1){
+            mSearchView.clearFocus();
+        }
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessage(RefreshMessage refreshMessage) {
         if (refreshMessage != null && refreshMessage.refresh) {
@@ -335,8 +340,8 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
                     if (o instanceof AbsPlayInfo) {
                         AbsPlayInfo absPlayInfo = (AbsPlayInfo) o;
                         boolean auto = absPlayInfo.play_type == 1;
-//                        PlayInfoActivity.startActivity(StationMainActivity.this, list, auto);
-                        PlayInfosActivity.startActivity(StationMainActivity.this, list, auto);
+                        PlayInfoActivity.startActivity(StationMainActivity.this, list, auto,1);
+//                        PlayInfosActivity.startActivity(StationMainActivity.this, list, auto);
                     }
                 }
             }

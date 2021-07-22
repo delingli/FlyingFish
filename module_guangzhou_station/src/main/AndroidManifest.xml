@@ -6,7 +6,7 @@
     <application android:theme="@style/AppTheme">
 
         <activity
-            android:name=".playinfo.PlayInfosActivity"
+            android:name=".playinfo.PlayInfoActivity"
             android:hardwareAccelerated="true"
             android:theme="@style/FullscreenTheme" />
 

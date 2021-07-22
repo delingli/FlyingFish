@@ -1,5 +1,6 @@
 package com.guangzhou.station.playinfo;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,16 +37,19 @@ public class PlayInfoActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
     private CustomPagerAdapter mCustomPagerAdapter;
     public boolean mAutuPlay = false;//默认手动播放
 
-    public static void startActivity(Context context, List<AbsPlayInfo> list, boolean mAutuPlay) {
+    public static void startActivity(Activity context, List<AbsPlayInfo> list, boolean mAutuPlay, int requestCode) {
         Intent intent = new Intent(context, PlayInfoActivity.class);
         intent.putParcelableArrayListExtra(PLAYINFO_TAG, (ArrayList<? extends Parcelable>) list);
         intent.putExtra(PLAY_AUTO, mAutuPlay);
-        context.startActivity(intent);
+        context.startActivityForResult(intent, requestCode);
     }
 
-    private CustomHandler mCustomHandler = new CustomHandler(this);
+    private CustomHandler mCustomHandler = new CustomHandler(PlayInfoActivity.this);
+    public static int BANNER_NEXT = 1;
+    public static int BANNER_PAUSE = 2;
+    public static int BANNER_RESUME = 3;
 
-    private class CustomHandler extends Handler {
+    public static class CustomHandler extends Handler {
         private WeakReference<PlayInfoActivity> mActivity;
 
         public CustomHandler(PlayInfoActivity mActivity) {
@@ -56,18 +60,36 @@ public class PlayInfoActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
             PlayInfoActivity playInfoActivity = mActivity.get();
-            if (msg.what == CONFIG_VIDEOBANNER && playInfoActivity != null) {
+            if (playInfoActivity == null) {
+                return;
+            }
+            if (playInfoActivity.mCustomHandler.hasMessages(BANNER_NEXT)) {     //如果已经有消息了，先移除消息
+                playInfoActivity.mCustomHandler.removeMessages(BANNER_NEXT);
+            }
+            int whats = msg.what;
+            if (whats == BANNER_NEXT) {
+                if (playInfoActivity.mCustomPagerAdapter.getmList() != null && playInfoActivity.mCustomPagerAdapter.getmList().size() > 1) {
+                    int next = (playInfoActivity.mViewPager.getCurrentItem() + 1);
+                    LogUtils.d("LDL", "next:" + next);
+                    playInfoActivity.mViewPager.setCurrentItem(next);
+                }
+                //5秒后继续轮播
+//                playInfoActivity.mCustomHandler.sendEmptyMessageDelayed(BANNER_NEXT, 5000);
+
+            } else if (whats == BANNER_PAUSE) {
+
+            } else if (whats == BANNER_RESUME) {
+                //继续轮播
+                playInfoActivity.mCustomHandler.sendEmptyMessageDelayed(BANNER_NEXT, 5000);
+            }
+/*            if (msg.what == CONFIG_VIDEOBANNER && playInfoActivity != null) {
                 LogUtils.d("LDL", "\nmViewPager.getChildCount:" + mViewPager.getChildCount() + "\nmViewPager.getCurrentItem:" + mViewPager.getCurrentItem());
                 if (mViewPager.getChildCount() > 1) {
-                    int next = (mViewPager.getCurrentItem() + 1) % mCustomPagerAdapter.getmList().size();
+                    int next = (mViewPager.getCurrentItem() + 1);
                     LogUtils.d("LDL", "next:" + next);
                     mViewPager.setCurrentItem(next);
-//                    AbsPlayInfo absPlayInfo = mCustomPagerAdapter.getmList().get(next);
-//                    if (absPlayInfo != null) {
-//                        mCustomHandler.sendEmptyMessageDelayed(CONFIG_VIDEOBANNER, absPlayInfo.timer * 1000);//延迟
-//                    }
                 }
-            }
+            }*/
 
         }
     }
@@ -83,7 +105,7 @@ public class PlayInfoActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
         return R.layout.station_activity_playinfo;
     }
 
-    public static int CONFIG_VIDEOBANNER = 10;
+    private boolean first = true;
 
     @Override
     protected void initView(Bundle savedInstanceState) {
@@ -95,11 +117,17 @@ public class PlayInfoActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
         //去掉最上面时间、电量等
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         mViewPager = findViewById(R.id.viewPager);
+        findViewById(R.id.iv_goBack).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         if (getIntent() != null) {
             mPlayInfoList = getIntent().getParcelableArrayListExtra(PLAYINFO_TAG);
             mAutuPlay = getIntent().getBooleanExtra(PLAY_AUTO, false);
         }
-        mViewPager.setAdapter(mCustomPagerAdapter = new CustomPagerAdapter(this, mPlayInfoList));
+        mViewPager.setAdapter(mCustomPagerAdapter = new CustomPagerAdapter(this, mAutuPlay, mCustomHandler, mPlayInfoList));
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -107,48 +135,82 @@ public class PlayInfoActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
 
             @Override
             public void onPageSelected(int position) {
-                if (mAutuPlay) {
-                    if (null != mCustomPagerAdapter) {
-                        notifyItem();
-                    }
-                    LogUtils.d("LDL", "当前的position" + position);
+                int realposition = position % mCustomPagerAdapter.getmList().size();
+                LogUtils.d("LDL", "当前的position" + position + "realposition:" + realposition);
+                if (null != mCustomPagerAdapter) {
+                    notifyItem(position, realposition);
                 }
+
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
-                if (state == 1) {//手指触摸
-                    if (mAutuPlay) {
-                        mCustomHandler.removeMessages(CONFIG_VIDEOBANNER);
-                        LogUtils.d("LDL", "移除");
+                switch (state) {
+                    case ViewPager.SCROLL_STATE_DRAGGING:
+                        //用户正在滑动，暂停轮播
+                        mCustomHandler.sendEmptyMessage(BANNER_PAUSE);
+                        break;
+                    case ViewPager.SCROLL_STATE_IDLE:
+                        //滑动结束，继续轮播
+                        if (mAutuPlay) {
+                            if (null != mCustomPagerAdapter.getmList() && mCustomPagerAdapter.getmList().size() > 1) {
+                                int realposition = mViewPager.getCurrentItem() % mCustomPagerAdapter.getmList().size();
+                                AbsPlayInfo absPlayInfo = mCustomPagerAdapter.getmList().get(realposition);
+                                if (first) {
+                                    first = false;
+                                } else {
+                                    if (absPlayInfo.type == 1) {
+                                        first = false;
+                                        mCustomHandler.sendEmptyMessageDelayed(BANNER_NEXT, absPlayInfo.timer * 1000);
+                                    } else {
+                                        mCustomHandler.sendEmptyMessage(BANNER_PAUSE);
+                                    }
+                                }
 
-                    }
-                } else if (state == 0) {//滑动结束
-                    if (mAutuPlay) {
-                        int currentItemPos = mViewPager.getCurrentItem() % mCustomPagerAdapter.getmList().size();
-                        AbsPlayInfo absPlayInfo = mCustomPagerAdapter.getmList().get(currentItemPos);
-                        mCustomHandler.sendEmptyMessageDelayed(CONFIG_VIDEOBANNER, absPlayInfo.timer * 1000);
-                        LogUtils.d("LDL", "onPageScrollStateChanged:滑动结束:" + currentItemPos + "mViewPager.getCurrentItem() :" + mViewPager.getCurrentItem());
-                    }
 
+                            } else {
+                                mCustomHandler.sendEmptyMessage(BANNER_PAUSE);
+                            }
+                        }
+                        break;
                 }
 
             }
         });
 
+
+        mViewPager.setCurrentItem(0);
+        if (mAutuPlay) {
+            if (null != mCustomPagerAdapter.getmList() && mCustomPagerAdapter.getmList().size() > 1) {
+  /*              AbsPlayInfo absPlayInfo = mCustomPagerAdapter.getmList().get(0);
+                if (absPlayInfo.type == 1) {
+                    mCustomHandler.sendEmptyMessageDelayed(BANNER_NEXT, absPlayInfo.timer * 1000);
+                } else {
+                    mCustomHandler.sendEmptyMessage(BANNER_PAUSE);
+                }*/
+            } else {
+                mCustomHandler.sendEmptyMessage(BANNER_PAUSE);
+            }
+        } else {
+            mCustomHandler.sendEmptyMessage(BANNER_PAUSE);
+        }
     }
 
-    public void notifyItem() {
-        View view = mViewPager.findViewWithTag(mViewPager.getCurrentItem());
+    public void notifyItem(int position, int realposition) {
+        View view = mViewPager.findViewWithTag(position);
         if (view instanceof VideoPlayer) {
             VideoPlayer videoPlayer = (VideoPlayer) view;
             videoPlayer.start();
-            if (!mAutuPlay) {
-                videoPlayer.setlooping(true);
-            }
 
+            mCustomHandler.sendEmptyMessage(BANNER_PAUSE);
+        } else {
+            if (mAutuPlay) {
+                AbsPlayInfo absPlayInfo = mCustomPagerAdapter.getmList().get(realposition);
+                mCustomHandler.sendEmptyMessageDelayed(BANNER_NEXT, absPlayInfo.timer * 1000);
+            }
         }
     }
+
 
     @Override
     protected void onPause() {
@@ -156,7 +218,7 @@ public class PlayInfoActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
         VideoPlayerManager.instance().pauseVideoPlayer();
         if (mAutuPlay) {
             if (mCustomHandler != null) {
-                mCustomHandler.removeMessages(CONFIG_VIDEOBANNER);
+                mCustomHandler.sendEmptyMessage(BANNER_PAUSE);
             }
         }
     }
@@ -165,12 +227,19 @@ public class PlayInfoActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
     protected void onResume() {
         super.onResume();
         VideoPlayerManager.instance().resumeVideoPlayer();
-        if (mAutuPlay) {//注意自动播放才开始哦
-            int currentItem = mViewPager.getCurrentItem();
-            AbsPlayInfo absPlayInfo = mCustomPagerAdapter.getmList().get(currentItem);
-            mCustomHandler.sendEmptyMessageDelayed(CONFIG_VIDEOBANNER, absPlayInfo.timer * 1000);//延迟
-        }
+        if (mAutuPlay) {
+            if (mCustomHandler != null) {
+                int realposition = mViewPager.getCurrentItem() % mCustomPagerAdapter.getmList().size();
+                if (mCustomPagerAdapter.getmList() != null && !mCustomPagerAdapter.getmList().isEmpty()) {
+                    AbsPlayInfo absPlayInfo = mCustomPagerAdapter.getmList().get(realposition);
+                    if (absPlayInfo.type == 1) {
+                        mCustomHandler.sendEmptyMessageDelayed(BANNER_NEXT, absPlayInfo.timer * 1000);
+                    }
+                }
 
+
+            }
+        }
     }
 
     @Override
@@ -180,6 +249,9 @@ public class PlayInfoActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
         if (mCustomHandler != null) {
             mCustomHandler.removeCallbacksAndMessages(null);
         }
+        mCustomHandler.removeCallbacksAndMessages(null);
+        mCustomHandler = null;
+        setResult(Activity.RESULT_OK);
     }
 
     @Override
