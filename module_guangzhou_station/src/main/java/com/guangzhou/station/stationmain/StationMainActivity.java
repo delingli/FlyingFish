@@ -305,7 +305,7 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==1){
+        if (requestCode == 1) {
             mSearchView.clearFocus();
         }
     }
@@ -340,7 +340,7 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
                     if (o instanceof AbsPlayInfo) {
                         AbsPlayInfo absPlayInfo = (AbsPlayInfo) o;
                         boolean auto = absPlayInfo.play_type == 1;
-                        PlayInfoActivity.startActivity(StationMainActivity.this, list, auto,1);
+                        PlayInfoActivity.startActivity(StationMainActivity.this, list, auto, 1);
 //                        PlayInfosActivity.startActivity(StationMainActivity.this, list, auto);
                     }
                 }
@@ -481,12 +481,14 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
     int totalPage = 0;
 
     private int getTatalPage() {
-        int count = mMainListAdapter.getList().size();
-        if (count % 4 == 0) {
-            //整除
-            totalPage = count / 4;
-        } else {
-            totalPage = (count / 4) + 1;
+        if (null != mMainListAdapter && mMainListAdapter.getList() != null && !mMainListAdapter.getList().isEmpty()) {
+            int count = mMainListAdapter.getList().size();
+            if (count % 4 == 0) {
+                //整除
+                totalPage = count / 4;
+            } else {
+                totalPage = (count / 4) + 1;
+            }
         }
         return totalPage;
     }
