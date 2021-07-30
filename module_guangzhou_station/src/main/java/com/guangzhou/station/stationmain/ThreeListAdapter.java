@@ -24,7 +24,7 @@ public class ThreeListAdapter extends BaseRecyclerAdapter<AbsStationData> {
      */
     public ThreeListAdapter(Context context, @Nullable @org.jetbrains.annotations.Nullable List<AbsStationData> list, int itemLayoutId) {
         super(context, list, R.layout.station_item_three);
-        typeFace = Typeface.createFromAsset(getContext().getAssets(), "fonts/MSYH.TTC");
+        typeFace = Typeface.createFromAsset(getContext().getAssets(), "fonts/MSYH95.TTC");
     }
 
     @Override

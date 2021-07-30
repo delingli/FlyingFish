@@ -521,18 +521,23 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
 
     private int getNextPosition(int currentPage) {
         int nextPosition = 0;
-        if ((4 * currentPage) > mMainListAdapter.getList().size()) {
-            int y = mMainListAdapter.getList().size() % 4;
-            nextPosition = mMainListAdapter.getList().size() - y;
-        } else {
-            nextPosition = 4 * currentPage;
+        if(mMainListAdapter.getList()!=null&&!mMainListAdapter.getList().isEmpty()){
+            if ((4 * currentPage) > mMainListAdapter.getList().size()) {
+                int y = mMainListAdapter.getList().size() % 4;
+                nextPosition = mMainListAdapter.getList().size() - y;
+            } else {
+                nextPosition = 4 * currentPage;
+            }
         }
         return nextPosition;
     }
 
     private void checkPage() {
         int totalPage = getTatalPage();
-        if (currentPage >= totalPage - 1) {
+        if (totalPage == 0) {
+            ivRight.setVisibility(View.INVISIBLE);
+            ivLeft.setVisibility(View.INVISIBLE);
+        } else if (currentPage >= totalPage - 1) {
             currentPage = totalPage - 1;
             ivRight.setVisibility(View.INVISIBLE);
             ivLeft.setVisibility(View.VISIBLE);

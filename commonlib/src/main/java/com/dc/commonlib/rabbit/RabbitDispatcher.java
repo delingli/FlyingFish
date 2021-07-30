@@ -90,7 +90,7 @@ public class RabbitDispatcher {
 
     private void initConnectFactor() {
         factory = new ConnectionFactory();
-        factory.setHost(Constants.SERVER_HOSTS);
+        factory.setHost(Constants.SERVER_HOST);
         factory.setUsername(Constants.RABBIT_NAME);
         factory.setPassword(Constants.RABBIT_PASSWORD);
         factory.setPort(Constants.RABBIT_PORT);
