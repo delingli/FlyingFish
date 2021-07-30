@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textColor="@color/white"
-        android:textSize="17sp"
+        android:textSize="34sp"
         tools:text="测试" />
 
 </LinearLayout>
