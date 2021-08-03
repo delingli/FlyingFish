@@ -199,11 +199,16 @@ public class PlayInfoActivity extends AbsLifecycleActivity<PlayInfoViewModel> {
     public void notifyItem(int position, int realposition) {
         View view = mViewPager.findViewWithTag(position);
         if (view instanceof VideoPlayer) {
+            if (VideoPlayerManager.instance().getCurrentVideoPlayer() != null && VideoPlayerManager.instance().getCurrentVideoPlayer().isPaused()) {
+                VideoPlayerManager.instance().resumeVideoPlayer();
+                return;
+            }
             VideoPlayer videoPlayer = (VideoPlayer) view;
             videoPlayer.start();
 
             mCustomHandler.sendEmptyMessage(BANNER_PAUSE);
         } else {
+            VideoPlayerManager.instance().pauseVideoPlayer();
             if (mAutuPlay) {
                 AbsPlayInfo absPlayInfo = mCustomPagerAdapter.getmList().get(realposition);
                 mCustomHandler.sendEmptyMessageDelayed(BANNER_NEXT, absPlayInfo.timer * 1000);

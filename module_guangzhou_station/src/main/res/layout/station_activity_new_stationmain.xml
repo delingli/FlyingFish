@@ -3,11 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_bg">
+    android:background="@drawable/new_station_bg">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
->
+        android:layout_height="match_parent">
 
 
     <FrameLayout
@@ -15,8 +14,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="239pt"
-        android:layout_marginTop="16pt"
-        android:layout_marginEnd="375pt"
+        android:layout_marginEnd="239pt"
+        android:layout_marginTop="32pt"
+
         android:background="@drawable/bg_search_radius"
         android:focusable="false"
         android:padding="4pt"

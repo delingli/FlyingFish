@@ -52,8 +52,8 @@
       <option name="url" value="https://maven.aliyun.com/repository/public" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="maven4" />
-      <option name="name" value="maven4" />
+      <option name="id" value="maven5" />
+      <option name="name" value="maven5" />
       <option name="url" value="http://10.10.20.198:8081/nexus/content/groups/IDC/" />
     </remote-repository>
     <remote-repository>
