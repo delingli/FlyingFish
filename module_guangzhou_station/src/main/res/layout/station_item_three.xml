@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginStart="69pt"
+        android:layout_marginStart="55pt"
         android:gravity="left"
         android:textColor="@color/white"
         android:textSize="40sp"
