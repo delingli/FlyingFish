@@ -54,7 +54,7 @@ public class RetrofitClient {
                 .setLenient()
                 .create();
         retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.WEB_URL.trim())
+                .baseUrl(Constants.getmConstants().WEB_URL.trim())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addConverterFactory(ScalarsConverterFactory.create())//支持字符串

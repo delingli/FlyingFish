@@ -83,6 +83,7 @@ dependencies {
     androidTestImplementation deps.ext_junit
     androidTestImplementation deps.espresso_core
     api 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    api 'com.tencent:mmkv-static:1.2.10'
     api(deps.rabbitmq) {
         exclude group: 'androidx.documentfile'
         exclude group: 'androidx.swiperefreshlayout'

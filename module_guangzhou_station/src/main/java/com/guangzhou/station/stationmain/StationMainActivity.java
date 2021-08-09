@@ -13,6 +13,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,6 +30,7 @@ import com.dc.commonlib.common.RefreshMessage;
 import com.guangzhou.station.R;
 import com.guangzhou.station.playinfo.AbsPlayInfo;
 import com.guangzhou.station.playinfo.PlayInfoActivity;
+import com.guangzhou.station.setting.ConfigSettingActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -59,6 +62,7 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
     private ImageButton iv_bottom;
     private SearchView.SearchAutoComplete mTextView;
     private FrameLayout fl_search;
+    private TextView tv_toSetting;
 
     @Override
     protected Class<StationMainViewModel> getViewModel() {
@@ -83,9 +87,11 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
         //hideBottomUIMenu();
         mRecycleView = findViewById(R.id.recycleView);
         iv_top = findViewById(R.id.iv_top);
+        tv_toSetting = findViewById(R.id.tv_toSetting);
         iv_bottom = findViewById(R.id.iv_bottom);
         fl_search = findViewById(R.id.fl_search);
         mSearchView = findViewById(R.id.searchView);
+        tv_toSetting.setOnClickListener(this);
 //        mSearchView.setIconifiedByDefault(false);
 //        mSearchView.onActionViewExpanded();
         mTextView = (SearchView.SearchAutoComplete) mSearchView.findViewById(R.id.search_src_text);
@@ -494,6 +500,7 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
     }
 
     int currentPage = 0;
+    long ViewTitleClickCnt = 0, ViewTitleClickStartTime = 0, ViewTitleClickStopTime = 0;
 
     @Override
     public void onClick(View v) {
@@ -509,6 +516,38 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
             int next = getNextPosition(currentPage);
             LogUtils.d(tag, "next" + next);
             MoveToPosition((LinearLayoutManager) mRecycleView.getLayoutManager(), mRecycleView, next);
+        } else if (v.getId() == R.id.tv_toSetting) {
+
+            ViewTitleClickCnt++;
+            if (ViewTitleClickCnt == 1) {
+                ViewTitleClickStartTime = System.currentTimeMillis();
+            }
+            if (ViewTitleClickCnt <= 5) {
+                ViewTitleClickStopTime = System.currentTimeMillis();
+                if (ViewTitleClickStopTime - ViewTitleClickStartTime > 1000) {
+                    ViewTitleClickStartTime = 0;
+                    ViewTitleClickStopTime = 0;
+                    ViewTitleClickCnt = 0;
+                } else {
+                    ViewTitleClickStartTime = ViewTitleClickStopTime;
+                }
+            }
+            if (ViewTitleClickCnt >= 6) {
+                ViewTitleClickStopTime = System.currentTimeMillis();
+                if (ViewTitleClickStopTime - ViewTitleClickStartTime > 1000) {
+                    ViewTitleClickStartTime = 0;
+                    ViewTitleClickStopTime = 0;
+                    ViewTitleClickCnt = 0;
+                } else {
+                    ViewTitleClickStartTime = 0;
+                    ViewTitleClickStopTime = 0;
+                    ViewTitleClickCnt = 0;
+                    ConfigSettingActivity.startActivity(StationMainActivity.this);
+                    finish();
+                }
+            }
+
+
         }
     }
 
@@ -521,7 +560,7 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
 
     private int getNextPosition(int currentPage) {
         int nextPosition = 0;
-        if(mMainListAdapter.getList()!=null&&!mMainListAdapter.getList().isEmpty()){
+        if (mMainListAdapter.getList() != null && !mMainListAdapter.getList().isEmpty()) {
             if ((4 * currentPage) > mMainListAdapter.getList().size()) {
                 int y = mMainListAdapter.getList().size() % 4;
                 nextPosition = mMainListAdapter.getList().size() - y;

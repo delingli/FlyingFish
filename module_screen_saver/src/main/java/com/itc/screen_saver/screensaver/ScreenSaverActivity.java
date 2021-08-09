@@ -81,7 +81,7 @@ public class ScreenSaverActivity extends AbsLifecycleActivity<ScreenViewModul> {
 
     @NotNull
     private String getRealUrl(ScreenSaverEntiry screensaverentiry) {
-        return Constants.WEB_URL + File.separator + screensaverentiry.getPath();
+        return Constants.getmConstants().WEB_URL + File.separator + screensaverentiry.getPath();
     }
 
     @Override

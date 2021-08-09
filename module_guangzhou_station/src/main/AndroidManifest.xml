@@ -25,6 +25,9 @@
             </intent-filter>
 
         </activity>
+        <activity
+            android:name=".setting.ConfigSettingActivity"
+            android:theme="@style/FullscreenTheme" />
     </application>
 
 </manifest>

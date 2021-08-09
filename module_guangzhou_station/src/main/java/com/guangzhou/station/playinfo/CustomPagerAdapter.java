@@ -52,7 +52,7 @@ public class CustomPagerAdapter extends PagerAdapter {
             if (absPlayInfo.type == 1) {
                 View view = View.inflate(context, R.layout.station_item_img_play, null);
                 ImageView imageView = view.findViewById(R.id.imageView);
-                Glide.with(context).load(Constants.WEB_URL + File.separator + absPlayInfo.path).into(imageView);
+                Glide.with(context).load(Constants.getmConstants().WEB_URL + File.separator + absPlayInfo.path).into(imageView);
                 container.addView(view);
                 return view;
             } else {
@@ -63,7 +63,7 @@ public class CustomPagerAdapter extends PagerAdapter {
                 mController.setLoadingType(ConstantKeys.Loading.LOADING_RING);
                 videoplayer.setPlayerType(ConstantKeys.IjkPlayerType.TYPE_IJK);
                 videoplayer.setController(mController);
-                videoplayer.setUp(Constants.WEB_URL + File.separator + absPlayInfo.path, null);
+                videoplayer.setUp(Constants.getmConstants().WEB_URL + File.separator + absPlayInfo.path, null);
                 if (position == 0) {
                     videoplayer.start();
                 }

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:background="@color/black">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="53pt"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="45pt"
+            android:gravity="center_vertical"
+            android:text="@string/rabbitmq_ip"
+            android:textColor="@color/white"
+            android:textSize="36pt" />
+
+        <EditText
+            android:id="@+id/et_ip"
+            android:layout_width="match_parent"
+            android:layout_height="70pt"
+            android:layout_marginStart="360pt"
+            android:layout_marginEnd="55pt"
+            android:background="@color/white"
+            android:digits="1234567890."
+            android:gravity="center_vertical"
+            android:hint="@string/inputIp_str"
+            android:paddingLeft="35pt"
+            android:textColor="#666666"
+            android:textSize="24pt" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18pt"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="45pt"
+            android:gravity="center_vertical"
+            android:text="@string/rabbitmq_port_str"
+            android:textColor="@color/white"
+            android:textSize="36pt" />
+
+        <EditText
+            android:id="@+id/et_port"
+            android:layout_width="match_parent"
+            android:layout_height="70pt"
+            android:layout_marginStart="360pt"
+            android:layout_marginEnd="55pt"
+            android:background="@color/white"
+            android:digits="1234567890"
+            android:gravity="center_vertical"
+            android:hint="@string/rabbitmq_prot_hint"
+            android:paddingLeft="35pt"
+            android:textColor="#666666"
+            android:textSize="24pt" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18pt"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="42pt"
+            android:gravity="center_vertical"
+            android:text="@string/ip_port"
+            android:textColor="@color/white"
+            android:textSize="36pt" />
+
+        <EditText
+            android:id="@+id/setting_port_et"
+            android:layout_width="match_parent"
+            android:layout_height="70pt"
+            android:layout_marginStart="360pt"
+            android:layout_marginEnd="55pt"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:hint="@string/ip_port_hint"
+            android:inputType="number"
+            android:paddingLeft="35pt"
+            android:textColor="#666666"
+            android:textSize="24pt" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18pt"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="45pt"
+            android:gravity="center_vertical"
+            android:text="@string/rabbitmq_account_str"
+            android:textColor="@color/white"
+            android:textSize="36pt" />
+
+        <EditText
+            android:id="@+id/tv_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="70pt"
+            android:layout_marginStart="360pt"
+            android:layout_marginEnd="55pt"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:hint="@string/rabbitmq_account_hint"
+            android:paddingLeft="35pt"
+            android:textColor="#666666"
+            android:textSize="24pt" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18pt"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="42pt"
+            android:gravity="center_vertical"
+            android:text="@string/rabbitmq_psd_str"
+            android:textColor="@color/white"
+            android:textSize="36pt" />
+
+        <EditText
+            android:id="@+id/tv_user_password"
+            android:layout_width="match_parent"
+            android:layout_height="70pt"
+            android:layout_marginStart="360pt"
+            android:layout_marginEnd="55pt"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:hint="@string/rabbitmq_psd_hint"
+            android:paddingStart="35pt"
+            android:textColor="#666666"
+            android:textSize="24pt" />
+
+    </RelativeLayout>
+
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="end|bottom">
+
+        <TextView
+            android:id="@+id/tv_commit"
+            android:layout_width="280pt"
+            android:layout_height="70pt"
+            android:layout_marginRight="415pt"
+            android:layout_marginBottom="47pt"
+            android:background="#409EFF"
+            android:gravity="center"
+            android:text="@string/sure"
+            android:textColor="@color/white"
+            android:textSize="30pt" />
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="280pt"
+            android:layout_height="70pt"
+            android:layout_marginRight="90pt"
+            android:layout_marginBottom="47pt"
+            android:background="#999999"
+            android:gravity="center"
+            android:text="@string/cancel"
+            android:textColor="@color/white"
+            android:textSize="30pt" />
+    </LinearLayout>
+
+
+</LinearLayout>

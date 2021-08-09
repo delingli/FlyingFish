@@ -90,10 +90,10 @@ public class RabbitDispatcher {
 
     private void initConnectFactor() {
         factory = new ConnectionFactory();
-        factory.setHost(Constants.SERVER_HOST);
-        factory.setUsername(Constants.RABBIT_NAME);
-        factory.setPassword(Constants.RABBIT_PASSWORD);
-        factory.setPort(Constants.RABBIT_PORT);
+        factory.setHost(Constants.getmConstants().GET_SERVER_HOST());
+        factory.setUsername(Constants.getmConstants().GET_RABBIT_NAME());
+        factory.setPassword(Constants.getmConstants().GET_RABBIT_PASSWORD());
+        factory.setPort(Integer.parseInt(Constants.getmConstants().GET_RABBIT_PORT()));
         factory.setClientProperties(map);
         LogUtils.dTag(tag, "uid=" + map.get("uid"));
         factory.setConnectionTimeout(10000);
