@@ -3,6 +3,7 @@ package com.dc.baselib.constant;
 import android.text.TextUtils;
 
 import com.blankj.utilcode.util.LogUtils;
+import com.dc.baselib.utils.SPUtils;
 import com.tencent.mmkv.MMKV;
 
 public class Constants {
@@ -29,7 +30,7 @@ public class Constants {
     }
 
     private Constants() {
-        mmkv = MMKV.defaultMMKV();
+//        mmkv = MMKV.defaultMMKV();
     }
 
     public static String SERVERHOST = "serverHost";
@@ -39,59 +40,73 @@ public class Constants {
     public static String RABBITPASSWORD = "rabbit_password";
 
     public  String GET_SERVER_HOST() {
-        String str = mmkv.decodeString(SERVERHOST, DEFAULT_SERVER_HOST);
+        String str =  SPUtils.getConfigString(SERVERHOST,DEFAULT_SERVER_HOST);
+//        String str = mmkv.decodeString(SERVERHOST, DEFAULT_SERVER_HOST);
         LogUtils.dTag("Constants", str);
         return str;
     }
 
     public  void SET_SERVER_HOST(String host) {
         if (!TextUtils.isEmpty(host)) {
-            mmkv.removeValueForKey(SERVERHOST);
-            mmkv.encode(SERVERHOST, host);
+//            mmkv.removeValueForKey(SERVERHOST);
+//            mmkv.encode(SERVERHOST, host);
+            SPUtils.putConfigString(SERVERHOST,host);
             LogUtils.dTag("Constants", host);
         }
     }
 
 
     public  String GET_SERVER_PORT() {
-        LogUtils.dTag("Constants",mmkv.decodeString(SERVERPORT, DEFAULT_SERVER_PORT));
-        return mmkv.decodeString(SERVERPORT, DEFAULT_SERVER_PORT);
+        LogUtils.dTag("Constants",SPUtils.getConfigString(SERVERPORT,DEFAULT_SERVER_PORT));
+//        LogUtils.dTag("Constants",mmkv.decodeString(SERVERPORT, DEFAULT_SERVER_PORT));
+//        LogUtils.dTag("Constants",mmkv.decodeString(SERVERPORT, DEFAULT_SERVER_PORT));
+      return   SPUtils.getConfigString(SERVERPORT,DEFAULT_SERVER_PORT);
+//        return mmkv.decodeString(SERVERPORT, DEFAULT_SERVER_PORT);
     }
 
     public  void SET_SERVER_PORT(String port) {
-       mmkv.removeValueForKey(SERVERPORT);
-       mmkv.encode(SERVERPORT, port);
+        SPUtils.putConfigString(SERVERPORT,port);
+//       mmkv.removeValueForKey(SERVERPORT);
+//       mmkv.encode(SERVERPORT, port);
     }
 
     public  String GET_RABBIT_PORT() {
-        LogUtils.dTag("Constants",mmkv.decodeString(RABBITPORT, DEFAULT_RABBIT_PORT));
-        return mmkv.decodeString(RABBITPORT, DEFAULT_RABBIT_PORT);
+        return  SPUtils.getConfigString(RABBITPORT,DEFAULT_RABBIT_PORT);
+
+//        LogUtils.dTag("Constants",mmkv.decodeString(RABBITPORT, DEFAULT_RABBIT_PORT));
+//        return mmkv.decodeString(RABBITPORT, DEFAULT_RABBIT_PORT);
     }
 
     public  void SET_RABBIT_PORT(String rabbit_port) {
-       mmkv.removeValueForKey(RABBITPORT);
-       mmkv.encode(RABBITPORT, rabbit_port);
+        SPUtils.putConfigString(RABBITPORT,rabbit_port);
+/*
+        mmkv.removeValueForKey(RABBITPORT);
+       mmkv.encode(RABBITPORT, rabbit_port);*/
     }
 
     public  String GET_RABBIT_NAME() {
-        return mmkv.decodeString(RABBITNAME, DEFAULT_RABBIT_NAME);
+        return  SPUtils.getConfigString(RABBITNAME,DEFAULT_RABBIT_NAME);
+//        return mmkv.decodeString(RABBITNAME, DEFAULT_RABBIT_NAME);
     }
 
     public  void SET_RABBIT_NAME(String rabbitname) {
         if (!TextUtils.isEmpty(rabbitname)) {
-           mmkv.removeValueForKey(RABBITNAME);
-           mmkv.encode(RABBITNAME, rabbitname);
+            SPUtils.putConfigString(RABBITNAME,rabbitname);
+//            mmkv.removeValueForKey(RABBITNAME);
+//           mmkv.encode(RABBITNAME, rabbitname);
         }
     }
 
     public  String GET_RABBIT_PASSWORD() {
-        return mmkv.decodeString(RABBITPASSWORD, DEFAULT_RABBIT_PASSWORD);
+        return  SPUtils.getConfigString(RABBITPASSWORD,DEFAULT_RABBIT_PASSWORD);
+//        return mmkv.decodeString(RABBITPASSWORD, DEFAULT_RABBIT_PASSWORD);
     }
 
     public  void SET_RABBIT_PASSWORD(String rabbitpassword) {
         if (!TextUtils.isEmpty(rabbitpassword)) {
-           mmkv.removeValueForKey(RABBITPASSWORD);
-           mmkv.encode(RABBITPASSWORD, rabbitpassword);
+   /*        mmkv.removeValueForKey(RABBITPASSWORD);
+           mmkv.encode(RABBITPASSWORD, rabbitpassword);*/
+            SPUtils.putConfigString(RABBITPASSWORD,rabbitpassword);
         }
     }
 ///api/diffusion/Directory/directoryDetail

@@ -5,8 +5,18 @@ import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import com.alibaba.android.arouter.launcher.ARouter
+import com.danikula.videocache.HttpProxyCacheServer
 
 open class BaseApplication : Application() {
+
+
+    private var proxy: HttpProxyCacheServer? = null
+
+
+
+    private fun newProxy(): HttpProxyCacheServer? {
+        return HttpProxyCacheServer.Builder(this).maxCacheSize(1024 * 1024 * 1024).build()
+    }
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
         registerActivityLifecycleCallbacks(callbacks);
@@ -28,7 +38,13 @@ open class BaseApplication : Application() {
         fun getInstances(): Context? {
             return mInstance
         }
-
+        fun getProxy(context: Context): HttpProxyCacheServer? {
+            val app: BaseApplication =
+                context.getApplicationContext() as BaseApplication
+            return if (app.proxy == null) app.newProxy().also {
+                app.proxy = it
+            } else app.proxy
+        }
     }
 
     private val callbacks: ActivityLifecycleCallbacks = object : ActivityLifecycleCallbacks {

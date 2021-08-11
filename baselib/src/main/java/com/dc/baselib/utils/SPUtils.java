@@ -38,6 +38,10 @@ public class SPUtils {
         SharedPreferences preferences = contexts.getApplicationContext().getSharedPreferences(CACHE_FILE_NAME, Context.MODE_PRIVATE);
         return preferences.getString(key, null);
     }
+    public static String getConfigString( String key,String defaultStr) {
+        SharedPreferences preferences = contexts.getApplicationContext().getSharedPreferences(CACHE_FILE_NAME, Context.MODE_PRIVATE);
+        return preferences.getString(key, defaultStr);
+    }
     public static Context contexts;
 
     public static void initSpUtils(Context context) {

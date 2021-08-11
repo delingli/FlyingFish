@@ -11,6 +11,8 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.bumptech.glide.Glide;
+import com.danikula.videocache.HttpProxyCacheServer;
+import com.dc.baselib.BaseApplication;
 import com.dc.baselib.constant.Constants;
 import com.guangzhou.station.R;
 
@@ -63,10 +65,13 @@ public class CustomPagerAdapter extends PagerAdapter {
                 mController.setLoadingType(ConstantKeys.Loading.LOADING_RING);
                 videoplayer.setPlayerType(ConstantKeys.IjkPlayerType.TYPE_IJK);
                 videoplayer.setController(mController);
-                videoplayer.setUp(Constants.getmConstants().WEB_URL + File.separator + absPlayInfo.path, null);
+                HttpProxyCacheServer proxy = BaseApplication.Companion.getProxy(context);
+                String proxyUrl = proxy.getProxyUrl(Constants.getmConstants().WEB_URL + File.separator + absPlayInfo.path);
+                videoplayer.setUp(proxyUrl, null);
                 if (position == 0) {
                     videoplayer.start();
                 }
+
                 videoplayer.addOnCpmpleteListener(new VideoPlayer.OnCpmpleteListener() {
                     @Override
                     public void onComplate() {
