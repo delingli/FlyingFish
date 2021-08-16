@@ -524,7 +524,7 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
             }
             if (ViewTitleClickCnt <= 5) {
                 ViewTitleClickStopTime = System.currentTimeMillis();
-                if (ViewTitleClickStopTime - ViewTitleClickStartTime > 1000) {
+                if (ViewTitleClickStopTime - ViewTitleClickStartTime > 2000) {
                     ViewTitleClickStartTime = 0;
                     ViewTitleClickStopTime = 0;
                     ViewTitleClickCnt = 0;
@@ -534,7 +534,7 @@ public class StationMainActivity extends AbsLifecycleActivity<StationMainViewMod
             }
             if (ViewTitleClickCnt >= 6) {
                 ViewTitleClickStopTime = System.currentTimeMillis();
-                if (ViewTitleClickStopTime - ViewTitleClickStartTime > 1000) {
+                if (ViewTitleClickStopTime - ViewTitleClickStartTime > 2000) {
                     ViewTitleClickStartTime = 0;
                     ViewTitleClickStopTime = 0;
                     ViewTitleClickCnt = 0;
